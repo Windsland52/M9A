@@ -47,6 +47,10 @@
     },
     "task": [
         {
+            "name": "test",
+            "entry": "testcustom"
+        },
+        {
             "name": "启动游戏",
             "entry": "StartUp"
         },

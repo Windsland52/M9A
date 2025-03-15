@@ -1,0 +1,16 @@
+{
+    "testcustom": {
+        "recognition": "Custom",
+        "custom_recognition": "IsSimilar",
+        "custom_recognition_param": {
+            "thresold": 0.7,
+            "roi": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "interval": 300
+        }
+    }
+}
