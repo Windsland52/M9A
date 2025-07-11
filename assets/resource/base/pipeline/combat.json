@@ -25,8 +25,8 @@
     },
     "ReturnMainStoryChapter": {
         "next": [
-            "ReturnMainStoryChapterFalse",
-            "ReturnMainStoryChapterTrue"
+            "ReturnMainStoryChapterTrue",
+            "Stop"
         ]
     },
     "ReturnMainStoryChapterTrue": {
@@ -51,31 +51,7 @@
         },
         "action": {
             "type": "Click"
-        },
-        "next": []
-    },
-    "ReturnMainStoryChapterFalse": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    0,
-                    90,
-                    1257,
-                    49
-                ],
-                "expected": [
-                    "生者",
-                    "余众",
-                    "旅行",
-                    "归来",
-                    "故事",
-                    "根须"
-                ]
-            }
-        },
-        "inverse": true,
-        "next": []
+        }
     },
     "SelectMainStoryChapter": {
         "recognition": {
@@ -92,8 +68,7 @@
         },
         "action": {
             "type": "Click"
-        },
-        "next": []
+        }
     },
     "EnterTheShow": {
         "recognition": {
@@ -138,7 +113,7 @@
                 "only_rec": true
             }
         },
-        "next_code": "set in code"
+        "next": ["MainChapter_X"]
     },
     "MainChapter_X": {
         "action": {
@@ -624,11 +599,6 @@
             "ReadyForAction"
         ]
     },
-    "StageDifficulty_None": {
-        "next": [
-            "ReadyForAction"
-        ]
-    },
     "ReadyForAction": {
         "recognition": {
             "type": "OCR",
@@ -688,22 +658,6 @@
         },
         "action": {
             "type": "Click"
-        }
-    },
-    "TargetLevelRec": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "only_rec": true,
-                "roi": [
-                    999,
-                    247,
-                    215,
-                    38
-                ],
-                "expected": "[\\s\\S]+",
-                "threshold": 0.7
-            }
         }
     }
 }

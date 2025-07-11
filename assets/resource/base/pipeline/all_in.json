@@ -8,8 +8,7 @@
                     "target_count": 0
                 }
             }
-        },
-        "next": []
+        }
     },
     "RecognizeRemainingAp": {
         "recognition": {
@@ -199,8 +198,7 @@
         "next": [
             "Victory",
             "WaitReplay"
-        ],
-        "interrupt": []
+        ]
     },
     "WaitReplay": {
         "recognition": {
