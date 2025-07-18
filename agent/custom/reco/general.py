@@ -74,7 +74,7 @@ class MultiRecognition(CustomRecognition):
                 logger.error("nodes字段不能为空或空数组")
                 return None
 
-            if return_value is None or return_value is "":
+            if return_value is None or return_value == "":
                 logger.error("return字段不能为空")
                 return None
 
@@ -218,8 +218,6 @@ class MultiRecognition(CustomRecognition):
 
             # 处理 {NodeName} 引用其他已执行节点
             if "{" in eval_expression:
-                import re
-
                 external_node_names = list(
                     set(re.findall(r"\{([^}]+)\}", eval_expression))
                 )
@@ -351,8 +349,6 @@ class MultiRecognition(CustomRecognition):
         """
         替换表达式中的 {NodeName} 为对应的ROI坐标
         """
-        import re
-
         external_node_names = re.findall(r"\{([^}]+)\}", expression)
 
         if external_node_names:
