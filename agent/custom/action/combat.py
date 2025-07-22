@@ -287,14 +287,14 @@ class SelectCombatStage(CustomAction):
         return CustomAction.RunResult(success=True)
 
 
-@AgentServer.custom_action("TargetCount")
-class TargetCount(CustomAction):
+@AgentServer.custom_action("CombatTargetTimes")
+class CombatTargetTimes(CustomAction):
     """
     清空体力或按次数刷图。
 
     参数格式:
     {
-        "target_count": "目标次数"  # 可选，不填或为0则清空体力
+        "target_times": "目标次数"  # 可选，不填或为0则清空体力
     }
     """
 
@@ -329,15 +329,15 @@ class TargetCount(CustomAction):
             logger.debug(f"剩余体力: {remaining_ap}, 关卡体力: {stage_ap}")
             return remaining_ap // stage_ap if stage_ap else 0
 
-        target_count = int(json.loads(argv.custom_action_param)["target_count"])
+        target_times = int(json.loads(argv.custom_action_param)["target_times"])
 
         already_count = 0
 
         while True:
             available_count = _get_available_count()
             # 判断本轮最大可刷次数
-            if target_count > 0:
-                left_count = target_count - already_count
+            if target_times > 0:
+                left_count = target_times - already_count
                 times = min(4, available_count, left_count)
             else:
                 times = min(4, available_count)
@@ -347,8 +347,8 @@ class TargetCount(CustomAction):
                     context.run_task("EatCandy")
 
                     available_count = _get_available_count()
-                    if target_count > 0:
-                        left_count = target_count - already_count
+                    if target_times > 0:
+                        left_count = target_times - already_count
                         times = min(4, available_count, left_count)
                     else:
                         times = min(4, available_count)
@@ -375,7 +375,7 @@ class TargetCount(CustomAction):
             context.run_task("OpenReplaysTimes")
 
             already_count += times
-            if target_count > 0 and already_count >= target_count:
+            if target_times > 0 and already_count >= target_times:
                 logger.debug(f"达到目标次数，任务结束。总共刷了 {already_count} 次")
                 break
 

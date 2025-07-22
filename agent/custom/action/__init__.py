@@ -27,6 +27,6 @@ __all__ = [
     "SOD_DifficultySelect",
     "SelectChapter",
     "SelectCombatStage",
-    "TargetCount",
+    "CombatTargetTimes",
     "JudgeDepthsOfMythWeekly",
 ]

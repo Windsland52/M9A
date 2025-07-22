@@ -3,9 +3,9 @@
         "action": {
             "type": "Custom",
             "param": {
-                "custom_action": "TargetCount",
+                "custom_action": "CombatTargetTimes",
                 "custom_action_param": {
-                    "target_count": 0
+                    "target_times": 0
                 }
             }
         }
