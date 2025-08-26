@@ -141,6 +141,10 @@ class ResetCount(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
 
+        if not argv.custom_action_param:
+            Count.reset_count()
+            return CustomAction.RunResult(success=True)
+
         param = json.loads(argv.custom_action_param)
         if not param:
             Count.reset_count()

@@ -69,11 +69,15 @@ jobs:
 
   windows:
     needs: meta
-    runs-on: windows-latest
     strategy:
       matrix:
-        arch: [x86_64]
+        include:
+          - arch: x86_64
+            runner: windows-latest
+          - arch: aarch64
+            runner: windows-11-arm
       fail-fast: false
+    runs-on: ${{ matrix.runner }}
 
     steps:
       - uses: actions/checkout@v4
@@ -86,7 +90,6 @@ jobs:
           repository: MaaXYZ/MaaFramework
           fileName: "MAA-win-${{ matrix.arch }}*"
           latest: true
-          preRelease: true
           out-file-path: "deps"
           extract: true
 
@@ -95,8 +98,8 @@ jobs:
         uses: robinraju/release-downloader@v1
         with:
           repository: SweetSmellFox/MFAAvalonia
-          fileName: "MFAAvalonia-*-win-x64*"
-          latest: true
+          fileName: "MFAAvalonia-*-win-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }}*"
+          tag: "v1.6.5"
           out-file-path: "MFA"
           extract: true
 
@@ -111,10 +114,16 @@ jobs:
         shell: bash
         run: |
           python tools/ci/setup_embed_python.py
+          
+      - name: Download Python dependencies
+        shell: bash
+        run: |
+          ./install/python/python.exe tools/ci/download_deps.py --deps-dir install/deps
+
       - name: Install
         shell: bash
         run: |
-          ./install/python/python.exe ./tools/install.py ${{ needs.meta.outputs.tag }}
+          ./install/python/python.exe ./tools/ci/install.py ${{ needs.meta.outputs.tag }}
           if [ -d "MFA" ]; then
             echo "Copying MFA files to install directory..."
             mkdir -p install
@@ -147,7 +156,6 @@ jobs:
           repository: MaaXYZ/MaaFramework
           fileName: "MAA-linux-${{ matrix.arch }}*"
           latest: true
-          preRelease: true
           out-file-path: "deps"
           extract: true
 
@@ -157,7 +165,7 @@ jobs:
         with:
           repository: SweetSmellFox/MFAAvalonia
           fileName: "MFAAvalonia-*-linux-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }}*"
-          latest: true
+          tag: "v1.6.5"
           out-file-path: "MFA"
           extract: true
 
@@ -168,12 +176,17 @@ jobs:
           rm -f "${ARCHIVE_FILE_PATH}"
           echo "Archive cleanup command executed for MFAAvalonia on Linux."
 
+      - name: Download Python dependencies
+        shell: bash
+        run: |
+          python tools/ci/download_deps.py --deps-dir install/deps
+
       - name: Install on Linux
         shell: bash
         run: |
           PYTHON_EXECUTABLE="python"
           echo "Using Python executable: $PYTHON_EXECUTABLE for Linux"
-          $PYTHON_EXECUTABLE ./tools/install.py ${{ needs.meta.outputs.tag }}
+          $PYTHON_EXECUTABLE ./tools/ci/install.py ${{ needs.meta.outputs.tag }}
           if [ -d "MFA" ]; then
             echo "Copying MFA files to install directory on Linux..."
             mkdir -p install
@@ -189,11 +202,15 @@ jobs:
 
   macos:
     needs: meta
-    runs-on: macos-latest
     strategy:
       matrix:
-        arch: [aarch64, x86_64]
+        include:
+          - arch: x86_64
+            runner: macos-13  # Intel-based macOS runner
+          - arch: aarch64
+            runner: macos-latest  # Apple Silicon macOS runner
       fail-fast: false
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -214,7 +231,7 @@ jobs:
         with:
           repository: SweetSmellFox/MFAAvalonia
           fileName: "MFAAvalonia-*-osx-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }}*"
-          latest: true
+          tag: "v1.6.5"
           out-file-path: "MFA"
           extract: true
 
@@ -237,12 +254,17 @@ jobs:
             echo "Warning: Embedded Python executable not found at $EMBED_PYTHON_PATH. Skipping chmod."
           fi
 
+      - name: Download Python dependencies
+        shell: bash
+        run: |
+          ./install/python/bin/python3 tools/ci/download_deps.py --deps-dir deps
+
       - name: Install on macOS
         shell: bash
         run: |
           PYTHON_EXECUTABLE="./install/python/bin/python3"
           echo "Using Python executable: $PYTHON_EXECUTABLE for macOS"
-          $PYTHON_EXECUTABLE ./tools/install.py ${{ needs.meta.outputs.tag }}
+          $PYTHON_EXECUTABLE ./tools/ci/install.py ${{ needs.meta.outputs.tag }}
 
           if [ -d "MFA" ]; then
             echo "Copying MFA files to install directory on macOS..."

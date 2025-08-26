@@ -28,7 +28,7 @@ class DuringAct(CustomAction):
 
         resource = json.loads(argv.custom_action_param)["resource"]
 
-        with open(f"resource/{resource}.json", encoding="utf-8") as f:
+        with open(f"resource/data/activity/{resource}.json", encoding="utf-8") as f:
             data = json.load(f)
 
         now = int(time.time() * 1000)
@@ -93,13 +93,17 @@ class DuringAnecdote(CustomAction):
 
         resource = json.loads(argv.custom_action_param)["resource"]
 
-        with open(f"resource/{resource}.json", encoding="utf-8") as f:
+        with open(f"resource/data/activity/{resource}.json", encoding="utf-8") as f:
             data = json.load(f)
 
         now = int(time.time() * 1000)
 
         for key in reversed(list(data.keys())):
             item = data[key]
+            
+            if not item["activity"].get("anecdote"):
+                continue
+            
             if now < item["activity"]["anecdote"]["end_time"]:
                 if now > item["activity"]["anecdote"]["start_time"]:
                     logger.info(f"当前版本：{key} {item['version_name']}")
@@ -135,7 +139,7 @@ class DuringRe_release(CustomAction):
 
         resource = json.loads(argv.custom_action_param)["resource"]
 
-        with open(f"resource/{resource}.json", encoding="utf-8") as f:
+        with open(f"resource/data/activity/{resource}.json", encoding="utf-8") as f:
             data = json.load(f)
 
         now = int(time.time() * 1000)

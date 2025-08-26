@@ -88,5 +88,80 @@
                 }
             }
         }
+    },
+    "sp01": {
+        "version_name": "翡冷翠之春",
+        "start_time:": 1754532000000,
+        "end_time": 1758229199000,
+        "activity": {
+            "combat": {
+                "event_type": "SideStory",
+                "start_time": 1754532000000,
+                "end_time": 1757883599000,
+                "override": {
+                    "FlagInActivityMain": {
+                        "recognition": {
+                            "param": {
+                                "roi": [
+                                    1029,
+                                    33,
+                                    96,
+                                    22
+                                ],
+                                "expected": "成就",
+                                "only_rec": true
+                            }
+                        }
+                    },
+                    "ActivityMainChapter": {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "roi": [
+                                    893,
+                                    489,
+                                    366,
+                                    170
+                                ],
+                                "template": "Combat/Activity/ActivityMainChapter_sp01.png"
+                            }
+                        }
+                    },
+                    "ActivityClickCurStage": {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    523,
+                                    109,
+                                    84,
+                                    54
+                                ],
+                                "expected": [
+                                    "信条"
+                                ]
+                            }
+                        },
+                        "action": {
+                            "param": {
+                                "target": true
+                            }
+                        }
+                    },
+                    "FlagInActivityStage": {
+                        "next": [
+                            "ReadyForAction"
+                        ],
+                        "interrupt": []
+                    }
+                }
+            },
+            "re-release": {
+                "name": "圣火纪行：东区黎明",
+                "alias": "圣火",
+                "start_time": 1757106000000,
+                "end_time": 1757969999000
+            }
+        }
     }
 }

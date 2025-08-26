@@ -51,13 +51,20 @@ class JudgeDepthsOfMythWeekly(CustomAction):
 
             return CustomAction.RunResult(success=True)
 
-        with open(file_path) as f:
-            data = json.load(f)
+        try:
+            with open(file_path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (json.JSONDecodeError) as e:
+            logger.warning(f"非标准json文件，正在初始化: {e}")
+            with open(file_path, "w", encoding="utf-8") as file:
+                json.dump(default_data, file, indent=4)
+            logger.info("初始化完成，跳过时间检查")
+            return CustomAction.RunResult(success=True)
 
         if "DepthsOfMyth" not in data:
             data["DepthsOfMyth"] = int(time.time() * 1000)
             with open(file_path, "w", encoding="utf-8") as file:
-                json.dump(data, f, indent=4)
+                json.dump(data, file, indent=4)
             logger.info("无时间记录，跳过时间检查")
 
             return CustomAction.RunResult(success=True)

@@ -20,7 +20,10 @@
                     242,
                     132
                 ],
-                "template": "Wilderness/EnterWilderness.png"
+                "template": [
+                    "Wilderness/EnterWilderness.png",
+                    "Wilderness/EnterWilderness_sp01.png"
+                ]
             }
         },
         "action": {

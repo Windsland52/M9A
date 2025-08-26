@@ -29,13 +29,14 @@
 
 | | Windows | macOS | Linux | Android |
 | :---: | :---: | :---: | :---: | :---: |
-| System Requirements | Windows 10 and above, x86_64 architecture | Self-test | Self-test | Not recommended |
+| System Requirements | Windows 10 and above | Self-test | Self-test | Not recommended |
 | Environment Setup Required | Yes | Yes | Yes | Yes |
 | Emulator Required | Yes | Yes | Emulator or containerized Android | No |
 | Usage | GUI or CLI | GUI or CLI | GUI or CLI | CLI |
 
 | | Notes |
 | --- | --- |
+| Windows Users | In most cases, please download the x86_64 architecture |
 | Mac Users | M9A supports both Apple Silicon and Intel chip Mac computers<br>But it's more recommended for Intel chip Mac computers to use Mac's built-in multi-system installation of Windows<br>And use Windows version M9A and emulator |
 | Android Users | M9A no longer provides Android version release packages<br>If you are very familiar with mobile phone operations and wish to use Android physical devices, please go to [Development Documentation](../develop/Notes-Before-Development.md) to install it yourself<br>You can refer to [Usage Method](https://github.com/MaaXYZ/MaaFramework/issues/475), and [MAA Documentation](https://maa.plus/docs/zh-cn/manual/device/android.html)<br>This method is complex and has certain risks, not recommended for beginner players |
 
@@ -587,14 +588,9 @@ At least configure **`Resource Type`** and **`Connection`**. When configured inc
   
   ```jsonc
   {
-      "enable_pip_install": true,  // Whether to enable pip installation, default true, recommended to enable
-      "last_version": "v3.2.0",  // Version of interface.json read when pip installation is completed, compared with version at startup, tries to install if different
-      "mirror": "https://mirrors.ustc.edu.cn/pypi/simple", // Mirror source. Parameters after pip install -i, can be filled according to personal needs. Note that users outside mainland China should modify the value to ""
-      "backup_mirrors": [
-      "https://pypi.tuna.tsinghua.edu.cn/simple",
-      "https://mirrors.cloud.tencent.com/pypi/simple/",
-      "https://pypi.org/simple"
-      ]  // Backup mirror sources
+      "enable_pip_install": true,  // Whether to enable pip installation, default true
+      "mirror": "https://pypi.tuna.tsinghua.edu.cn/simple",  // Mirror source
+      "backup_mirror": "https://mirrors.ustc.edu.cn/pypi/simple"  // Backup mirror sources
   }
   ```
   

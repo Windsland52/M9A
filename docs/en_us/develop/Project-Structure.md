@@ -23,11 +23,9 @@
 |   |-- zh_cn/                    # Chinese documentation
 |   `-- .markdownlint.yaml        # Markdown linting configuration
 |-- tools/                        # Tool scripts directory
-|   |-- ci/                       # Continuous integration tools
+|   |-- ci/                       # Continuous integration scripts
 |   |-- image/                    # Image processing tools
-|   |-- V1_upgrade.py             # Pipeline version upgrade script
-|   |-- configure.py              # Configuration script
-|   `-- install.py                # Installation script
+|   `-- V1_upgrade.py             # Pipeline version upgrade script
 |-- .gitignore                    # Git ignore configuration
 |-- .gitmodules                   # Git submodules configuration
 |-- .pre-commit-config.yaml       # Pre-commit hooks configuration

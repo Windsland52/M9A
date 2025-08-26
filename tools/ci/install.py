@@ -13,7 +13,7 @@ sys.path.append(script_dir)
 
 from configure import configure_ocr_model
 
-working_dir = Path(__file__).parent.parent
+working_dir = Path(__file__).parent.parent.parent
 install_path = working_dir / Path("install")
 version = len(sys.argv) > 1 and sys.argv[1] or "v0.0.1"
 
@@ -56,6 +56,7 @@ def install_resource():
         interface = json.load(f)
 
     interface["version"] = version
+    interface["custom_title"] = f"M9A {version} | 亿韭韭韭小助手"
 
     with open(install_path / "interface.json", "w", encoding="utf-8") as f:
         json.dump(interface, f, ensure_ascii=False, indent=4)

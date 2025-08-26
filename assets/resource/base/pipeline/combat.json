@@ -9,11 +9,7 @@
             "type": "Custom",
             "param": {
                 "custom_action": "SelectCombatStage",
-                "custom_action_param": {
-                    "stage": "",
-                    "stageName": "",
-                    "level": ""
-                }
+                "custom_action_param_code": "stage&level"
             }
         },
         "next": [
@@ -80,7 +76,10 @@
                     229,
                     153
                 ],
-                "template": "Combat/EnterTheShow.png"
+                "template": [
+                    "Combat/EnterTheShow.png",
+                    "Combat/EnterTheShow_sp01.png"
+                ]
             }
         },
         "action": {

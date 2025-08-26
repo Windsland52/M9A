@@ -12,13 +12,13 @@
             "Disclaimer",
             "HomeLoading",
             "GameLoading",
-            "CloseAnnouncement",
             "ObtainedAwards",
             "AccumulatedSignIn",
             "BirthdayReward",
             "Reward",
+            "sp01calendar",
             "SignInReward",
-            "CloseRewardPage",
+            "ClosePage",
             "Confirm",
             "VictoryReturn",
             "Download",
@@ -48,15 +48,17 @@
             "BackButton",
             "HomeLoading",
             "ObtainedAwards",
-            "CloseAnnouncement",
             "AccumulatedSignIn",
             "BirthdayReward",
             "SignInReward",
             "Reward",
-            "CloseRewardPage",
+            "sp01calendar",
+            "ClosePage",
             "StartGame",
             "Confirm",
             "VictoryReturn",
+            "Download",
+            "Downloading",
             "ClickBlank",
             "ClickHomeCount"
         ]
@@ -88,12 +90,14 @@
             "AccumulatedSignIn",
             "BirthdayReward",
             "Reward",
+            "sp01calendar",
             "SignInReward",
             "ClickTarot",
             "Confirm",
-            "CloseAnnouncement",
-            "CloseRewardPage",
+            "ClosePage",
             "BackButton",
+            "HomeButton",
+            "SkipButton",
             "ClickHomeCount"
         ]
     },
@@ -143,16 +147,18 @@
         ],
         "interrupt": [
             "SkipButton",
+            "BackButton",
+            "HomeButton",
             "ObtainedAwards",
             "AccumulatedSignIn",
             "BirthdayReward",
             "Reward",
+            "sp01calendar",
             "SignInReward",
             "ClickTarot",
             "Confirm",
             "ClickBlank",
-            "CloseRewardPage",
-            "CloseAnnouncement",
+            "ClosePage",
             "SkipOpeningAnimation",
             "ClickHomeCount"
         ]
@@ -284,25 +290,32 @@
         },
         "action": {
             "type": "Click"
+        },
+        "next": [
+            "CountDownload",
+            "DisableDownload"
+        ]
+    },
+    "CountDownload": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "Count",
+                "custom_recognition_param": {
+                    "target": 5
+                }
+            }
         }
     },
-    "CloseAnnouncement": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    1105,
-                    40,
-                    143,
-                    140
-                ],
-                "template": [
-                    "StartUp/CloseAnnouncement.png"
-                ]
-            }
-        },
+    "DisableDownload": {
         "action": {
-            "type": "Click"
+            "type": "Custom",
+            "param": {
+                "custom_action": "DisableNode",
+                "custom_action_param": {
+                    "node_name": "Download"
+                }
+            }
         }
     },
     "SkipButton": {
@@ -330,10 +343,25 @@
         }
     },
     "SkipOpeningAnimation": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "Count",
+                "custom_recognition_param": {
+                    "target": 15
+                }
+            }
+        },
         "action": {
             "type": "Click",
             "param": {
-                "target": "HomeLoading_wait"
+                "target": "HomeLoading_wait",
+                "target_offset": [
+                    110,
+                    0,
+                    -110,
+                    0
+                ]
             }
         }
     },
@@ -347,7 +375,10 @@
                     194,
                     166
                 ],
-                "template": "StartUp/HomeFlag.png"
+                "template": [
+                    "StartUp/HomeFlag.png",
+                    "StartUp/HomeFlag_sp01.png"
+                ]
             }
         },
         "action": {
@@ -372,7 +403,10 @@
                     194,
                     166
                 ],
-                "template": "StartUp/HomeFlag.png"
+                "template": [
+                    "StartUp/HomeFlag.png",
+                    "StartUp/HomeFlag_sp01.png"
+                ]
             }
         },
         "action": {
@@ -396,7 +430,8 @@
                     138
                 ],
                 "template": [
-                    "StartUp/BackButton.png"
+                    "StartUp/BackButton.png",
+                    "StartUp/BackButton_sp01.png"
                 ],
                 "green_mask": true
             }
@@ -438,7 +473,8 @@
                 ],
                 "template": [
                     "StartUp/HomeButton.png",
-                    "StartUp/HomeButton_White.png"
+                    "StartUp/HomeButton_White.png",
+                    "StartUp/HomeButton_sp01.png"
                 ]
             }
         },
@@ -464,11 +500,6 @@
                 }
             }
         },
-        "next": [
-            "ClickHome"
-        ]
-    },
-    "ClickHome": {
         "action": {
             "type": "Click",
             "param": {
@@ -496,7 +527,8 @@
                 "template": [
                     "StartUp/Reward.png",
                     "StartUp/Reward1.png",
-                    "StartUp/Reward2.png"
+                    "StartUp/Reward2.png",
+                    "StartUp/Reward3.png" // 刺客联动版本
                 ]
             }
         },
@@ -553,8 +585,8 @@
         },
         "post_delay": 3000
     },
-    "CloseRewardPage": {
-        "doc": "关闭签到奖励页面",
+    "ClosePage": {
+        // 用于关闭各种页面，如签到、公告、物品详情页
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -635,7 +667,7 @@
                     0
                 ],
                 "roi": "SignInReward_template",
-                "count": 300
+                "count": 130
             }
         }
     },
@@ -655,7 +687,7 @@
                     0
                 ],
                 "roi": "SignInReward_template",
-                "count": 300
+                "count": 250
             }
         }
     },
@@ -720,6 +752,34 @@
         },
         "action": {
             "type": "Click"
+        }
+    },
+    "sp01calendar": {
+        // 刺客信条联动版本月卡
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "StartUp/Canlendarsp01.png"
+                ],
+                "roi": [
+                    635,
+                    70,
+                    450,
+                    187
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    1075,
+                    103,
+                    22,
+                    22
+                ]
+            }
         }
     }
 }

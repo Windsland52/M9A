@@ -85,8 +85,10 @@ class MultiRecognition(CustomRecognition):
             for i, node_name in enumerate(nodes):
                 index_key = f"${i}"
 
-                logger.debug(f"开始识别节点: {node_name}({index_key})")
                 reco_detail = context.run_recognition(node_name, argv.image)
+                logger.debug(
+                    f"{node_name}({index_key}): {reco_detail.box if (reco_detail is not None) else None}"
+                )
 
                 if reco_detail is not None and reco_detail.box is not None:
                     # 标准化ROI，将[0,0,0,0]转换为实际全屏坐标，其它不变
@@ -202,7 +204,6 @@ class MultiRecognition(CustomRecognition):
                 logger.error("未提供expression")
                 return False
 
-            logger.debug(f"CUSTOM逻辑判断: {expression}")
             return self._evaluate_logic_expression(expression, node_results)
 
         else:
@@ -252,7 +253,6 @@ class MultiRecognition(CustomRecognition):
 
             # 计算表达式
             result = eval(eval_expression)
-            logger.debug(f"逻辑表达式结果: {result}")
 
             return bool(result)
 
@@ -315,10 +315,8 @@ class MultiRecognition(CustomRecognition):
                 if roi is not None:
                     roi_str = f"[{roi[0]},{roi[1]},{roi[2]},{roi[3]}]"
                     eval_expression = eval_expression.replace(key, roi_str)
-                    logger.debug(f"{key} ROI: {roi}")
                 else:
                     eval_expression = eval_expression.replace(key, "[0,0,0,0]")
-                    logger.debug(f"{key} ROI: {roi}")
 
             logger.debug(f"ROI表达式转换: {expression} -> {eval_expression}")
 
@@ -508,6 +506,11 @@ class MultiRecognition(CustomRecognition):
         """
         x1, y1, w1, h1 = roi1
         x2, y2, w2, h2 = roi2
+
+        if w1 == 0 and h1 == 0:
+            return roi2
+        elif w2 == 0 and h2 == 0:
+            return roi1
 
         # 计算边界
         left = min(x1, x2)

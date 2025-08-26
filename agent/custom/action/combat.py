@@ -203,7 +203,7 @@ class ActivityTargetLevel(CustomAction):
 @AgentServer.custom_action("SelectChapter")
 class SelectChapter(CustomAction):
     """
-    章节选择。
+    章节选择 。
     """
 
     def run(

@@ -25,6 +25,7 @@ __all__ = [
     "CombatTargetLevel",
     "SummonlngSwipe",
     "SOD_DifficultySelect",
+    "ActivityTargetLevel",
     "SelectChapter",
     "SelectCombatStage",
     "CombatTargetTimes",

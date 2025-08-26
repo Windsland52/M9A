@@ -35,6 +35,7 @@ Check out the [GitHub Pull Request Guide for Beginners](https://maa.plus/docs/zh
 
 5. Set up the development environment:
 
+    - Install python(≥3.11)
     - Download and install VSCode.
     - Optionally install debugging/development tools:
 
@@ -45,23 +46,13 @@ Check out the [GitHub Pull Request Guide for Beginners](https://maa.plus/docs/zh
         | [MFA Tools(Windows Only)](https://github.com/SweetSmellFox/MFATools) | Standalone tool for screenshots, ROI extraction, and color picking |
         | [ImageCropper(Not recommended)](https://github.com/MaaXYZ/MaaFramework/tree/main/tools/ImageCropper) | Standalone tool for screenshots and ROI extraction |
 
-6. Local installation
+6. Start developing:
 
-   1. Install python(≥3.10)
-
-   2. Assemble components by running install
-
-      ```bash
-      python ./tools/install.py
-      ```
-
-   Then you can run M9A in the install folder.
-
-7. Start developing:
+    Develop the M9A with the debugging/development tools installed in the previous step. The virtual environment will be automatically created in the `.venv` directory.
 
     Enjoy coding! Before starting, check out the [Related Reading](#related-reading).
 
-8. Git operations:
+7. Git operations:
 
     The most commonly used basic commands are:
     - `git add <file>`: Add files to the staging area. Use `*` to represent all files.
@@ -116,7 +107,7 @@ Check out the [GitHub Pull Request Guide for Beginners](https://maa.plus/docs/zh
     - [Git Simplified Guide](https://www.runoob.com/manual/git-guide/)
     - [Git Tutorial | Runoob](https://www.runoob.com/git/git-tutorial.html)
 
-9. Submit a Pull Request:
+8. Submit a Pull Request:
 
     Your modified code has been committed to your repository. Now, you need to submit a Pull Request to the M9A repository and wait for the maintainers to review it.
 

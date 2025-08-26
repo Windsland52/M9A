@@ -23,16 +23,18 @@
     },
     "EnterBank": {
         "recognition": {
-            "type": "OCR",
+            "type": "TemplateMatch",
             "param": {
-                "only_rec": true,
                 "roi": [
-                    55,
-                    473,
-                    45,
-                    28
+                    8,
+                    358,
+                    130,
+                    162
                 ],
-                "expected": "银行"
+                "template": [
+                    "Bank/Bank.png",
+                    "Bank/Bank2.png"
+                ]
             }
         },
         "action": {

@@ -17,7 +17,10 @@
                     194,
                     166
                 ],
-                "template": "StartUp/HomeFlag.png"
+                "template": [
+                    "StartUp/HomeFlag.png",
+                    "StartUp/HomeFlag_sp01.png"
+                ]
             }
         },
         "action": {
@@ -53,8 +56,11 @@
                     108,
                     108
                 ],
-                "template": "Awards/MailBadge.png",
-                "threshold": 0.97
+                "template": [
+                    "Awards/MailBadge.png",
+                    "Awards/MailBadge_sp01.png"
+                ],
+                "threshold": 0.9
             }
         },
         "action": {
@@ -77,8 +83,11 @@
                     108,
                     108
                 ],
-                "template": "Awards/MailBadge.png",
-                "threshold": 0.97
+                "template": [
+                    "Awards/MailBadge.png",
+                    "Awards/MailBadge_sp01.png"
+                ],
+                "threshold": 0.9
             }
         },
         "action": {
@@ -413,8 +422,11 @@
                     111,
                     110
                 ],
-                "template": "Awards/DailyBadge.png",
-                "threshold": 0.97
+                "template": [
+                    "Awards/DailyBadge.png",
+                    "Awards/DailyBadge_sp01.png"
+                ],
+                "threshold": 0.9
             }
         },
         "action": {
@@ -570,20 +582,6 @@
             }
         }
     },
-    "DailyAwardsPageFlag": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    458,
-                    0,
-                    138,
-                    136
-                ],
-                "template": "Awards/DailyAwardsPageFlag.png"
-            }
-        }
-    },
     "Sub_JukeboxBadge": {
         "is_sub": true,
         "recognition": {
@@ -598,7 +596,8 @@
                 "template": [
                     "Awards/JukeboxBadge1.png",
                     "Awards/JukeboxBadge2.png",
-                    "Awards/JukeboxBadge3.png"
+                    "Awards/JukeboxBadge3.png",
+                    "Awards/JukeboxBadge_sp01.png"
                 ],
                 "threshold": 0.85
             }

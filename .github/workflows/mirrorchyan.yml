@@ -11,9 +11,6 @@ jobs:
       matrix:
         os: [win, macos, linux]
         arch: [aarch64, x86_64]
-        exclude:
-          - os: win
-            arch: aarch64
     steps:
       - uses: MirrorChyan/uploading-action@v1
         if: ${{ github.repository_owner == 'MAA1999' }}

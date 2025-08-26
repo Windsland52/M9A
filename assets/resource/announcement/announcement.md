@@ -11,12 +11,12 @@
 
 ## 使用说明
 
-- [新手上路](https://1999.fan/docs/zh_cn/manual/新手上路.md)(**使用前必看**)
-- [连接设置](https://1999.fan/docs/zh_cn/manual/连接设置.md)
-- [功能介绍](https://1999.fan/docs/zh_cn/manual/功能介绍.md)
-- [MaaPiCli使用说明](https://1999.fan/docs/zh_cn/manual/MaaPiCli.md)
-- [常见问题](https://1999.fan/docs/zh_cn/manual/常见问题.md)
-- [Mirror酱使用说明](https://1999.fan/docs/zh_cn/manual/Mirror酱.md)
+- [新手上路](https://1999.fan/docs/zh_cn/manual/新手上路.html)(**使用前必看**)
+- [连接设置](https://1999.fan/docs/zh_cn/manual/连接设置.html)
+- [功能介绍](https://1999.fan/docs/zh_cn/manual/功能介绍.html)
+- [MaaPiCli使用说明](https://1999.fan/docs/zh_cn/manual/MaaPiCli.html)
+- [常见问题](https://1999.fan/docs/zh_cn/manual/常见问题.html)
+- [Mirror酱使用说明](https://1999.fan/docs/zh_cn/manual/Mirror酱.html)
 
 ## 加入我们
 
