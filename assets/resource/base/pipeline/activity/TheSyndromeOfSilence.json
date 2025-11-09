@@ -92,16 +92,16 @@
     "FlagInSOSMainMenu": {
         // 有科技树的主界面
         "recognition": {
-            "type": "TemplateMatch",
+            "type": "OCR",
             "param": {
                 "roi": [
-                    1004,
-                    515,
-                    276,
-                    145
+                    101,
+                    358,
+                    317,
+                    77
                 ],
-                "template": [
-                    "SyndromeOfSilence/TheSyndromeOfSilence_MainMenu.png"
+                "expected": [
+                    "旅途所获"
                 ]
             }
         }
@@ -238,6 +238,121 @@
                     "难度选择"
                 ]
             }
+        },
+        // TODO: 选择噪音等级
+        "next": [
+            "SOSSelectInstrument"
+        ],
+        "interrupt": [
+            "SOSNextStep"
+        ]
+    },
+    "SOSSelectInstrument": {
+        // 选择 buff 界面
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    576,
+                    50,
+                    124,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "选择配器"
+                ]
+            }
+        },
+        // TODO: 选择 buff
+        "next": [
+            "SOSMain"
+        ],
+        "interrupt": [
+            "SOSNextStep",
+            "SOSArtifactsObtained",
+            "SOSSelectResonator"
+        ]
+    },
+    "SOSMain": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    79,
+                    645,
+                    116,
+                    40
+                ],
+                "only_rec": true,
+                "expected": [
+                    "角色总览"
+                ]
+            }
         }
+    },
+    "SOSNextStep": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1002,
+                    545,
+                    227,
+                    149
+                ],
+                "template": [
+                    "SyndromeOfSilence/NextStep.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    // 主页面各种弹窗处理
+    "SOSArtifactsObtained": {
+        // 获得造物
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    576,
+                    50,
+                    124,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "获得造物"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
+    },
+    "SOSSelectResonator": {
+        // 获得共鸣器
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    561,
+                    50,
+                    159,
+                    37
+                ],
+                "only_rec": true,
+                "expected": [
+                    "获得共鸣器"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
     }
 }
