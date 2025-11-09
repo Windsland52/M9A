@@ -7,7 +7,9 @@
         "interrupt": [
             "SOSStop",
             "FlagInSOSMenu",
-            "ReturnMain"
+            "ReturnMain",
+            "EnterTheActivityMain",
+            "EnterSOSMenu"
         ]
     },
     // 到 SOS Main Menu
@@ -32,6 +34,34 @@
             "SOSStart"
         ]
     },
+    "EnterSOSMenu": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    46,
+                    561,
+                    782,
+                    159
+                ],
+                "expected": [
+                    "无声综合征"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 500,
+            "target": [
+                931,
+                551,
+                353,
+                172
+            ]
+        }
+    },
     "SOSMainMenu": {
         // 有科技树的主界面，进入循环
         "recognition": {
@@ -45,9 +75,9 @@
                     ],
                     "logic": {
                         "type": "CUSTOM",
-                        "expression": "$1AND(NOT$2)"
+                        "expression": "$0 AND NOT $1"
                     },
-                    "return": "$1"
+                    "return": "$0"
                 }
             }
         },
@@ -106,7 +136,9 @@
             "FlagInSOSMainMenu"
         ],
         "interrupt": [
+            "SOSSummary",
             "SOSGiveup",
+            "SOSStart",
             "SOD_Skip_NoNext",
             "SOSConfirm"
         ]
@@ -187,11 +219,25 @@
         "action": {
             "type": "Click"
         },
-        "post_wait_freezes": 500,
         "post_delay": 1500
     },
     // 开始局外演绎
     "SOSSelectNoise": {
         // 选择难度界面
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    576,
+                    50,
+                    124,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "难度选择"
+                ]
+            }
+        }
     }
 }
