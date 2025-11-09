@@ -1,5 +1,197 @@
 {
     "TheSyndromeOfSilence": {
-        // 3.2&3.3 版本局外演绎
+        // 3.2&3.3 版本局外演绎,
+        "next": [
+            "SOSMainMenu"
+        ],
+        "interrupt": [
+            "SOSStop",
+            "FlagInSOSMenu",
+            "ReturnMain"
+        ]
+    },
+    // 到 SOS Main Menu
+    "FlagInSOSMenu": {
+        // 版本活动列表界面 OR 活动列表界面在未开始游戏的情况下点开后的界面
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    114,
+                    68,
+                    823,
+                    198
+                ],
+                "template": [
+                    "SyndromeOfSilence/TheSyndromeOfSilence_Menu1.png",
+                    "SyndromeOfSilence/TheSyndromeOfSilence_Menu2.png"
+                ]
+            }
+        },
+        "next": [
+            "SOSStart"
+        ]
+    },
+    "SOSMainMenu": {
+        // 有科技树的主界面，进入循环
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "MultiRecognition",
+                "custom_recognition_param": {
+                    "nodes": [
+                        "FlagInSOSMainMenu",
+                        "SOSStop"
+                    ],
+                    "logic": {
+                        "type": "CUSTOM",
+                        "expression": "$1AND(NOT$2)"
+                    },
+                    "return": "$1"
+                }
+            }
+        },
+        "next": [
+            "SOSSelectNoise"
+        ],
+        "interrupt": [
+            "SOSConfirm", // 先不管旅伴，直接跳过，后面有需要再处理
+            "SOSStart"
+        ]
+    },
+    "FlagInSOSMainMenu": {
+        // 有科技树的主界面
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1004,
+                    515,
+                    276,
+                    145
+                ],
+                "template": [
+                    "SyndromeOfSilence/TheSyndromeOfSilence_MainMenu.png"
+                ]
+            }
+        }
+    },
+    "SOSStop": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    497,
+                    536,
+                    503,
+                    128
+                ],
+                "template": [
+                    "SyndromeOfSilence/SOSStop.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    0,
+                    0,
+                    0,
+                    -15
+                ]
+            }
+        },
+        "next": [
+            "FlagInSOSMainMenu"
+        ],
+        "interrupt": [
+            "SOSGiveup",
+            "SOD_Skip_NoNext",
+            "SOSConfirm"
+        ]
+    },
+    "SOSSummary": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    405,
+                    0,
+                    361,
+                    117
+                ],
+                "template": [
+                    "SyndromeOfSilence/SOSSummary.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    "SOSGiveup": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    443,
+                    157,
+                    337,
+                    199
+                ],
+                "template": [
+                    "SyndromeOfSilence/SOSGiveup.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    "SOSConfirm": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    764,
+                    404,
+                    73,
+                    35
+                ],
+                "expected": [
+                    "确认"
+                ],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    "SOSStart": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    540,
+                    501,
+                    667,
+                    179
+                ],
+                "template": [
+                    "SyndromeOfSilence/SOSStart.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500,
+        "post_delay": 1500
+    },
+    // 开始局外演绎
+    "SOSSelectNoise": {
+        // 选择难度界面
     }
 }
