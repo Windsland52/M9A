@@ -289,26 +289,60 @@
                     "角色总览"
                 ]
             }
-        }
+        },
+        "next": [
+            "SOSSelectNode"
+        ],
+        "interrupt": []
     },
-    "SOSNextStep": {
+    // 演绎主体逻辑
+    "SOSSelectNode": {
+        // 选择最左侧节点
         "recognition": {
-            "type": "TemplateMatch",
+            "type": "NeuralNetworkDetect",
             "param": {
-                "roi": [
-                    1002,
-                    545,
-                    227,
-                    149
+                "model": "sos_nodes.onnx",
+                "labels": [
+                    "C", // 走过的节点
+                    "Conflict", // 冲突
+                    "Dangerous", // 险象环生
+                    "Encounter", // 遭遇
+                    "EncounterAlongTheWay", // 途中偶遇
+                    "EntertainmentOnTheWay", // 途中余兴
+                    "FierceBattle", // 恶战
+                    "Message", // 信息
+                    "RestArea", // 休憩处
+                    "ShoppingOpportunity", // 购物契机
+                    "TheHandOfAMasterCraftsman", // 巧匠之手
+                    "TheOnlyWay", // 必经之路
+                    "TreasureLand" // 藏宝地
                 ],
-                "template": [
-                    "SyndromeOfSilence/NextStep.png"
-                ]
+                "expected": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                ],
+                "order_by": "Horizontal",
+                "index": 0
             }
         },
-        "action": {
-            "type": "Click"
-        }
+        // "action": {
+        //     "type": "Custom",
+        //     "param": {
+        //         "custom_action": "SOSSelectNode"
+        //     }
+        // },
+        "next_code": "在custom_action里override"
     },
     // 主页面各种弹窗处理
     "SOSArtifactsObtained": {
@@ -354,5 +388,24 @@
             "type": "Click"
         },
         "post_wait_freezes": 500
+    },
+    "SOSNextStep": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1002,
+                    545,
+                    227,
+                    149
+                ],
+                "template": [
+                    "SyndromeOfSilence/NextStep.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     }
 }
