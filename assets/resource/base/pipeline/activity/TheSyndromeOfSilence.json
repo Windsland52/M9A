@@ -290,10 +290,10 @@
                 ]
             }
         },
-        "next": [
+        "next": [],
+        "interrupt": [
             "SOSSelectNode"
-        ],
-        "interrupt": []
+        ]
     },
     // 演绎主体逻辑
     "SOSSelectNode": {
@@ -303,14 +303,14 @@
             "param": {
                 "model": "sos_nodes.onnx",
                 "labels": [
-                    "C", // 走过的节点
+                    "C", // 已完成节点
                     "Conflict", // 冲突
                     "Dangerous", // 险象环生
                     "Encounter", // 遭遇
                     "EncounterAlongTheWay", // 途中偶遇
                     "EntertainmentOnTheWay", // 途中余兴
                     "FierceBattle", // 恶战
-                    "Message", // 信息
+                    "Message", // 对话
                     "RestArea", // 休憩处
                     "ShoppingOpportunity", // 购物契机
                     "TheHandOfAMasterCraftsman", // 巧匠之手
@@ -318,7 +318,6 @@
                     "TreasureLand" // 藏宝地
                 ],
                 "expected": [
-                    0,
                     1,
                     2,
                     3,
@@ -336,12 +335,12 @@
                 "index": 0
             }
         },
-        // "action": {
-        //     "type": "Custom",
-        //     "param": {
-        //         "custom_action": "SOSSelectNode"
-        //     }
-        // },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSSelectNode"
+            }
+        },
         "next_code": "在custom_action里override"
     },
     // 主页面各种弹窗处理
@@ -406,6 +405,45 @@
         },
         "action": {
             "type": "Click"
+        }
+    },
+    "SOSGOTO": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1010,
+                    574,
+                    69,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "前往"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
+    },
+    // 工具节点
+    "SOSEventRec": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    858,
+                    72,
+                    132,
+                    33
+                ],
+                "only_rec": true,
+                "expected": [
+                    ".+"
+                ]
+            }
         }
     }
 }
