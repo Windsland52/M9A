@@ -287,7 +287,8 @@
                 "only_rec": true,
                 "expected": [
                     "蒙帕斯大街",
-                    "宴会厅"
+                    "宴会厅",
+                    "塞纳河畔"
                 ]
             }
         },
@@ -297,7 +298,8 @@
             "SOSSelectNode",
             "SOSSelectHarmonic",
             "SOSHarmonicObtained",
-            "SOSStatsUp"
+            "SOSStatsUp",
+            "SOSSetOff"
         ]
     },
     // 演绎主体逻辑
@@ -767,6 +769,43 @@
             "type": "Click"
         }
     },
+    "SOSSetOff": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "启程"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500,
+        "next": [
+            "SOSGoToNextScene",
+            "SOSSetOff"
+        ]
+    },
+    "SOSGoToNextScene": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "翌日清晨",
+                    "翌日响午"
+                ],
+                "order_by": "Vertical"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "FlagInSOSMain",
+            "SOSGoToNextScene"
+        ]
+    },
     // 工具节点
     "SOSEventRec": {
         "recognition": {
@@ -781,6 +820,25 @@
                 "only_rec": true,
                 "expected": [
                     ".+"
+                ]
+            }
+        }
+    },
+    "FlagInSOSMain": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    613,
+                    40,
+                    134,
+                    31
+                ],
+                "only_rec": true,
+                "expected": [
+                    "蒙帕斯大街",
+                    "宴会厅",
+                    "塞纳河畔"
                 ]
             }
         }
