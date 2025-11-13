@@ -479,6 +479,36 @@
                     "SOSStatsUp",
                     "SOSNextMessage"
                 ]
+            },
+            "刽子手应聘": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "获得"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "获得"
+                        ]
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage",
+                    "SOSSelectResonator"
+                ]
             }
         }
     },
