@@ -111,6 +111,29 @@
                     "SOSHarmonicObtained",
                     "SOSStatsUp"
                 ]
+            },
+            "花朵与入迷": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "先找到她"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSArtifactsObtained",
+                    "SOSNextMessage"
+                ]
             }
         }
     }

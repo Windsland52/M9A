@@ -292,6 +292,7 @@
         },
         "next": [],
         "interrupt": [
+            "SOSArtifactsObtained",
             "SOSSelectNode",
             "SOSSelectHarmonic",
             "SOSHarmonicObtained",
@@ -725,6 +726,25 @@
                 ],
                 "expected_code": "string"
             }
+        }
+    },
+    "SOSNextMessage": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1034,
+                    586,
+                    39,
+                    40
+                ],
+                "template": [
+                    "SyndromeOfSilence/NextMessage.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
         }
     },
     // 工具节点
