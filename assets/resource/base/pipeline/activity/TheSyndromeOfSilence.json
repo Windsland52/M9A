@@ -541,7 +541,60 @@
             }
         }
     },
-    "SOSCombat": {},
+    "SOSCombat": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1052,
+                    637,
+                    126,
+                    33
+                ],
+                "only_rec": true,
+                "expected": [
+                    "开始战斗"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "timeout": 600000,
+        "next": [
+            "SOSVictory",
+            "SOSCombat"
+        ]
+    },
+    "SOSVictory": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    678,
+                    10,
+                    473,
+                    240
+                ],
+                "expected": [
+                    "战斗",
+                    "胜利"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "pre_wait_freezes": {
+            "time": 500,
+            "target": [
+                614,
+                457,
+                666,
+                263
+            ]
+        }
+    },
     // 工具节点
     "SOSEventRec": {
         "recognition": {
