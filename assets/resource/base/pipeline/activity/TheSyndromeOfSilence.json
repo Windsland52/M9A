@@ -428,6 +428,124 @@
         },
         "post_wait_freezes": 500
     },
+    "SOSContinue": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1020,
+                    642,
+                    69,
+                    38
+                ],
+                "only_rec": true,
+                "expected": [
+                    "继续"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 700,
+            "target": [
+                852,
+                131,
+                393,
+                488
+            ]
+        }
+    },
+    "SOSSelectOption": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "lower": [
+                    105,
+                    150,
+                    150
+                ],
+                "upper": [
+                    131,
+                    255,
+                    255
+                ],
+                "method": 40,
+                "connected": true,
+                "count": 700
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSSelectOption"
+            }
+        }
+    },
+    "SOSHarmonicObtained": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    581,
+                    52,
+                    118,
+                    33
+                ],
+                "only_rec": true,
+                "expected": [
+                    "获得谐波"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
+    },
+    "SOSStatsUp": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    581,
+                    52,
+                    118,
+                    33
+                ],
+                "only_rec": true,
+                "expected": [
+                    "属性提升"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
+    },
+    "SOSEventEnd": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1023,
+                    647,
+                    62,
+                    31
+                ],
+                "only_rec": true,
+                "expected": [
+                    "结束"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
+    },
     // 工具节点
     "SOSEventRec": {
         "recognition": {
@@ -443,6 +561,40 @@
                 "expected": [
                     ".+"
                 ]
+            }
+        }
+    },
+    "SOSSelectOption_HSV": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "lower": [
+                    105,
+                    150,
+                    150
+                ],
+                "upper": [
+                    131,
+                    255,
+                    255
+                ],
+                "method": 40,
+                "connected": true,
+                "count": 500
+            }
+        }
+    },
+    "SOSSelectOption_OCR": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    832,
+                    118,
+                    445,
+                    595
+                ],
+                "expected_code": "string"
             }
         }
     }
