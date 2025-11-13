@@ -151,53 +151,54 @@ class SOSNodeProcess(CustomAction):
                     expected_all: list[str] | str = action.get("expected", "")
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
-                    for expected in (
+                    origin_node = context.get_node_data("SOSSelectOption_OCR")
+
+                    if not origin_node:
+                        logger.error("未找到原始节点 SOSSelectOption_OCR")
+                        return False
+
+                    # 将 expected 统一转为列表
+                    expected_list = (
                         expected_all
                         if isinstance(expected_all, list)
                         else [expected_all]
-                    ):
-                        img = context.tasker.controller.post_screencap().wait().get()
-                        reco_detail = context.run_recognition(
-                            "SOSSelectOption_OCR",
-                            img,
-                            {
-                                "SOSSelectOption_OCR": {
-                                    "expected": expected,
-                                    "order_by": order_by,
-                                    "index": index,
-                                }
-                            },
-                        )
-                        if reco_detail and reco_detail.best_result and reco_detail.box:
-                            context.run_action(
-                                "Click",
-                                pipeline_override={
-                                    "action": "Click",
-                                    "target": reco_detail.box,
-                                },
-                            )
-                            return True
+                    )
+
+                    pp_override = {"SOSSelectOption": {"interrupt": []}}
+
+                    # 为每个 expected 创建独立节点
+                    for i, expected in enumerate(expected_list):
+                        node_name = f"SOSSelectOption_OCR_{i}"
+                        # 基于 origin_node 创建新节点
+                        new_node = origin_node.copy()
+                        if "recognition" not in new_node:
+                            new_node["recognition"] = {}
+                        if "param" not in new_node["recognition"]:
+                            new_node["recognition"]["param"] = {}
+
+                        # 更新参数
+                        new_node["recognition"]["param"]["expected"] = expected
+                        new_node["recognition"]["param"]["order_by"] = order_by
+                        new_node["recognition"]["param"]["index"] = index
+
+                        # 添加到 pipeline_override
+                        pp_override[node_name] = new_node
+                        pp_override["SOSSelectOption"]["interrupt"].append(node_name)
+
+                    context.run_task("SOSSelectOption", pipeline_override=pp_override)
                 elif method == "HSV":
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
-                    img = context.tasker.controller.post_screencap().wait().get()
-                    reco_detail = context.run_recognition(
-                        "SOSSelectOption_HSV",
-                        img,
-                        {
-                            "SOSSelectOption_HSV": {
-                                "order_by": order_by,
-                                "index": index,
-                            }
+                    pp_override = {
+                        "SOSSelectOption": {"interrupt": ["SOSSelectOption_HSV"]},
+                        "SOSSelectOption_HSV": {
+                            "order_by": order_by,
+                            "index": index,
                         },
-                    )
-                    if reco_detail and reco_detail.best_result:
-                        context.run_action(
-                            "Click",
-                            pipeline_override={
-                                "action": "Click",
-                                "target": reco_detail.box,
-                            },
-                        )
-                        return True
+                    }
+                    context.run_task("SOSSelectOption", pipeline_override=pp_override)
+                else:
+                    logger.error(f"未知的选项选择方法: {method}")
+                    return False
+                return True
         return False

@@ -647,23 +647,48 @@
         },
         "post_delay": 1500
     },
-    // 工具节点
-    "SOSEventRec": {
+    "SOSSelectOption": {
         "recognition": {
-            "type": "OCR",
+            "type": "ColorMatch",
+            "param": {
+                "lower": [
+                    105,
+                    150,
+                    150
+                ],
+                "upper": [
+                    131,
+                    255,
+                    255
+                ],
+                "method": 40,
+                "connected": true,
+                "count": 500
+            }
+        },
+        "next": [
+            "SOSSelectOptionConfirm"
+        ]
+    },
+    "SOSSelectOptionConfirm": {
+        "recognition": {
+            "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    858,
-                    72,
-                    132,
-                    33
+                    1173,
+                    153,
+                    85,
+                    563
                 ],
-                "only_rec": true,
-                "expected": [
-                    ".+"
+                "template": [
+                    "SyndromeOfSilence/SelectOptionConfirmButton.png"
                 ]
             }
-        }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
     },
     "SOSSelectOption_HSV": {
         "recognition": {
@@ -696,6 +721,24 @@
                     595
                 ],
                 "expected_code": "string"
+            }
+        }
+    },
+    // 工具节点
+    "SOSEventRec": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    858,
+                    72,
+                    132,
+                    33
+                ],
+                "only_rec": true,
+                "expected": [
+                    ".+"
+                ]
             }
         }
     }
