@@ -66,6 +66,25 @@
             "SOSSelectHarmonic"
         ]
     },
+    "恶战": {
+        "event_name_roi": null,
+        "actions": [
+            {
+                "type": "RunNode",
+                "name": "SOSTeamSelect"
+            },
+            {
+                "type": "RunNode",
+                "name": "SOSCombat"
+            }
+        ],
+        "interrupts": [
+            "SOSSelectHarmonic",
+            "SOSSelectResonator",
+            "SOSLoseArtifact",
+            "SOSStatsUp"
+        ]
+    },
     "休憩处": {
         "event_name_roi": [
             858,

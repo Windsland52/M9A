@@ -271,7 +271,7 @@
         "interrupt": [
             "SOSNextStep",
             "SOSArtifactsObtained",
-            "SOSSelectResonator"
+            "SOSResonatorObtained"
         ]
     },
     "SOSMain": {
@@ -382,7 +382,79 @@
         },
         "post_wait_freezes": 500
     },
-    "SOSSelectResonator": {
+    "SOSSelectArtifact": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    576,
+                    50,
+                    124,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "获得造物"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    510,
+                    312,
+                    69,
+                    78
+                ]
+            }
+        },
+        "next": [
+            "SOSSelectArtifactConfirm",
+            "SOSSelectArtifact"
+        ]
+    },
+    "SOSSelectArtifactConfirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    136,
+                    524,
+                    996,
+                    86
+                ],
+                "template": [
+                    "SyndromeOfSilence/SelectArtefactConfirmButton.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    "SOSLoseArtifact": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    576,
+                    50,
+                    124,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "失去造物"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
+    },
+    "SOSResonatorObtained": {
         // 获得共鸣器
         "recognition": {
             "type": "OCR",
@@ -403,6 +475,58 @@
             "type": "Click"
         },
         "post_wait_freezes": 500
+    },
+    "SOSSelectResonator": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    561,
+                    50,
+                    159,
+                    37
+                ],
+                "only_rec": true,
+                "expected": [
+                    "选择共鸣器"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    375,
+                    288,
+                    75,
+                    70
+                ]
+            }
+        },
+        "next": [
+            "SOSSelectResonatorConfirm",
+            "SOSSelectResonator"
+        ]
+    },
+    "SOSSelectResonatorConfirm": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    609,
+                    586,
+                    65,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "确认"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     },
     "SOSNextStep": {
         "recognition": {
