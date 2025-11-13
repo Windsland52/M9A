@@ -292,7 +292,10 @@
         },
         "next": [],
         "interrupt": [
-            "SOSSelectNode"
+            "SOSSelectNode",
+            "SOSSelectHarmonic",
+            "SOSHarmonicObtained",
+            "SOSStatsUp"
         ]
     },
     // 演绎主体逻辑
@@ -553,7 +556,7 @@
                 ],
                 "only_rec": true,
                 "expected": [
-                    "开始战斗"
+                    "开始行动"
                 ]
             }
         },

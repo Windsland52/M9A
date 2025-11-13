@@ -118,34 +118,47 @@ class SOSNodeProcess(CustomAction):
 
     def exec_main(self, context: Context, action: dict | list, interrupts: list):
         retry_times = 0
-        while retry_times < 3:
+        while retry_times < 10:
             if self.exec_action(context.clone(), action):
                 return True
             # 执行中断检测
             for interrupt in interrupts:
+                img = context.tasker.controller.post_screencap().wait().get()
                 if self.exec_action(context.clone(), interrupt):
                     break
+            time.sleep(1)
             retry_times += 1
         return False
 
-    def exec_action(self, context: Context, action: dict | list) -> bool:
-        if isinstance(action, list):
+    def exec_action(self, context: Context, action: dict | list | str) -> bool:
+        # 如果是字符串,说明是 interrupt 节点，识别后执行
+        if isinstance(action, str):
+            if context.run_recognition(action, context.tasker.controller.cached_image):
+                logger.debug(f"执行中断节点: {action}")
+                context.run_task(action)
+                return True
+        elif isinstance(action, list):
             # 对于列表，依次执行，任意一个成功即返回成功
             for act in action:
                 if self.exec_action(context, act):
                     return True
-        else:
+        elif isinstance(action, dict):
             # 对于单个动作，执行并检查结果
-            type = action.get("type")
-            if type == "RunNode":
+            action_type = action.get("type")
+            if action_type == "RunNode":
                 name = action.get("name", "")
-                logger.debug(f"执行节点: {name}")
                 img = context.tasker.controller.post_screencap().wait().get()
                 reco_detail = context.run_recognition(name, img)
-                if reco_detail and reco_detail.best_result and reco_detail.box:
-                    context.run_action(entry=name, box=reco_detail.box)
+                if (
+                    reco_detail
+                    and reco_detail.best_result
+                    or reco_detail
+                    and reco_detail.algorithm == "DirectHit"
+                ):
+                    logger.debug(f"执行节点: {name}")
+                    context.run_task(entry=name, box=reco_detail.box)
                     return True
-            elif type == "SelectOption":
+            elif action_type == "SelectOption":
                 method = action.get("method")
                 if method == "OCR":
                     expected_all: list[str] | str = action.get("expected", "")
