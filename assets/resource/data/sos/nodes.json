@@ -27,6 +27,65 @@
             }
         ]
     },
+    "险象环生": {
+        "event_name_roi": [
+            858,
+            72,
+            132,
+            33
+        ],
+        "events": {
+            "慌不择路": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "战斗"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSTeamSelect"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "战斗"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "战斗"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": [
+                    "SOSSelectHarmonic",
+                    "SOSSelectArtifact"
+                ]
+            }
+        }
+    },
     "遭遇": {
         "event_name_roi": null,
         "actions": [

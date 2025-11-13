@@ -303,7 +303,8 @@
             "SOSStatsUp",
             "SOSSetOff",
             "SOSSelectResonator",
-            "SOSLoseArtifact"
+            "SOSLoseArtifact",
+            "SOSStrengthenArtifact"
         ]
     },
     // 演绎主体逻辑
@@ -450,6 +451,27 @@
                 "only_rec": true,
                 "expected": [
                     "失去造物"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
+    },
+    "SOSStrengthenArtifact": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    576,
+                    50,
+                    124,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "造物强化"
                 ]
             }
         },
