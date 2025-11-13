@@ -50,7 +50,7 @@ class SOSSelectNode(CustomAction):
                 },
             )
             img = context.tasker.controller.post_screencap().wait().get()
-            if context.run_task("SOSGOTO"):
+            if type != "必经之路" and context.run_task("SOSGOTO"):
                 break
             times += 1
 

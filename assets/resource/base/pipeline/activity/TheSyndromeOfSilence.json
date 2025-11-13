@@ -301,7 +301,9 @@
             "SOSSelectHarmonic",
             "SOSHarmonicObtained",
             "SOSStatsUp",
-            "SOSSetOff"
+            "SOSSetOff",
+            "SOSSelectResonator",
+            "SOSLoseArtifact"
         ]
     },
     // 演绎主体逻辑
