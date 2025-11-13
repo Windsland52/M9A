@@ -1,5 +1,6 @@
 import time
 import json
+import copy
 from typing import Union, cast
 
 from maa.agent.agent_server import AgentServer
@@ -183,8 +184,8 @@ class SOSNodeProcess(CustomAction):
                     # 为每个 expected 创建独立节点
                     for i, expected in enumerate(expected_list):
                         node_name = f"SOSSelectOption_OCR_{i}"
-                        # 基于 origin_node 创建新节点
-                        new_node = origin_node.copy()
+                        # 基于 origin_node 创建新节点（使用深拷贝）
+                        new_node = copy.deepcopy(origin_node)
                         if "recognition" not in new_node:
                             new_node["recognition"] = {}
                         if "param" not in new_node["recognition"]:
