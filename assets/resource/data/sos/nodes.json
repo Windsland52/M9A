@@ -81,7 +81,7 @@
                 ],
                 "interrupts": [
                     "SOSSelectHarmonic",
-                    "SOSSelectArtifact"
+                    "SOSSelectArtefact"
                 ]
             }
         }
@@ -145,10 +145,8 @@
                     },
                     {
                         "type": "SelectOption",
-                        "method": "OCR",
-                        "expected": [
-                            "接过盘子"
-                        ]
+                        "method": "HSV",
+                        "index": -1
                     },
                     {
                         "type": "RunNode",
@@ -156,7 +154,10 @@
                     }
                 ],
                 "interrupts": [
-                    "SOSArtifactsObtained",
+                    "SOSArtefactsObtained",
+                    "SOSStatsUpButton",
+                    "SOSStatsUp",
+                    "SOSLoseArtefact",
                     "SOSNextMessage"
                 ]
             }
@@ -254,7 +255,7 @@
                     }
                 ],
                 "interrupts": [
-                    "SOSArtifactsObtained",
+                    "SOSArtefactsObtained",
                     "SOSNextMessage"
                 ]
             },
@@ -315,7 +316,7 @@
                 "interrupts": [
                     "SOSStatsUpButton",
                     "SOSStatsUp",
-                    "SOSArtifactsObtained",
+                    "SOSArtefactsObtained",
                     "SOSNextMessage"
                 ]
             },

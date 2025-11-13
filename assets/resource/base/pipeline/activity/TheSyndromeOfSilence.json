@@ -270,7 +270,7 @@
         ],
         "interrupt": [
             "SOSNextStep",
-            "SOSArtifactsObtained",
+            "SOSArtefactsObtained",
             "SOSResonatorObtained"
         ]
     },
@@ -296,15 +296,15 @@
         },
         "next": [],
         "interrupt": [
-            "SOSArtifactsObtained",
+            "SOSArtefactsObtained",
             "SOSSelectNode",
             "SOSSelectHarmonic",
             "SOSHarmonicObtained",
             "SOSStatsUp",
             "SOSSetOff",
             "SOSSelectResonator",
-            "SOSLoseArtifact",
-            "SOSStrengthenArtifact"
+            "SOSLoseArtefact",
+            "SOSStrengthenArtefact"
         ]
     },
     // 演绎主体逻辑
@@ -365,7 +365,7 @@
         }
     },
     // 主页面各种弹窗处理
-    "SOSArtifactsObtained": {
+    "SOSArtefactsObtained": {
         // 获得造物
         "recognition": {
             "type": "OCR",
@@ -387,7 +387,7 @@
         },
         "post_wait_freezes": 500
     },
-    "SOSSelectArtifact": {
+    "SOSSelectArtefact": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -415,11 +415,11 @@
             }
         },
         "next": [
-            "SOSSelectArtifactConfirm",
-            "SOSSelectArtifact"
+            "SOSSelectArtefactConfirm",
+            "SOSSelectArtefact"
         ]
     },
-    "SOSSelectArtifactConfirm": {
+    "SOSSelectArtefactConfirm": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -438,7 +438,7 @@
             "type": "Click"
         }
     },
-    "SOSLoseArtifact": {
+    "SOSLoseArtefact": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -459,7 +459,7 @@
         },
         "post_wait_freezes": 500
     },
-    "SOSStrengthenArtifact": {
+    "SOSStrengthenArtefact": {
         "recognition": {
             "type": "OCR",
             "param": {
