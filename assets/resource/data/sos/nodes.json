@@ -91,6 +91,10 @@
                         "type": "RunNode",
                         "name": "SOSEventEnd"
                     }
+                ],
+                "interrupts": [
+                    "SOSArtifactsObtained",
+                    "SOSNextMessage"
                 ]
             }
         }
@@ -119,14 +123,7 @@
                 "type": "SelectOption",
                 "method": "OCR",
                 "expected": [
-                    "提升属性"
-                ]
-            },
-            {
-                "type": "SelectOption",
-                "method": "OCR",
-                "expected": [
-                    "属性\\+"
+                    "属性"
                 ]
             }
         ],
