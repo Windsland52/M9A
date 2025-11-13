@@ -140,32 +140,37 @@ class SOSSelectOption(CustomAction):
                     context.run_action(entry=name, box=reco_detail.box)
                     return True
             elif type == "SelectOption":
-                method = (action.get("method"),)
+                method = action.get("method")
                 if method == "OCR":
-                    expected: list[str] | str = action.get("expected", "")
+                    expected_all: list[str] | str = action.get("expected", "")
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
-                    img = context.tasker.controller.post_screencap().wait().get()
-                    reco_detail = context.run_recognition(
-                        "SOSSelectOption_OCR",
-                        img,
-                        {
-                            "SOSSelectOption_OCR": {
-                                "expected": expected,
-                                "order_by": order_by,
-                                "index": index,
-                            }
-                        },
-                    )
-                    if reco_detail and reco_detail.best_result:
-                        context.run_action(
-                            "Click",
-                            pipeline_override={
-                                "action": "Click",
-                                "target": reco_detail.box,
+                    for expected in (
+                        expected_all
+                        if isinstance(expected_all, list)
+                        else [expected_all]
+                    ):
+                        img = context.tasker.controller.post_screencap().wait().get()
+                        reco_detail = context.run_recognition(
+                            "SOSSelectOption_OCR",
+                            img,
+                            {
+                                "SOSSelectOption_OCR": {
+                                    "expected": expected,
+                                    "order_by": order_by,
+                                    "index": index,
+                                }
                             },
                         )
-                        return True
+                        if reco_detail and reco_detail.best_result and reco_detail.box:
+                            context.run_action(
+                                "Click",
+                                pipeline_override={
+                                    "action": "Click",
+                                    "target": reco_detail.box,
+                                },
+                            )
+                            return True
                 elif method == "HSV":
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
