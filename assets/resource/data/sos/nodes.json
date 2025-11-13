@@ -136,5 +136,41 @@
                 ]
             }
         }
+    },
+    "藏宝地": {
+        "event_name_roi": [
+            858,
+            72,
+            132,
+            33
+        ],
+        "events": {
+            "野兽居所": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "奥秘",
+                            "力量",
+                            "激情",
+                            "反应",
+                            "感知"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSStatsUp"
+                ]
+            }
+        }
     }
 }
