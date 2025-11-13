@@ -25,6 +25,9 @@
                 "type": "RunNode",
                 "name": "SOSCombat"
             }
+        ],
+        "interrupts": [
+            "SOSSelectHarmonic"
         ]
     },
     "途中偶遇": {
@@ -62,6 +65,7 @@
                     }
                 ],
                 "interrupts": [
+                    "SOSSelectHarmonic",
                     "SOSHarmonicObtained",
                     "SOSStatsUp"
                 ]

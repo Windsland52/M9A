@@ -595,6 +595,58 @@
             ]
         }
     },
+    "SOSSelectHarmonic": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    581,
+                    52,
+                    118,
+                    33
+                ],
+                "only_rec": true,
+                "expected": [
+                    "谐波选择"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    516,
+                    125,
+                    67,
+                    32
+                ]
+            }
+        },
+        "next": [
+            "SOSSelectConfirmButton",
+            "SOSSelectHarmonic"
+        ]
+    },
+    "SOSSelectConfirmButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1097,
+                    0,
+                    153,
+                    720
+                ],
+                "template": [
+                    "SyndromeOfSilence/SelectConfirmButton.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1500
+    },
     // 工具节点
     "SOSEventRec": {
         "recognition": {
