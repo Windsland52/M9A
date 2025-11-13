@@ -16,7 +16,16 @@
     ],
     "冲突": {
         "event_name_roi": null,
-        "actions": []
+        "actions": [
+            {
+                "type": "RunNode",
+                "name": "SOSTeamSelect"
+            },
+            {
+                "type": "RunNode",
+                "name": "SOSCombat"
+            }
+        ]
     },
     "途中偶遇": {
         "event_name_roi": null,
