@@ -30,6 +30,22 @@
             "SOSSelectHarmonic"
         ]
     },
+    "遭遇": {
+        "event_name_roi": null,
+        "actions": [
+            {
+                "type": "RunNode",
+                "name": "SOSTeamSelect"
+            },
+            {
+                "type": "RunNode",
+                "name": "SOSCombat"
+            }
+        ],
+        "interrupts": [
+            "SOSSelectHarmonic"
+        ]
+    },
     "途中偶遇": {
         "event_name_roi": null,
         "actions": []
