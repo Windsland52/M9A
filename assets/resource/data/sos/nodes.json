@@ -66,6 +66,35 @@
             "SOSSelectHarmonic"
         ]
     },
+    "休憩处": {
+        "event_name_roi": [
+            858,
+            72,
+            132,
+            33
+        ],
+        "events": {
+            "俱乐部来客": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "接过盘子"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ]
+            }
+        }
+    },
     "购物契机": {
         "event_name_roi": null,
         "actions": [
