@@ -509,6 +509,30 @@
                     "SOSNextMessage",
                     "SOSSelectResonator"
                 ]
+            },
+            "最终难题": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": -1
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage"
+                ]
             }
         }
     },
