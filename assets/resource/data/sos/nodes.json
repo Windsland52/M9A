@@ -189,6 +189,13 @@
                 "expected": [
                     "属性"
                 ]
+            },
+            {
+                "type": "SelectOption",
+                "method": "OCR",
+                "expected": [
+                    "属性"
+                ]
             }
         ]
     },

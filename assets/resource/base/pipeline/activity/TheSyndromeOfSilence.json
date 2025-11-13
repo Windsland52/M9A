@@ -296,7 +296,9 @@
                 ]
             }
         },
-        "next": [],
+        "next": [
+            "FlagInSOSMainMenu"
+        ],
         "interrupt": [
             "SOSArtefactsObtained",
             "SOSSelectNode",
