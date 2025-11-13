@@ -403,6 +403,72 @@
                     "SOSStatsUp",
                     "SOSNextMessage"
                 ]
+            },
+            "论无能": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "奥秘",
+                            "力量",
+                            "激情",
+                            "反应",
+                            "感知"
+                        ]
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "默默离开"
+                        ]
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "进入休整地域"
+                        ]
+                    }
+                ],
+                "interrupts": [
+                    "SOSStatsUpButton",
+                    "SOSStatsUp",
+                    "SOSNextMessage",
+                    "SOSContinue",
+                    "SOSSelectArtefact",
+                    "SOSLoseArtefact",
+                    "SOSResonatorObtained",
+                    "SOSHarmonicObtained"
+                ]
+            },
+            "巧合": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "选择"
+                        ]
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "获得"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSContinue",
+                    "SOSStatsUp",
+                    "SOSNextMessage"
+                ]
             }
         }
     },
