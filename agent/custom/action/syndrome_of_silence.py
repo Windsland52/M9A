@@ -76,10 +76,10 @@ class SOSSelectNode(CustomAction):
         return CustomAction.RunResult(success=True)
 
 
-@AgentServer.custom_action("SOSSelectOption")
-class SOSSelectOption(CustomAction):
+@AgentServer.custom_action("SOSNodeProcess")
+class SOSNodeProcess(CustomAction):
     """
-    选项选择
+    节点处理
     """
 
     def run(
@@ -96,14 +96,20 @@ class SOSSelectOption(CustomAction):
             SOSSelectNode.event,
         )
 
-        if event not in nodes[type]["events"]:
-            logger.error(f"未适配该事件: {event}")
-            context.tasker.post_stop()
-            return CustomAction.RunResult(success=False)
+        # 无 event 的处理
+        if type in ["遭遇", "途中余兴", "冲突", "险象环生", "恶战"]:
+            actions: list = nodes[type]["actions"]
+            interrupts: list = nodes[type].get("interrupts", [])
+        else:
+            # 有 event 的处理
+            if event not in nodes[type]["events"]:
+                logger.error(f"未适配该事件: {event}")
+                context.tasker.post_stop()
+                return CustomAction.RunResult(success=False)
 
-        info: dict = nodes[type]["events"][event]
-        actions: list = info["actions"]
-        interrupts: list = info.get("interrupts", [])
+            info: dict = nodes[type]["events"][event]
+            actions: list = info["actions"]
+            interrupts: list = info.get("interrupts", [])
 
         for action in actions:
             if not self.exec_main(context, action, interrupts):
