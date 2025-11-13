@@ -189,9 +189,6 @@
                     "属性"
                 ]
             }
-        ],
-        "interrupts": [
-            "SOSStatsUp"
         ]
     },
     "必经之路": {
