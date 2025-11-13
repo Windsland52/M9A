@@ -503,7 +503,8 @@
                     }
                 ],
                 "interrupts": [
-                    "SOSStatsUp"
+                    "SOSStatsUp",
+                    "SOSNextMessage"
                 ]
             }
         }
