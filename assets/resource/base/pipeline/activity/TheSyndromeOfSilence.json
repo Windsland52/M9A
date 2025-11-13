@@ -341,7 +341,17 @@
                 "custom_action": "SOSSelectNode"
             }
         },
-        "next_code": "在custom_action里override"
+        "next": [
+            "SOSNodeProcess"
+        ]
+    },
+    "SOSNodeProcess": {
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSNodeProcess"
+            }
+        }
     },
     // 主页面各种弹窗处理
     "SOSArtifactsObtained": {
@@ -457,32 +467,6 @@
             ]
         }
     },
-    "SOSSelectOption": {
-        "recognition": {
-            "type": "ColorMatch",
-            "param": {
-                "lower": [
-                    105,
-                    150,
-                    150
-                ],
-                "upper": [
-                    131,
-                    255,
-                    255
-                ],
-                "method": 40,
-                "connected": true,
-                "count": 700
-            }
-        },
-        "action": {
-            "type": "Custom",
-            "param": {
-                "custom_action": "SOSSelectOption"
-            }
-        }
-    },
     "SOSHarmonicObtained": {
         "recognition": {
             "type": "OCR",
@@ -546,6 +530,18 @@
         },
         "post_wait_freezes": 500
     },
+    "SOSTeamSelect": {
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "TeamSelect",
+                "custom_action_param": {
+                    "team": 1
+                }
+            }
+        }
+    },
+    "SOSCombat": {},
     // 工具节点
     "SOSEventRec": {
         "recognition": {

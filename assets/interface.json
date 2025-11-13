@@ -215,6 +215,9 @@
         {
             "name": "局外演绎：无声综合征",
             "entry": "TheSyndromeOfSilence",
+            "option": [
+                "战斗编队"
+            ],
             "doc": "[size:15][color:darkgray]本功能支持3.2及3.3版本的局外演绎推图[/color][/size]\n[size:15][color:darkgray]M9A不能检查是否处于自动战斗状态，请自行调整[/color][/size]\n[size:15][color:orange]⚠更多详细说明请看文档[/color][/size]"
         },
         {
@@ -1846,6 +1849,66 @@
                                 "param": {
                                     "custom_action_param": {
                                         "level": "5"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "战斗编队": {
+            "cases": [
+                {
+                    "name": "一",
+                    "pipeline_override": {
+                        "SOSTeamSelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "二",
+                    "pipeline_override": {
+                        "SOSTeamSelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "三",
+                    "pipeline_override": {
+                        "SOSTeamSelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "四",
+                    "pipeline_override": {
+                        "SOSTeamSelect": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "team": 4
                                     }
                                 }
                             }
