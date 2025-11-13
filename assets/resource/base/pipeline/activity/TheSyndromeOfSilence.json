@@ -309,7 +309,12 @@
             "SOSSetOff",
             "SOSSelectResonator",
             "SOSLoseArtefact",
-            "SOSStrengthenArtefact"
+            "SOSStrengthenArtefact",
+            "SOSSummary",
+            "SOSGiveup",
+            "SOSStart",
+            "SOD_Skip_NoNext",
+            "SOSConfirm"
         ]
     },
     // 演绎主体逻辑
@@ -756,6 +761,35 @@
                 "expected": [
                     "战斗",
                     "胜利"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "pre_wait_freezes": {
+            "time": 500,
+            "target": [
+                614,
+                457,
+                666,
+                263
+            ]
+        }
+    },
+    "SOSFailed": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "only_rec": true,
+                "roi": [
+                    490,
+                    115,
+                    289,
+                    78
+                ],
+                "expected": [
+                    "战斗失败"
                 ]
             }
         },
