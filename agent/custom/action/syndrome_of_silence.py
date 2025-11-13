@@ -97,7 +97,7 @@ class SOSNodeProcess(CustomAction):
         )
 
         # 无 event 的处理
-        if type in ["遭遇", "途中余兴", "冲突", "险象环生", "恶战"]:
+        if type in ["购物契机", "遭遇", "途中余兴", "冲突", "险象环生", "恶战"]:
             actions: list = nodes[type]["actions"]
             interrupts: list = nodes[type].get("interrupts", [])
         else:

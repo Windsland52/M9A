@@ -50,6 +50,19 @@
         "event_name_roi": null,
         "actions": []
     },
+    "购物契机": {
+        "event_name_roi": null,
+        "actions": [
+            {
+                "type": "RunNode",
+                "name": "BackButton"
+            },
+            {
+                "type": "RunNode",
+                "name": "SOSConfirm"
+            }
+        ]
+    },
     "巧匠之手": {
         "event_name_roi": null,
         "actions": [
