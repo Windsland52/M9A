@@ -134,6 +134,41 @@
                     "SOSArtifactsObtained",
                     "SOSNextMessage"
                 ]
+            },
+            "据点": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "奥秘",
+                            "力量",
+                            "激情",
+                            "反应",
+                            "感知"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "进入休整地域"
+                        ]
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage",
+                    "SOSStatsUp",
+                    "SOSHarmonicObtained"
+                ]
             }
         }
     },
