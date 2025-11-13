@@ -337,6 +337,30 @@
                     "SOSContinue",
                     "SOSDice"
                 ]
+            },
+            "乌合的野兽": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "获得"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSStatsUpButton",
+                    "SOSStatsUp",
+                    "SOSNextMessage"
+                ]
             }
         }
     },
