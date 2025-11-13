@@ -13,5 +13,50 @@
         "巧匠之手",
         "必经之路",
         "藏宝地"
-    ]
+    ],
+    "冲突": {
+        "event_name_roi": null,
+        "actions": []
+    },
+    "途中偶遇": {
+        "event_name_roi": null,
+        "actions": []
+    },
+    "必经之路": {
+        "event_name_roi": [
+            858,
+            72,
+            132,
+            33
+        ],
+        "events": {
+            "旅途的开始": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "奥秘",
+                            "力量",
+                            "激情",
+                            "反应",
+                            "感知"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSHarmonicObtained",
+                    "SOSStatsUp"
+                ]
+            }
+        }
+    }
 }
