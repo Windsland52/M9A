@@ -156,7 +156,7 @@ class SOSNodeProcess(CustomAction):
                     and reco_detail.algorithm == "DirectHit"
                 ):
                     logger.debug(f"执行节点: {name}")
-                    context.run_task(entry=name, box=reco_detail.box)
+                    context.run_task(entry=name)
                     return True
             elif action_type == "SelectOption":
                 method = action.get("method")

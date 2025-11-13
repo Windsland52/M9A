@@ -50,6 +50,22 @@
         "event_name_roi": null,
         "actions": []
     },
+    "途中余兴": {
+        "event_name_roi": null,
+        "actions": [
+            {
+                "type": "RunNode",
+                "name": "SOSTeamSelect"
+            },
+            {
+                "type": "RunNode",
+                "name": "SOSCombat"
+            }
+        ],
+        "interrupts": [
+            "SOSSelectHarmonic"
+        ]
+    },
     "购物契机": {
         "event_name_roi": null,
         "actions": [
