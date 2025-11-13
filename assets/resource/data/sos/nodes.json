@@ -127,6 +127,9 @@
                 "type": "RunNode",
                 "name": "SOSCombat"
             }
+        ],
+        "interrupts": [
+            "SOSHarmonicObtained"
         ]
     },
     "休憩处": {

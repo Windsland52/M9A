@@ -736,7 +736,7 @@
         "action": {
             "type": "Click"
         },
-        "timeout": 600000,
+        "timeout": 1000000,
         "next": [
             "SOSVictory",
             "SOSCombat"
