@@ -880,6 +880,9 @@
                 "connected": true,
                 "count": 500
             }
+        },
+        "action": {
+            "type": "Click"
         }
     },
     "SOSSelectOption_OCR": {
@@ -894,6 +897,9 @@
                 ],
                 "expected_code": "string"
             }
+        },
+        "action": {
+            "type": "Click"
         }
     },
     "SOSNextMessage": {
