@@ -204,10 +204,6 @@
                 "actions": [
                     {
                         "type": "RunNode",
-                        "name": "SOSGOTO"
-                    },
-                    {
-                        "type": "RunNode",
                         "name": "SOSContinue"
                     },
                     {
@@ -236,10 +232,6 @@
                 "actions": [
                     {
                         "type": "RunNode",
-                        "name": "SOSGOTO"
-                    },
-                    {
-                        "type": "RunNode",
                         "name": "SOSContinue"
                     },
                     {
@@ -261,10 +253,6 @@
             },
             "据点": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSGOTO"
-                    },
                     {
                         "type": "RunNode",
                         "name": "SOSContinue"
@@ -324,10 +312,6 @@
                 "actions": [
                     {
                         "type": "RunNode",
-                        "name": "SOSGOTO"
-                    },
-                    {
-                        "type": "RunNode",
                         "name": "SOSContinue"
                     },
                     {
@@ -348,10 +332,6 @@
             },
             "愤怒行军": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSGOTO"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "OCR",

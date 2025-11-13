@@ -44,13 +44,14 @@ class SOSSelectNode(CustomAction):
                         "post_wait_freezes": {
                             "time": 500,
                             "target": [846, 555, 406, 68],
-                            "timeout": 5000,
+                            "timeout": 3000,
                         },
                     }
                 },
             )
             img = context.tasker.controller.post_screencap().wait().get()
-            if type != "必经之路" and context.run_task("SOSGOTO"):
+            if context.run_recognition("SOSGOTO", img) or type == "必经之路":
+                context.run_task("SOSGOTO")
                 break
             times += 1
 
