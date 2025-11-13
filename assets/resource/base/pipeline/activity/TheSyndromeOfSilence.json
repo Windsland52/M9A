@@ -946,6 +946,47 @@
             "SOSGoToNextScene"
         ]
     },
+    "SOSDice": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    593,
+                    465,
+                    99,
+                    28
+                ],
+                "only_rec": true,
+                "expected": [
+                    "点击投掷"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSFlagInDice"
+        ]
+    },
+    "SOSFlagInDice": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    88,
+                    240,
+                    71,
+                    26
+                ],
+                "only_rec": true,
+                "expected": [
+                    "成功率"
+                ]
+            }
+        },
+        "inverse": true
+    },
     // 工具节点
     "SOSEventRec": {
         "recognition": {

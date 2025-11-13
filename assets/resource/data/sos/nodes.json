@@ -287,6 +287,56 @@
                 "interrupts": [
                     "SOSNextMessage"
                 ]
+            },
+            "愤怒行军": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "奥秘",
+                            "力量",
+                            "激情",
+                            "反应",
+                            "感知"
+                        ]
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "奥秘",
+                            "力量",
+                            "激情",
+                            "反应",
+                            "感知"
+                        ]
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "奥秘",
+                            "力量",
+                            "激情",
+                            "反应",
+                            "感知"
+                        ]
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "进入休整地域"
+                        ]
+                    }
+                ],
+                "interrupts": [
+                    "SOSStatsUp",
+                    "SOSNextMessage",
+                    "SOSContinue",
+                    "SOSDice"
+                ]
             }
         }
     },
