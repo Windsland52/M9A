@@ -566,6 +566,28 @@
                     "SOSHarmonicObtained",
                     "SOSContinue"
                 ]
+            },
+            "仙境冒险": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": 1
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSArtefactsObtained",
+                    "SOSNextMessage",
+                    "SOSContinue"
+                ]
             }
         }
     },
