@@ -298,7 +298,7 @@
             }
         },
         "next": [
-            "FlagInSOSMainMenu"
+            "SOSMainMenu"
         ],
         "interrupt": [
             "SOSArtefactsObtained",
@@ -941,6 +941,60 @@
             "type": "Click"
         }
     },
+    "SOSSelectEncounterOption": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "MultiRecognition",
+                "custom_recognition_param": {
+                    "nodes": [
+                        "SOSSelectEncounterOptionRec_HSV",
+                        "SOSSelectEncounterOptionRec_Template"
+                    ],
+                    "logic": {
+                        "type": "CUSTOM",
+                        "expression": "$0 AND $1"
+                    },
+                    "return": "$1"
+                }
+            }
+        },
+        "next": [
+            "SOSSelectEncounterOptionConfirm"
+        ]
+    },
+    "SOSSelectEncounterOptionConfirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": "SOSSelectEncounterOption",
+                "template": [
+                    "SyndromeOfSilence/SelectOptionConfirmButton.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
+    },
+    "SOSSelectEncounterOption_OCR": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    832,
+                    118,
+                    445,
+                    595
+                ],
+                "expected_code": "string"
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
     "SOSNextMessage": {
         "recognition": {
             "type": "TemplateMatch",
@@ -950,6 +1004,25 @@
                     586,
                     39,
                     40
+                ],
+                "template": [
+                    "SyndromeOfSilence/NextMessage.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    "SOSNextMessage_left": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    227,
+                    422,
+                    27,
+                    26
                 ],
                 "template": [
                     "SyndromeOfSilence/NextMessage.png"
@@ -1101,6 +1174,65 @@
                     "乔治的杂志社",
                     "仪式之路",
                     "凯旋门前"
+                ]
+            }
+        }
+    },
+    "SOSSelectEncounterOption_HSV_Unselected": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "lower": [
+                    105,
+                    150,
+                    150
+                ],
+                "upper": [
+                    131,
+                    255,
+                    255
+                ],
+                "method": 40,
+                "count": 500
+            }
+        }
+    },
+    "SOSSelectEncounterOption_HSV_Selected": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "lower": [
+                    27,
+                    150,
+                    130
+                ],
+                "upper": [
+                    29,
+                    210,
+                    190
+                ],
+                "method": 40,
+                "connected": true,
+                "count": 400
+            }
+        }
+    },
+    "SOSSelectEncounterOptionRec_Template": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "SyndromeOfSilence/Magnifier.png"
+                ]
+            }
+        }
+    },
+    "SOSSelectEncounterOptionRec_OCR": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "[\\u4e00-\\u9fa5]+"
                 ]
             }
         }
