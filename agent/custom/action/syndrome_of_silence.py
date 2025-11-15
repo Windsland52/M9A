@@ -11,6 +11,14 @@ from maa.define import NeuralNetworkDetectResult, OCRResult, ColorMatchResult
 from utils import logger
 
 
+__all__ = [
+    "SOSSelectNode",
+    "SOSNodeProcess",
+    "SOSSelectEncounterOption_OCR",
+    "SOSSelectEncounterOption_HSV",
+]
+
+
 @AgentServer.custom_action("SOSSelectNode")
 class SOSSelectNode(CustomAction):
     """
