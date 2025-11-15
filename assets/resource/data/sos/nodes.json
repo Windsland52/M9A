@@ -282,6 +282,29 @@
                     "SOSClickEventRec",
                     "SOSDice"
                 ]
+            },
+            "水晶的颂礼": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "继续"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "和一旁的蓝色妖精玩耍"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "结束"
+                    }
+                ],
+                "interrupts": [
+                    "SOSDice",
+                    "SOSNextMessage"
+                ]
             }
         }
     },
