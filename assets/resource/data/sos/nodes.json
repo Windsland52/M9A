@@ -252,7 +252,14 @@
             }
         ],
         "interrupts": [
-            "SOSHarmonicObtained"
+            "SOSHarmonicObtained",
+            "SOSSelectResonator",
+            "SOSSelectArtefact",
+            "SOSLoseArtefact",
+            "SOSSelectHarmonic",
+            "SOSStatsUp",
+            "SOSStrengthenArtefact",
+            "SOSResonatorObtained"
         ]
     },
     "休憩处": {
