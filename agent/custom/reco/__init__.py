@@ -2,7 +2,7 @@ from .general import *
 from .bank import *
 from .activity import *
 from .combat import *
-from .syndrome_of_silence import *
+from .syndrome_of_silence import SOSSelectEncounterOptionFindSelected, SOSSelectEncounterOptionList
 
 __all__ = [
     "MultiRecognition",
