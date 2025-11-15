@@ -175,7 +175,8 @@
                 ],
                 "interrupts": [
                     "SOSSelectHarmonic",
-                    "SOSNextMessage_left"
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec"
                 ]
             }
         }
