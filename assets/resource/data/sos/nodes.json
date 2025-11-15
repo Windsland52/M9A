@@ -550,7 +550,10 @@
                 "interrupts": [
                     "SOSStatsUpButton",
                     "SOSStatsUp",
-                    "SOSNextMessage"
+                    "SOSNextMessage",
+                    "SOSLoseArtefact",
+                    "SOSStrengthenArtefact",
+                    "SOSHarmonicObtained"
                 ]
             },
             "论无能": {
