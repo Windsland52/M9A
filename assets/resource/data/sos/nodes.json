@@ -223,6 +223,29 @@
                     "SOSNextMessage_left",
                     "SOSClickEventRec"
                 ]
+            },
+            "迪亚波罗": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "打开酒桶"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSTeamSelect"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": [
+                    "SOSSelectHarmonic",
+                    "SOSSelectArtefact",
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec"
+                ]
             }
         }
     },
