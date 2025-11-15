@@ -255,6 +255,32 @@
                     "SOSClickEventRec",
                     "SOSDice"
                 ]
+            },
+            "旋律与舞步": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "靠近一些"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "去演奏者身边"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "记住"
+                    }
+                ],
+                "interrupts": [
+                    "SOSSelectHarmonic",
+                    "SOSSelectArtefact",
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec",
+                    "SOSDice"
+                ]
             }
         }
     },
