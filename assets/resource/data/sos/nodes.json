@@ -588,6 +588,31 @@
                     "SOSNextMessage",
                     "SOSContinue"
                 ]
+            },
+            "契玛的世界": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": 0
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSTeamSelect"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage",
+                    "SOSSelectHarmonic"
+                ]
             }
         }
     },
