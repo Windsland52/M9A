@@ -476,6 +476,10 @@
             "愤怒行军": {
                 "actions": [
                     {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
@@ -520,7 +524,9 @@
                     "SOSStatsUp",
                     "SOSNextMessage",
                     "SOSContinue",
-                    "SOSDice"
+                    "SOSDice",
+                    "SOSHarmonicObtained",
+                    "SOSStatsUp"
                 ]
             },
             "乌合的野兽": {
