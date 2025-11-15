@@ -100,8 +100,38 @@
         ]
     },
     "途中偶遇": {
-        "event_name_roi": null,
-        "actions": []
+        "event_name_roi": [
+            45,
+            74,
+            131,
+            29
+        ],
+        "events": {
+            "艺术批评": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": [
+                            "指出问题"
+                        ],
+                        "order_by": "Vertical"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSDice"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSNextMessage_left"
+                    }
+                ],
+                "interrupts": [
+                    "SOSArtefactsObtained",
+                    "SOSNextMessage_left"
+                ]
+            }
+        }
     },
     "途中余兴": {
         "event_name_roi": null,
