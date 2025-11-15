@@ -301,6 +301,7 @@
             "SOSMainMenu"
         ],
         "interrupt": [
+            "closeTip",
             "SOSSelectArtefact",
             "SOSArtefactsObtained",
             "SOSSelectNode",
@@ -376,6 +377,19 @@
         }
     },
     // 主页面各种弹窗处理
+    "closeTip": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "SyndromeOfSilence/SOSCloseTip.png"
+        ],
+        "roi": [
+            922,
+            10,
+            342,
+            206
+        ],
+        "action": "Click"
+    },
     "SOSArtefactsObtained": {
         // 获得造物
         "recognition": {
@@ -747,6 +761,9 @@
         "next": [
             "SOSVictory",
             "SOSCombat"
+        ],
+        "interrupt": [
+            "closeTip"
         ]
     },
     "SOSVictory": {
