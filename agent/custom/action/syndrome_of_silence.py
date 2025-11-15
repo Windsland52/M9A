@@ -1,7 +1,7 @@
 import time
 import json
 import copy
-from typing import Union, cast
+from typing import cast
 
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
