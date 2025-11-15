@@ -649,6 +649,25 @@
                     "SOSNextMessage",
                     "SOSSelectHarmonic"
                 ]
+            },
+            "狂热行军": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage"
+                ]
             }
         }
     },
