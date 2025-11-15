@@ -249,6 +249,8 @@
                     }
                 ],
                 "interrupts": [
+                    "SOSSelectHarmonic",
+                    "SOSSelectArtefact",
                     "SOSNextMessage_left",
                     "SOSClickEventRec",
                     "SOSDice"
