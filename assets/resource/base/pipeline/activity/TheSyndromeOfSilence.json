@@ -309,6 +309,7 @@
             "SOSStatsUp",
             "SOSSetOff",
             "SOSSelectResonator",
+            "SOSResonatorObtained",
             "SOSLoseArtefact",
             "SOSStrengthenArtefact",
             "SOSSummary",
