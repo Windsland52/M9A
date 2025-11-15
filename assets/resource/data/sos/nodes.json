@@ -57,8 +57,51 @@
                         "name": "SOSCombat"
                     },
                     {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "战斗"
+                        ]
+                    },
+                    {
                         "type": "RunNode",
-                        "name": "SOSEventEnd"
+                        "name": "SOSCombat"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "战斗"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": [
+                    "SOSSelectHarmonic",
+                    "SOSSelectArtefact",
+                    "SOSSelectResonator",
+                    "SOSStatsUp"
+                ]
+            },
+            "险象环生": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "战斗"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSTeamSelect"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
                     },
                     {
                         "type": "SelectOption",
@@ -85,7 +128,9 @@
                 ],
                 "interrupts": [
                     "SOSSelectHarmonic",
-                    "SOSSelectArtefact"
+                    "SOSSelectArtefact",
+                    "SOSSelectResonator",
+                    "SOSStatsUp"
                 ]
             }
         }
