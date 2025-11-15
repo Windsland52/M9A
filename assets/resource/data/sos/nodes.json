@@ -233,6 +233,9 @@
                     "属性"
                 ]
             }
+        ],
+        "interrupts": [
+            "SOSStatsUp"
         ]
     },
     "必经之路": {
@@ -681,6 +684,7 @@
                 ],
                 "interrupts": [
                     "SOSStatsUp",
+                    "SOSLoseArtefact",
                     "SOSNextMessage"
                 ]
             }
