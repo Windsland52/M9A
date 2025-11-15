@@ -239,6 +239,20 @@
                     "SOSClickEventRec",
                     "SOSDice"
                 ]
+            },
+            "西岱岛漫游": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "为她打开鸟笼"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec",
+                    "SOSDice"
+                ]
             }
         }
     },
