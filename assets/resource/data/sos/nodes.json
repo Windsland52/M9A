@@ -152,7 +152,7 @@
         "event_name_roi": [
             45,
             74,
-            131,
+            257,
             29
         ],
         "events": {
@@ -304,6 +304,29 @@
                 "interrupts": [
                     "SOSDice",
                     "SOSNextMessage"
+                ]
+            },
+            "毛茸茸奥贝日": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "突袭"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "驱逐魔精"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSDice",
+                    "SOSArtefactsObtained"
                 ]
             }
         }
