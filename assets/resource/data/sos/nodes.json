@@ -307,6 +307,9 @@
                 "type": "RunNode",
                 "name": "SOSConfirm"
             }
+        ],
+        "interrupts": [
+            "SOSHarmonicObtained"
         ]
     },
     "巧匠之手": {
