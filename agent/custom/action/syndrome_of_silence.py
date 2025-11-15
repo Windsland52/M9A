@@ -6,7 +6,7 @@ from typing import cast
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 from maa.context import Context
-from maa.define import NeuralNetworkDetectResult, OCRResult, ColorMatchResult
+from maa.define import NeuralNetworkDetectResult, OCRResult
 
 from utils import logger
 
