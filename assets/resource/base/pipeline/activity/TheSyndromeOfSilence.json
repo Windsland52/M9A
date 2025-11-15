@@ -1031,6 +1031,14 @@
             "type": "Click"
         }
     },
+    "SOSClickEventRec": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": "SOSEventRec"
+            }
+        }
+    },
     "SOSStatsUpButton": {
         "recognition": {
             "type": "OCR",

@@ -133,6 +133,29 @@
                     "SOSArtefactsObtained",
                     "SOSNextMessage_left"
                 ]
+            },
+            "魔精爱丽丝": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "追上它",
+                        "order_by": "Vertical"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSDice"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": [
+                    "SOSArtefactsObtained",
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec"
+                ]
             }
         }
     },
