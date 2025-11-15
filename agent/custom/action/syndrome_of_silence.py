@@ -127,6 +127,7 @@ class SOSNodeProcess(CustomAction):
             for interrupt in interrupts:
                 img = context.tasker.controller.post_screencap().wait().get()
                 if self.exec_action(context.clone(), interrupt):
+                    retry_times = 0
                     break
             time.sleep(1)
             retry_times += 1
