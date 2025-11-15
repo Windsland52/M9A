@@ -129,7 +129,7 @@ class SOSNodeProcess(CustomAction):
                 return True
             # 执行中断检测
             for interrupt in interrupts:
-                img = context.tasker.controller.post_screencap().wait().get()
+                context.tasker.controller.post_screencap().wait().get()
                 if self.exec_action(context.clone(), interrupt):
                     retry_times = 0
                     break
