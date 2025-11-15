@@ -70,7 +70,7 @@ class SOSSelectNode(CustomAction):
             # 看下当前事件名
             img = context.tasker.controller.post_screencap().wait().get()
             reco_detail = context.run_recognition(
-                "SOSEventRec", img, {"roi": event_name_roi}
+                "SOSEventRec", img, {"SOSEventRec": {"roi": event_name_roi}}
             )
             if reco_detail:
                 ocr_result = cast(OCRResult, reco_detail.best_result)
