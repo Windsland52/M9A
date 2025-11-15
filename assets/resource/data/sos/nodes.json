@@ -239,6 +239,72 @@
                     "SOSClickEventRec",
                     "SOSDice"
                 ]
+            },
+            "西岱岛漫游": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "为她打开鸟笼"
+                    }
+                ],
+                "interrupts": [
+                    "SOSSelectHarmonic",
+                    "SOSSelectArtefact",
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec",
+                    "SOSDice"
+                ]
+            },
+            "旋律与舞步": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "靠近一些"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "去演奏者身边"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "记住"
+                    }
+                ],
+                "interrupts": [
+                    "closeTip",
+                    "SOSSelectHarmonic",
+                    "SOSSelectArtefact",
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec",
+                    "SOSDice"
+                ]
+            },
+            "水晶的颂礼": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "继续"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "和一旁的蓝色妖精玩耍"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "结束"
+                    }
+                ],
+                "interrupts": [
+                    "SOSDice",
+                    "SOSNextMessage"
+                ]
             }
         }
     },
