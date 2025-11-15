@@ -25,6 +25,9 @@
                 "type": "RunNode",
                 "name": "SOSCombat"
             }
+        ],
+        "interrupts": [
+            "SOSSelectArtefact"
         ]
     },
     "险象环生": {
