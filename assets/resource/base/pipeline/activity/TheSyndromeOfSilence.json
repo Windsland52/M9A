@@ -993,6 +993,25 @@
             "SelectEncounterOption_HSV"
         ]
     },
+    "SOSNextMessage": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1028,
+                    313,
+                    51,
+                    342
+                ],
+                "template": [
+                    "SyndromeOfSilence/NextMessage.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
     "SOSNextMessage_left": {
         "recognition": {
             "type": "TemplateMatch",
