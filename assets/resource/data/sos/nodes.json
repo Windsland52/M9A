@@ -244,7 +244,8 @@
                     "SOSSelectHarmonic",
                     "SOSSelectArtefact",
                     "SOSNextMessage_left",
-                    "SOSClickEventRec"
+                    "SOSClickEventRec",
+                    "SOSDice"
                 ]
             }
         }
