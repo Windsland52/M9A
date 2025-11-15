@@ -711,6 +711,33 @@
                 "interrupts": [
                     "SOSNextMessage"
                 ]
+            },
+            "升华或是重生": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "奥秘",
+                            "力量",
+                            "激情",
+                            "反应",
+                            "感知"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSStatsUp",
+                    "SOSNextMessage"
+                ]
             }
         }
     },
