@@ -216,4 +216,98 @@ class SOSNodeProcess(CustomAction):
                     logger.error(f"未知的选项选择方法: {method}")
                     return False
                 return True
+            elif action_type == "SelectEncounterOption":
+                method = action.get("method")
+                if method == "OCR":
+                    expected: str = action.get("expected", "")
+                    order_by: str = action.get("order_by", "Vertical")
+
+                    context.run_task(
+                        "SelectEncounterOption_OCR",
+                        pipeline_override={
+                            "SelectEncounterOption_OCR": {
+                                "custom_action_param": {"expected": expected}
+                            },
+                            "SOSSelectEncounterOptionRec_Template": {
+                                "order_by": order_by
+                            },
+                        },
+                    )
+                elif method == "HSV":
+                    order_by: str = action.get("order_by", "Vertical")
+                    index: int = action.get("index", 0)
+
+                    context.run_task(
+                        "SOSSelectEncounterOption_HSV",
+                        pipeline_override={
+                            "SOSSelectEncounterOptionRec_Template": {
+                                "order_by": order_by
+                            }
+                        },
+                    )
+                else:
+                    logger.error(f"未知的途中偶遇选项选择方法: {method}")
+                    return False
+                return True
         return False
+
+
+@AgentServer.custom_action("SOSSelectEncounterOption_OCR")
+class SOSSelectEncounterOption_OCR(CustomAction):
+    """
+    局外演绎：无声综合征-途中偶遇选项内容识别-OCR版
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+
+        expected: str = json.loads(argv.custom_action_param).get("expected")
+        options: list[dict] = argv.reco_detail.raw_detail["best"]["detail"]["options"]
+
+        for option in options:
+            if expected in option["content"]:
+                context.run_task(
+                    "Click",
+                    {
+                        "Click": {
+                            "action": "Click",
+                            "target": option["roi"],
+                            "post_delay": 1500,
+                        }
+                    },
+                )
+            return CustomAction.RunResult(success=True)
+        return CustomAction.RunResult(success=False)
+
+
+@AgentServer.custom_action("SOSSelectEncounterOption_HSV")
+class SOSSelectEncounterOption_HSV(CustomAction):
+    """
+    局外演绎：无声综合征-途中偶遇选项内容识别-HSV版
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+
+        index: int = json.loads(argv.custom_action_param).get(
+            "SOSSelectEncounterOption_HSV", 0
+        )
+        options: list[dict] = argv.reco_detail.raw_detail["best"]["detail"]["options"]
+
+        context.run_task(
+            "Click",
+            {
+                "Click": {
+                    "action": "Click",
+                    "target": options[index]["roi"],
+                    "post_delay": 1500,
+                }
+            },
+        )
+        return CustomAction.RunResult(success=True)

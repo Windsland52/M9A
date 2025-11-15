@@ -47,7 +47,7 @@ class SOSSelectEncounterOptionFindSelected(CustomRecognition):
 
             if selected_detail and selected_detail.best_result:
                 return CustomRecognition.AnalyzeResult(
-                    box=roi, detail=f'{"roi": {roi} }'
+                    box=roi, detail=str(f'{"roi": {roi} }')
                 )
 
         return CustomRecognition.AnalyzeResult(box=None, detail="")

@@ -97,7 +97,7 @@ Common nodes:
 
 #### 2. SelectOption - Option selection
 
-Select a dialogue or event option
+Select a dialogue or event option (vertically arranged)
 
 ```jsonc
 {
@@ -119,6 +119,32 @@ Select a dialogue or event option
 
 - Select option by color recognition
 - Use the `index` parameter to specify which option to select
+
+#### 3. SelectEncounterOption - Encounter option selection
+
+Specialized for "Encounter on the Road" scenarios (horizontally arranged)
+
+```jsonc
+{
+    "type": "SelectEncounterOption",
+    "method": "OCR" | "HSV",          // Recognition method: OCR text recognition or HSV color recognition
+    "expected": "Option text",        // For OCR: expected text (required)
+    "order_by": "Vertical",           // Sort order for template recognition: Vertical or Horizontal, default is Vertical (optional)
+    "index": 0                        // For HSV: option index, default 0 is the first, -1 is the last (optional)
+}
+```
+
+**OCR method:**
+
+- Select option by recognizing text content
+- `expected` is a string specifying the expected text to recognize
+- `order_by` is used for magnifier icon template recognition sorting, default is `Vertical`
+
+**HSV method:**
+
+- Select option by color recognition
+- Use the `index` parameter to specify which option to select
+- `order_by` is used for magnifier icon template recognition sorting, default is `Vertical`
 
 ### Interrupt Handler Nodes (Interrupts)
 

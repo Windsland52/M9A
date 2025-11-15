@@ -97,7 +97,7 @@ icon: ri:game-fill
 
 #### 2. SelectOption - 选项选择
 
-选择对话或事件选项
+选择对话或事件选项（垂直排列）
 
 ```jsonc
 {
@@ -119,6 +119,32 @@ icon: ri:game-fill
 
 - 通过颜色识别来选择选项
 - 使用 `index` 参数指定选择第几个选项
+
+#### 3. SelectEncounterOption - 途中偶遇选项选择
+
+专用于"途中偶遇"场景的选项选择（水平排列）
+
+```jsonc
+{
+    "type": "SelectEncounterOption",
+    "method": "OCR" | "HSV",          // 识别方法：OCR文字识别 或 HSV颜色识别
+    "expected": "选项文字",           // OCR方法：期望的文字内容
+    "order_by": "Vertical",           // 模板识别排序方式：Vertical(垂直) 或 Horizontal(水平)，默认 Vertical
+    "index": 0                        // HSV方法：选项索引，默认 0 表示第一个，-1 表示最后一个
+}
+```
+
+**OCR 方法**：
+
+- 通过识别文字内容来选择选项
+- `expected` 为字符串，指定期望识别的文字内容
+- `order_by` 用于放大镜图标模板识别的排序方式，默认 `Vertical`
+
+**HSV 方法**：
+
+- 通过颜色识别来选择选项
+- 使用 `index` 参数指定选择第几个选项
+- `order_by` 用于放大镜图标模板识别的排序方式，默认 `Vertical`
 
 ### 中断处理节点 (Interrupts)
 

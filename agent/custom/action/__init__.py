@@ -32,4 +32,7 @@ __all__ = [
     "TargetCount",
     "JudgeDepthsOfMythWeekly",
     "SOSSelectNode",
+    "SOSNodeProcess",
+    "SOSSelectEncounterOption_OCR",
+    "SOSSelectEncounterOption_HSV",
 ]

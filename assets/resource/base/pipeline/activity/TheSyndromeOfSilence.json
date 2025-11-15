@@ -941,78 +941,57 @@
             "type": "Click"
         }
     },
-    "SOSSelectEncounterOption": {
+    "SelectEncounterOption_OCR": {
         "recognition": {
             "type": "Custom",
             "param": {
-                "custom_recognition": "MultiRecognition",
-                "custom_recognition_param": {
-                    "nodes": [
-                        "SOSSelectEncounterOptionRec_HSV",
-                        "SOSSelectEncounterOptionRec_Template"
-                    ],
-                    "logic": {
-                        "type": "CUSTOM",
-                        "expression": "$0 AND $1"
-                    },
-                    "return": "$1"
-                }
+                "custom_recognition": "SOSSelectEncounterOptionList"
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSSelectEncounterOption_OCR"
             }
         },
         "next": [
-            "SOSSelectEncounterOptionConfirm"
+            "SOSSelectEncounterOptionConfirm",
+            "SelectEncounterOption_OCR"
         ]
     },
     "SOSSelectEncounterOptionConfirm": {
         "recognition": {
-            "type": "TemplateMatch",
+            "type": "Custom",
             "param": {
-                "roi": "SOSSelectEncounterOption",
-                "template": [
-                    "SyndromeOfSilence/SelectOptionConfirmButton.png"
-                ]
+                "custom_recognition": "SOSSelectEncounterOptionFindSelected"
             }
         },
         "action": {
             "type": "Click"
         },
-        "post_wait_freezes": 500
+        "pre_delay": 700,
+        "next": [
+            "SOSSelectEncounterOptionConfirmFinished",
+            "SOSSelectEncounterOptionConfirm"
+        ]
     },
-    "SOSSelectEncounterOption_OCR": {
+    "SelectEncounterOption_HSV": {
         "recognition": {
-            "type": "OCR",
+            "type": "Custom",
             "param": {
-                "roi": [
-                    832,
-                    118,
-                    445,
-                    595
-                ],
-                "expected_code": "string"
+                "custom_recognition": "SOSSelectEncounterOptionList"
             }
         },
         "action": {
-            "type": "Click"
-        }
-    },
-    "SOSNextMessage": {
-        "recognition": {
-            "type": "TemplateMatch",
+            "type": "Custom",
             "param": {
-                "roi": [
-                    1034,
-                    586,
-                    39,
-                    40
-                ],
-                "template": [
-                    "SyndromeOfSilence/NextMessage.png"
-                ]
+                "custom_action": "SOSSelectEncounterOption_HSV"
             }
         },
-        "action": {
-            "type": "Click"
-        }
+        "next": [
+            "SOSSelectEncounterOptionConfirm",
+            "SelectEncounterOption_HSV"
+        ]
     },
     "SOSNextMessage_left": {
         "recognition": {
@@ -1222,7 +1201,8 @@
             "type": "TemplateMatch",
             "param": {
                 "template": [
-                    "SyndromeOfSilence/Magnifier.png"
+                    "SyndromeOfSilence/Magnifier.png",
+                    "SyndromeOfSilence/MagnifierY.png"
                 ]
             }
         }
@@ -1233,8 +1213,21 @@
             "param": {
                 "expected": [
                     "[\\u4e00-\\u9fa5]+"
-                ]
+                ],
+                "only_rec": true
             }
         }
+    },
+    "SOSSelectEncounterOptionConfirmFinished": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "SOSSelectEncounterOptionFindSelected"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "inverse": true
     }
 }
