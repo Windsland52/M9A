@@ -27,7 +27,8 @@
             }
         ],
         "interrupts": [
-            "SOSSelectArtefact"
+            "SOSSelectArtefact",
+            "SOSSelectHarmonic"
         ]
     },
     "险象环生": {

@@ -301,6 +301,7 @@
             "SOSMainMenu"
         ],
         "interrupt": [
+            "SOSSelectArtefact",
             "SOSArtefactsObtained",
             "SOSSelectNode",
             "SOSSelectHarmonic",
@@ -409,7 +410,7 @@
                 ],
                 "only_rec": true,
                 "expected": [
-                    "获得造物"
+                    "造物选择"
                 ]
             }
         },
