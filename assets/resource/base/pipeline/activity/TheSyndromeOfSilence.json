@@ -301,7 +301,6 @@
             "SOSMainMenu"
         ],
         "interrupt": [
-            "closeTip",
             "SOSSelectArtefact",
             "SOSArtefactsObtained",
             "SOSSelectNode",
