@@ -100,7 +100,9 @@ class SOSNodeProcess(CustomAction):
 
         # 无 event 的处理
         if type in ["购物契机", "遭遇", "途中余兴", "冲突", "恶战", "巧匠之手"]:
-            actions: list = nodes[type]["actions"]
+            actions: list = nodes[type]["actions"] + [
+                {"type": "RunNode", "name": "FlagInSOSMain"}
+            ]
             interrupts: list = nodes[type].get("interrupts", [])
         else:
             # 有 event 的处理
@@ -110,7 +112,9 @@ class SOSNodeProcess(CustomAction):
                 return CustomAction.RunResult(success=False)
 
             info: dict = nodes[type]["events"][event]
-            actions: list = info["actions"]
+            actions: list = info["actions"] + [
+                {"type": "RunNode", "name": "FlagInSOSMain"}
+            ]
             interrupts: list = info.get("interrupts", [])
 
         for action in actions:
