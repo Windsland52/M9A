@@ -116,9 +116,7 @@
                     {
                         "type": "SelectEncounterOption",
                         "method": "OCR",
-                        "expected": [
-                            "指出问题"
-                        ],
+                        "expected": "指出问题",
                         "order_by": "Vertical"
                     },
                     {
@@ -156,6 +154,28 @@
                     "SOSArtefactsObtained",
                     "SOSNextMessage_left",
                     "SOSClickEventRec"
+                ]
+            },
+            "墓穴岔口": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "继续向前"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSDice"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "离开"
+                    }
+                ],
+                "interrupts": [
+                    "SOSSelectHarmonic",
+                    "SOSNextMessage_left"
                 ]
             }
         }
