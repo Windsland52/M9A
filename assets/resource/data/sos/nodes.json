@@ -623,8 +623,7 @@
                 ],
                 "interrupts": [
                     "SOSSelectHarmonic",
-                    "SOSHarmonicObtained",
-                    "SOSContinue"
+                    "SOSHarmonicObtained"
                 ]
             },
             "仙境冒险": {
