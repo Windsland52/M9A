@@ -906,6 +906,12 @@
         "recognition": {
             "type": "ColorMatch",
             "param": {
+                "roi": [
+                    841,
+                    112,
+                    62,
+                    608
+                ],
                 "lower": [
                     105,
                     150,
