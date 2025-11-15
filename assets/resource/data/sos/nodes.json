@@ -275,6 +275,7 @@
                     }
                 ],
                 "interrupts": [
+                    "closeTip",
                     "SOSSelectHarmonic",
                     "SOSSelectArtefact",
                     "SOSNextMessage_left",
