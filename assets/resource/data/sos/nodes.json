@@ -644,8 +644,7 @@
                 ],
                 "interrupts": [
                     "SOSArtefactsObtained",
-                    "SOSNextMessage",
-                    "SOSContinue"
+                    "SOSNextMessage"
                 ]
             },
             "契玛的世界": {
