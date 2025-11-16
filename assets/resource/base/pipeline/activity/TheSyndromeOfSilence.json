@@ -89,6 +89,280 @@
             "SOSStart"
         ]
     },
+    "SOSWordlessWorkshop": {
+        // 沉默者沙龙，好旅伴
+        "next": [
+            "SOSWordlessWorkshopEmpty"
+        ],
+        "interrupt": [
+            "SOSWordlessWorkshopEntry"
+        ]
+    },
+    "SOSWordlessWorkshopEmpty": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    843,
+                    313,
+                    224,
+                    71
+                ],
+                "template": [
+                    "SyndromeOfSilence/WordlessWorkshopEmpty.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    256,
+                    330,
+                    101,
+                    97
+                ]
+            }
+        },
+        "next": [
+            "SOSKeepsakeDetails",
+            "SOSWordlessWorkshopEmpty"
+        ]
+    },
+    "SOSKeepsakeDetails": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    566,
+                    50,
+                    147,
+                    32
+                ],
+                "only_rec": true,
+                "expected": [
+                    "好旅伴详情"
+                ]
+            }
+        },
+        "next": [
+            "SOSKeepsakeDetailsAdd"
+        ],
+        "interrupt": [
+            "SOSSpider"
+        ]
+    },
+    "SOSKeepsakeDetailsAdd": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1079,
+                    619,
+                    76,
+                    40
+                ],
+                "only_rec": true,
+                "expected": [
+                    "添加"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSAddSignature",
+            "SOSKeepsakeDetailsAdd"
+        ]
+    },
+    "SOSAddSignature": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    502,
+                    276,
+                    213,
+                    64
+                ],
+                "template": [
+                    "SyndromeOfSilence/AddSignature.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSAddSignature",
+            "SOSAddMaterial1"
+        ]
+    },
+    "SOSAddMaterial1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    71,
+                    215,
+                    65,
+                    58
+                ]
+            }
+        },
+        "next": [
+            "SOSAddMaterial2"
+        ]
+    },
+    "SOSAddMaterial2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    228,
+                    218,
+                    46,
+                    50
+                ]
+            }
+        },
+        "next": [
+            "SOSAddMaterialConfirm"
+        ]
+    },
+    "SOSAddMaterialConfirm": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1079,
+                    619,
+                    76,
+                    40
+                ],
+                "only_rec": true,
+                "expected": [
+                    "添加"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSWordlessWorkshopEndConfirm"
+        ]
+    },
+    "SOSWordlessWorkshopEndConfirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    553,
+                    579,
+                    177,
+                    85
+                ],
+                "template": [
+                    "SyndromeOfSilence/WordlessWorkshopEndConfirm.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSWordlessWorkshopComplete",
+            "SOSWordlessWorkshopEndConfirm"
+        ]
+    },
+    "SOSWordlessWorkshopComplete": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    765,
+                    623,
+                    61,
+                    32
+                ],
+                "only_rec": true,
+                "expected": [
+                    "确认"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSWordlessWorkshopEnterGame",
+            "SOSWordlessWorkshopComplete"
+        ]
+    },
+    "SOSWordlessWorkshopEnterGame": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    550,
+                    585,
+                    184,
+                    81
+                ],
+                "template": [
+                    "SyndromeOfSilence/EnterGame.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSSelectNoise",
+            "SOSWordlessWorkshopEnterGame"
+        ]
+    },
+    "SOSSpider": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    39,
+                    179,
+                    581,
+                    465
+                ],
+                "template": [
+                    "SyndromeOfSilence/Spider.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1500
+    },
+    "SOSWordlessWorkshopEntry": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1054,
+                    564,
+                    182,
+                    50
+                ],
+                "template": [
+                    "SyndromeOfSilence/WordlessWorkshopEntry.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
     "FlagInSOSMainMenu": {
         // 有科技树的主界面
         "recognition": {

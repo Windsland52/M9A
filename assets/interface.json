@@ -216,7 +216,8 @@
             "name": "局外演绎：无声综合征",
             "entry": "TheSyndromeOfSilence",
             "option": [
-                "战斗编队"
+                "战斗编队",
+                "携带好旅伴"
             ],
             "doc": "[size:15][color:darkgray]本功能支持3.2及3.3版本的局外演绎推图[/color][/size]\n[size:15][color:darkgray]M9A不能检查是否处于自动战斗状态，请自行调整[/color][/size]\n[size:15][color:orange]⚠更多详细说明请看文档[/color][/size]"
         },
@@ -1912,6 +1913,25 @@
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            ]
+        },
+        "携带好旅伴": {
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "SOSMainMenu": {
+                            "next": [
+                                "SOSWordlessWorkshop"
+                            ],
+                            "interrupt": []
                         }
                     }
                 }
