@@ -393,6 +393,42 @@
                     "SOSDice",
                     "SOSNextMessage_left"
                 ]
+            },
+            "最佳适配位": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "离开"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left"
+                ]
+            },
+            "绝路": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "用力推"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "深吸一口气"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "原路返回"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSArtefactsObtained",
+                    "SOSSelectArtefact"
+                ]
             }
         }
     },
