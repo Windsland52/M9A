@@ -124,9 +124,13 @@ class SOSNodeProcess(CustomAction):
                 return CustomAction.RunResult(success=False)
 
             info: dict = nodes[type]["events"][event]
-            actions: list = info["actions"] + [
-                {"type": "RunNode", "name": "FlagInSOSMain"}
-            ]
+            # 如果是最终难题，不添加 FlagInSOSMain
+            if event == "最终难题":
+                actions: list = info["actions"]
+            else:
+                actions: list = info["actions"] + [
+                    {"type": "RunNode", "name": "FlagInSOSMain"}
+                ]
             interrupts: list = info.get("interrupts", [])
 
         for action in actions:
