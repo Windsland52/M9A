@@ -148,7 +148,8 @@
             }
         ],
         "interrupts": [
-            "SOSSelectHarmonic"
+            "SOSSelectHarmonic",
+            "SOSHarmonicObtained"
         ]
     },
     "途中偶遇": {
