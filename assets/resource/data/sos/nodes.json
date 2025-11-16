@@ -328,6 +328,18 @@
                     "SOSDice",
                     "SOSArtefactsObtained"
                 ]
+            },
+            "鬃毛的回报": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "不给"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage"
+                ]
             }
         }
     },
