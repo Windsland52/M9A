@@ -338,7 +338,19 @@
                     }
                 ],
                 "interrupts": [
-                    "SOSNextMessage"
+                    "SOSNextMessage_left"
+                ]
+            },
+            "街边沙龙": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "离开此处"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left"
                 ]
             }
         }
