@@ -139,7 +139,7 @@
             "SOSSummary",
             "SOSGiveup",
             "SOSStart",
-            "SOD_Skip_NoNext",
+            "SOS_Skip",
             "SOSConfirm"
         ]
     },
@@ -315,7 +315,7 @@
             "SOSSummary",
             "SOSGiveup",
             "SOSStart",
-            "SOD_Skip_NoNext",
+            "SOS_Skip",
             "SOSConfirm"
         ]
     },
@@ -1216,6 +1216,29 @@
                 ],
                 "template": [
                     "SyndromeOfSilence/ShoppingBuyButton.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    "SOS_Skip": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "only_rec": true,
+                "roi": [
+                    1143,
+                    36,
+                    45,
+                    25
+                ],
+                "expected": [
+                    "跳过",
+                    "SKIP",
+                    "退出",
+                    "EXIT"
                 ]
             }
         },
