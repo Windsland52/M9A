@@ -816,6 +816,8 @@
                     }
                 ],
                 "interrupts": [
+                    "SOSStatsUpButton",
+                    "SOSStatsUp",
                     "SOSNextMessage",
                     "SOSSelectResonator"
                 ]
