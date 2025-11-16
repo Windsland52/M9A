@@ -146,6 +146,9 @@
                 "type": "RunNode",
                 "name": "SOSCombat"
             }
+        ],
+        "interrupts": [
+            "SOSSelectHarmonic"
         ]
     },
     "途中偶遇": {
@@ -390,6 +393,9 @@
                 "type": "RunNode",
                 "name": "SOSCombat"
             }
+        ],
+        "interrupts": [
+            "SOSHarmonicObtained"
         ]
     },
     "恶战": {
