@@ -20,6 +20,7 @@ __all__ = [
     "SOSSelectEncounterOption_HSV",
     "SOSShoppingList",
     "SOSBuyItems",
+    "SOSSelectNoise",
 ]
 
 
@@ -927,3 +928,84 @@ class SOSBuyItems(CustomAction):
         else:
             logger.warning(f"未找到购买按钮")
             return False
+
+
+@AgentServer.custom_action("SOSSelectNoise")
+class SOSSelectNoise(CustomAction):
+    """
+    局外演绎：无声综合征-选择噪音类型
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+
+        level: int = json.loads(argv.custom_action_param)["level"]
+
+        levels = ["当前", "颤动 Ⅰ", "颤动 Ⅱ", "嗡鸣 Ⅰ", "嗡鸣 Ⅱ"]
+
+        logger.info(f"选择噪音类型: {levels[level]}")
+        if level == 0:
+            return CustomAction.RunResult(success=True)
+
+        # 判断当前页面
+        img = context.tasker.controller.cached_image
+        reco_detail = context.run_recognition(
+            "OCR",
+            img,
+            {
+                "OCR": {
+                    "recognition": "OCR",
+                    "roi": [343, 427, 84, 46],
+                    "expected": ".*",
+                }
+            },
+        )
+        if reco_detail:
+            ocr_result = cast(OCRResult, reco_detail.best_result)
+            current_level_text = ocr_result.text
+
+            page = 1 if current_level_text == "颤动" else 2
+        else:
+            logger.error("无法识别当前噪音类型页面")
+            return CustomAction.RunResult(success=False)
+
+        # 到目标页面
+        while True:
+            if page == 1 and level >= 2:
+                context.run_action(
+                    "Click",
+                    pipeline_override={
+                        "Click": {
+                            "action": "Click",
+                            "target": [1070, 297, 38, 67],
+                            "post_delay": 1500,
+                        }
+                    },
+                )
+                continue
+            elif page == 2 and level <= 3:
+                context.run_action(
+                    "Click",
+                    pipeline_override={
+                        "Click": {
+                            "action": "Click",
+                            "target": [121, 295, 37, 63],
+                            "post_delay": 1500,
+                        }
+                    },
+                )
+                continue
+            break
+
+        # 选择目标噪音
+        roi = [[288, 187, 221, 221], [735, 194, 221, 221]][level % 2]
+
+        context.run_task(
+            "SOSNoiseSelect",
+            {"SOSNoiseSelected": {"roi": roi}, "SOSNoiseUnselected": {"roi": roi}},
+        )
+
+        return CustomAction.RunResult(success=True)

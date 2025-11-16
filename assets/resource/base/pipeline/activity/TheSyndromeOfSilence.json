@@ -513,7 +513,15 @@
                 ]
             }
         },
-        // TODO: 选择噪音等级
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSSelectNoise",
+                "custom_action_param": {
+                    "level": 4
+                }
+            }
+        },
         "next": [
             "SOSSelectInstrument"
         ],
@@ -1694,5 +1702,36 @@
             }
         },
         "inverse": true
+    },
+    "SOSNoiseSelect": {
+        "next": [
+            "SOSNoiseSelected"
+        ],
+        "interrupt": [
+            "SOSNoiseUnselected"
+        ]
+    },
+    "SOSNoiseSelected": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "SyndromeOfSilence/NoiseSelected.png"
+                ]
+            }
+        }
+    },
+    "SOSNoiseUnselected": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "SyndromeOfSilence/NoiseUnselected.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     }
 }
