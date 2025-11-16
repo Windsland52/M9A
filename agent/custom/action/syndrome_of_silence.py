@@ -136,23 +136,16 @@ class SOSNodeProcess(CustomAction):
 
     def exec_main(self, context: Context, action: dict | list, interrupts: list):
         retry_times = 0
-        while retry_times < 5:
+        while retry_times < 20:
             # 先尝试执行主动作
             if self.exec_action(context.clone(), action):
                 return True
 
-            # 主动作无法执行，立即检查中断节点
-            interrupt_executed = False
             for interrupt in interrupts:
                 context.tasker.controller.post_screencap().wait().get()
                 if self.exec_action(context.clone(), interrupt):
                     retry_times = 0
-                    interrupt_executed = True
                     break
-
-            # 如果执行了中断节点，立即重新尝试主动作，不sleep
-            if interrupt_executed:
-                continue
 
             time.sleep(1)
             retry_times += 1
@@ -205,6 +198,12 @@ class SOSNodeProcess(CustomAction):
                         else [expected_all]
                     )
 
+                    # 先识别一下是否有选项界面
+                    img = context.tasker.controller.post_screencap().wait().get()
+                    check_reco = context.run_recognition("SOSSelectOptionList", img)
+                    if not check_reco or not check_reco.best_result:
+                        return False
+
                     pp_override = {"SOSSelectOption": {"interrupt": []}}
 
                     # 为每个 expected 创建独立节点
@@ -230,6 +229,13 @@ class SOSNodeProcess(CustomAction):
                 elif method == "HSV":
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
+
+                    # 先识别一下是否有选项界面
+                    img = context.tasker.controller.post_screencap().wait().get()
+                    check_reco = context.run_recognition("SOSSelectOptionList", img)
+                    if not check_reco or not check_reco.best_result:
+                        return False
+
                     pp_override = {
                         "SOSSelectOption": {"interrupt": ["SOSSelectOption_HSV"]},
                         "SOSSelectOption_HSV": {
@@ -248,6 +254,15 @@ class SOSNodeProcess(CustomAction):
                     expected: str = action.get("expected", "")
                     order_by: str = action.get("order_by", "Vertical")
 
+                    # 先识别一下是否有途中偶遇选项界面
+                    img = context.tasker.controller.post_screencap().wait().get()
+                    check_reco = context.run_recognition(
+                        "SOSSelectEncounterOptionRec_Template", img
+                    )
+                    if not check_reco or not check_reco.best_result:
+                        logger.debug("未识别到途中偶遇选项界面，跳过")
+                        return False
+
                     context.run_task(
                         "SelectEncounterOption_OCR",
                         pipeline_override={
@@ -262,6 +277,15 @@ class SOSNodeProcess(CustomAction):
                 elif method == "HSV":
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
+
+                    # 先识别一下是否有途中偶遇选项界面
+                    img = context.tasker.controller.post_screencap().wait().get()
+                    check_reco = context.run_recognition(
+                        "SOSSelectEncounterOptionRec_Template", img
+                    )
+                    if not check_reco or not check_reco.best_result:
+                        logger.debug("未识别到途中偶遇选项界面，跳过")
+                        return False
 
                     context.run_task(
                         "SOSSelectEncounterOption_HSV",
