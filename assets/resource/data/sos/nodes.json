@@ -1005,6 +1005,27 @@
                     "SOSNextMessage",
                     "SOSSelectArtefact"
                 ]
+            },
+            "接受": {
+                "actions": [
+                    {
+                        "type":"RunNode",
+                        "name":"SOSContinue"
+                    },
+                    {
+                        "type":"SelectOption",
+                        "method": "HSV"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage",
+                    "SOSSelectArtefact",
+                    "SOSArtefactsObtained"
+                ]
             }
         }
     },
