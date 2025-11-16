@@ -136,15 +136,24 @@ class SOSNodeProcess(CustomAction):
 
     def exec_main(self, context: Context, action: dict | list, interrupts: list):
         retry_times = 0
-        while retry_times < 10:
+        while retry_times < 5:
+            # 先尝试执行主动作
             if self.exec_action(context.clone(), action):
                 return True
-            # 执行中断检测
+
+            # 主动作无法执行，立即检查中断节点
+            interrupt_executed = False
             for interrupt in interrupts:
                 context.tasker.controller.post_screencap().wait().get()
                 if self.exec_action(context.clone(), interrupt):
                     retry_times = 0
+                    interrupt_executed = True
                     break
+
+            # 如果执行了中断节点，立即重新尝试主动作，不sleep
+            if interrupt_executed:
+                continue
+
             time.sleep(1)
             retry_times += 1
         return False
