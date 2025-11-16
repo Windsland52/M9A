@@ -275,12 +275,12 @@
                     }
                 ],
                 "interrupts": [
-                    "closeTip",
                     "SOSSelectHarmonic",
                     "SOSSelectArtefact",
                     "SOSNextMessage_left",
                     "SOSClickEventRec",
-                    "SOSDice"
+                    "SOSDice",
+                    "SOSCloseTip"
                 ]
             },
             "水晶的颂礼": {

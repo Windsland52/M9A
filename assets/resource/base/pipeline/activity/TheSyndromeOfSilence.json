@@ -377,7 +377,7 @@
         }
     },
     // 主页面各种弹窗处理
-    "closeTip": {
+    "SOSCloseTip": {
         "recognition": "TemplateMatch",
         "template": [
             "SyndromeOfSilence/SOSCloseTip.png"
@@ -761,9 +761,6 @@
         "next": [
             "SOSVictory",
             "SOSCombat"
-        ],
-        "interrupt": [
-            "closeTip"
         ]
     },
     "SOSVictory": {
