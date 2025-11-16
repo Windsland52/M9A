@@ -919,6 +919,29 @@
                     "SOSStatsUp",
                     "SOSNextMessage"
                 ]
+            },
+            "严厉的教导": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": 0
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSDice",
+                    "SOSArtefactsObtained",
+                    "SOSNextMessage",
+                    "SOSSelectArtefact"
+                ]
             }
         }
     },
