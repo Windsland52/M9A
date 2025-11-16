@@ -395,7 +395,8 @@
             }
         ],
         "interrupts": [
-            "SOSHarmonicObtained"
+            "SOSHarmonicObtained",
+            "SOSSelectHarmonic"
         ]
     },
     "恶战": {
