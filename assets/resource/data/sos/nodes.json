@@ -466,6 +466,29 @@
                 "interrupts": [
                     "SOSNextMessage_left"
                 ]    
+            },
+            "能者多得": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "收集钱币"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "装载钱币"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "支付代价"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSDice"
+                ] 
             }    
         }
     },
