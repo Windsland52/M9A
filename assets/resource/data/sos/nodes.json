@@ -429,7 +429,44 @@
                     "SOSArtefactsObtained",
                     "SOSSelectArtefact"
                 ]
-            }
+            },
+            "闲逛的后果": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "探索城市"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "接取一个简单的委托"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "随便想想"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "接取一个简单的委托"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "HSV",
+                        "order_by": "Horizontal"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "接取一个简单的委托"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left"
+                ]    
+            }    
         }
     },
     "途中余兴": {
