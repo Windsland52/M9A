@@ -756,6 +756,10 @@ class SOSBuyItems(CustomAction):
             # 购买当前屏幕的物品
             purchased_current_screen = False
             for item_name, item_price, result in items_on_screen:
+                # 在购买前再次检查是否还买得起（因为购买其他物品后金钱可能减少）
+                if item_price > remaining_money:
+                    continue
+
                 if self._buy_item_on_screen(context, item_name, result):
                     purchased_items.append((item_name, item_price))
                     purchased_set.add(item_name)
