@@ -352,6 +352,30 @@
                 "interrupts": [
                     "SOSNextMessage_left"
                 ]
+            },
+            "急需工人": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "干净漂亮"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "HSV",
+                        "order_by": "Horizontal",
+                        "index": 1
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "模仿他的手势"
+                    }
+                ],
+                "interrupts": [
+                    "SOSDice",
+                    "SOSNextMessage_left"
+                ]
             }
         }
     },
