@@ -380,6 +380,19 @@
                     "SOSDice",
                     "SOSNextMessage_left"
                 ]
+            },
+            "被“偷走”的愿望": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "模仿仪式"
+                    }
+                ],
+                "interrupts": [
+                    "SOSDice",
+                    "SOSNextMessage_left"
+                ]
             }
         }
     },
@@ -991,6 +1004,27 @@
                     "SOSArtefactsObtained",
                     "SOSNextMessage",
                     "SOSSelectArtefact"
+                ]
+            },
+            "接受": {
+                "actions": [
+                    {
+                        "type":"RunNode",
+                        "name":"SOSContinue"
+                    },
+                    {
+                        "type":"SelectOption",
+                        "method": "HSV"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage",
+                    "SOSSelectArtefact",
+                    "SOSArtefactsObtained"
                 ]
             }
         }
