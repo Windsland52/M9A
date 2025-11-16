@@ -328,6 +328,30 @@
                     "SOSDice",
                     "SOSArtefactsObtained"
                 ]
+            },
+            "鬃毛的回报": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "不给"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left"
+                ]
+            },
+            "街边沙龙": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "离开此处"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left"
+                ]
             }
         }
     },
@@ -906,6 +930,29 @@
                 "interrupts": [
                     "SOSStatsUp",
                     "SOSNextMessage"
+                ]
+            },
+            "严厉的教导": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": 0
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSDice",
+                    "SOSArtefactsObtained",
+                    "SOSNextMessage",
+                    "SOSSelectArtefact"
                 ]
             }
         }
