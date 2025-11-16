@@ -1062,6 +1062,27 @@
                     "SOSSelectArtefact",
                     "SOSArtefactsObtained"
                 ]
+            },
+            "失去道路": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type":"SelectOption",
+                        "method":"HSV"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage",
+                    "SOSStatsUp",
+                    "SOSStatsUpButton"
+                ]             
             }
         }
     },
