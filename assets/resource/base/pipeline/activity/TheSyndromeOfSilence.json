@@ -921,7 +921,11 @@
         "action": {
             "type": "Click"
         },
-        "post_wait_freezes": 500
+        "post_wait_freezes": 500,
+        "next": [
+            "SOSSelectOptionConfirmFinished",
+            "SOSSelectOptionConfirm"
+        ]
     },
     "SOSSelectOption_HSV": {
         "recognition": {
@@ -1376,5 +1380,22 @@
                 ]
             }
         }
+    },
+    "SOSSelectOptionConfirmFinished": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1173,
+                    153,
+                    85,
+                    563
+                ],
+                "template": [
+                    "SyndromeOfSilence/SelectOptionConfirmButton.png"
+                ]
+            }
+        },
+        "inverse": true
     }
 }
