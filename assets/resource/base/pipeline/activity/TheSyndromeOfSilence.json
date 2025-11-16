@@ -1160,6 +1160,59 @@
         },
         "inverse": true
     },
+    "SOSShopping": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    580,
+                    50,
+                    119,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "购物契机"
+                ]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSShoppingList"
+            }
+        },
+        "next": [
+            "SOSBuyItems"
+        ]
+    },
+    "SOSBuyItems": {
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSBuyItems"
+            }
+        }
+    },
+    "SOSBuyButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1115,
+                    628,
+                    83,
+                    59
+                ],
+                "template": [
+                    "SyndromeOfSilence/ShoppingBuyButton.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
     // 工具节点
     "SOSEventRec": {
         "recognition": {
@@ -1279,5 +1332,43 @@
             "type": "Click"
         },
         "inverse": true
+    },
+    "SOSShoppingListOCR": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    160,
+                    62,
+                    244,
+                    627
+                ],
+                "expected": ".+",
+                "order_by": "Vertical"
+            }
+        }
+    },
+    "SOSShoppingItemSelected": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "SyndromeOfSilence/ShoppingItemSelected.png",
+                    "SyndromeOfSilence/ShoppingItemSelected1.png"
+                ],
+                "threshold": 0.6
+            }
+        }
+    },
+    "SOSShoppingItemSoldOut": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "only_rec": true,
+                "expected": [
+                    "已售出"
+                ]
+            }
+        }
     }
 }
