@@ -200,7 +200,7 @@ class SOSNodeProcess(CustomAction):
 
                     # 先识别一下是否有选项界面
                     img = context.tasker.controller.post_screencap().wait().get()
-                    check_reco = context.run_recognition("SOSSelectOptionList", img)
+                    check_reco = context.run_recognition("SOSSelectOption", img)
                     if not check_reco or not check_reco.best_result:
                         return False
 
@@ -232,7 +232,7 @@ class SOSNodeProcess(CustomAction):
 
                     # 先识别一下是否有选项界面
                     img = context.tasker.controller.post_screencap().wait().get()
-                    check_reco = context.run_recognition("SOSSelectOptionList", img)
+                    check_reco = context.run_recognition("SOSSelectOption", img)
                     if not check_reco or not check_reco.best_result:
                         return False
 
