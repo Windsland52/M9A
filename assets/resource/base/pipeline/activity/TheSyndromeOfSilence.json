@@ -1083,10 +1083,10 @@
     },
     "SOSSetOff": {
         "recognition": {
-            "type": "OCR",
+            "type": "TemplateMatch",
             "param": {
-                "expected": [
-                    "启程"
+                "template": [
+                    "SyndromeOfSilence/SetOff.png"
                 ]
             }
         },
