@@ -802,6 +802,9 @@ class SOSBuyItems(CustomAction):
                         items_on_screen.append((item_name, item_price, result))
                         break
 
+            # 按价格排序当前屏幕的物品（价格从低到高，确保买数量最多）
+            items_on_screen.sort(key=lambda x: x[1])
+
             # 如果当前屏幕没有可购买的物品，滑动到下一页
             if not items_on_screen:
                 scroll_times += 1
