@@ -604,7 +604,8 @@
         "interrupt": [
             "SOSNextStep",
             "SOSArtefactsObtained",
-            "SOSResonatorObtained"
+            "SOSResonatorObtained",
+            "SOSHarmonicObtained"
         ]
     },
     "SOSInstrumentSelect": {
