@@ -1214,6 +1214,29 @@
                     "SOSDice",
                     "SOSNextMessage"
                 ]
+            },
+            "复调": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": [
+                            "仔细聆听"
+                        ]
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage",
+                    "SOSDice"
+                ]
             }
         }
     },
