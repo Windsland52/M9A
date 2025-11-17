@@ -48,7 +48,7 @@ class SOSSelectNode(CustomAction):
         logger.info(f"当前进入节点类型: {type}")
 
         times = 0
-        while times < 5:
+        while times < 3:
             context.run_task(
                 "Click",
                 {
