@@ -557,6 +557,24 @@
                 "interrupts": [
                     "SOSClickEventRec"
                 ]
+            },
+            "恩德与回报Ⅰ": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "试图安抚"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "HSV",
+                        "order_by": "Horizontal"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec"
+                ]
             }
         }
     },
