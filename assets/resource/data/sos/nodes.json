@@ -872,6 +872,7 @@
                     "SOSContinue",
                     "SOSSelectArtefact",
                     "SOSLoseArtefact",
+                    "SOSStrengthenArtefact",
                     "SOSResonatorObtained",
                     "SOSHarmonicObtained"
                 ]
