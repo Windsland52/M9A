@@ -1247,6 +1247,9 @@
                 ],
                 "interrupts": [
                     "SOSNextMessage",
+                    "SOSLoseArtefact",
+                    "SOSStrengthenArtefact",
+                    "SOSStatsUp",
                     "SOSDice"
                 ]
             }
