@@ -872,6 +872,7 @@
                     "SOSContinue",
                     "SOSDice",
                     "SOSHarmonicObtained",
+                    "SOSSelectHarmonic",
                     "SOSStatsUp"
                 ]
             },
