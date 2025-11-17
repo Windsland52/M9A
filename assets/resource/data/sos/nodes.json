@@ -833,7 +833,8 @@
                     "SOSNextMessage",
                     "SOSLoseArtefact",
                     "SOSStrengthenArtefact",
-                    "SOSHarmonicObtained"
+                    "SOSHarmonicObtained",
+                    "SOSArtefactsObtained"
                 ]
             },
             "论无能": {
