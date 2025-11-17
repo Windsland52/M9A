@@ -1030,17 +1030,6 @@
                         "index": 0
                     },
                     {
-                        "type": "SelectOption",
-                        "method": "OCR",
-                        "expected": [
-                            "奥秘",
-                            "力量",
-                            "激情",
-                            "反应",
-                            "感知"
-                        ]
-                    },
-                    {
                         "type": "RunNode",
                         "name": "SOSEventEnd"
                     }
