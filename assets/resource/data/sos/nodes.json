@@ -611,7 +611,8 @@
             }
         ],
         "interrupts": [
-            "SOSStatsUp"
+            "SOSStatsUp",
+            "SOSHarmonicObtained"
         ]
     },
     "必经之路": {
