@@ -28,7 +28,9 @@
         ],
         "interrupts": [
             "SOSSelectArtefact",
-            "SOSSelectHarmonic"
+            "SOSSelectHarmonic",
+            "SOSLoseArtefact",
+            "SOSStatsUp"
         ]
     },
     "险象环生": {
@@ -465,7 +467,7 @@
                 ],
                 "interrupts": [
                     "SOSNextMessage_left"
-                ]    
+                ]
             },
             "能者多得": {
                 "actions": [
@@ -488,8 +490,8 @@
                 "interrupts": [
                     "SOSNextMessage_left",
                     "SOSDice"
-                ] 
-            }    
+                ]
+            }
         }
     },
     "途中余兴": {
@@ -1105,11 +1107,11 @@
             "接受": {
                 "actions": [
                     {
-                        "type":"RunNode",
-                        "name":"SOSContinue"
+                        "type": "RunNode",
+                        "name": "SOSContinue"
                     },
                     {
-                        "type":"SelectOption",
+                        "type": "SelectOption",
                         "method": "HSV"
                     },
                     {
@@ -1130,8 +1132,8 @@
                         "name": "SOSContinue"
                     },
                     {
-                        "type":"SelectOption",
-                        "method":"HSV"
+                        "type": "SelectOption",
+                        "method": "HSV"
                     },
                     {
                         "type": "RunNode",
@@ -1142,7 +1144,7 @@
                     "SOSNextMessage",
                     "SOSStatsUp",
                     "SOSStatsUpButton"
-                ]             
+                ]
             }
         }
     },
