@@ -900,7 +900,28 @@
             "type": "Click"
         },
         "post_wait_freezes": 500,
-        "post_delay": 3000
+        "next": [
+            "SOSGOTOFinished",
+            "SOSGOTO"
+        ]
+    },
+    "SOSGOTOFinished": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1010,
+                    574,
+                    69,
+                    36
+                ],
+                "only_rec": true,
+                "expected": [
+                    "前往"
+                ]
+            }
+        },
+        "inverse": true
     },
     "SOSContinue": {
         "recognition": {
