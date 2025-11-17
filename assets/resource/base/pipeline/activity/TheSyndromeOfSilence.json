@@ -181,10 +181,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    502,
-                    276,
-                    213,
-                    64
+                    945,
+                    250,
+                    128,
+                    258
                 ],
                 "template": [
                     "SyndromeOfSilence/AddSignature.png"
