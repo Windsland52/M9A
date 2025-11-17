@@ -1059,7 +1059,7 @@ class SOSSelectNoise(CustomAction):
             break
 
         # 选择目标噪音
-        roi = [[288, 187, 221, 221], [735, 194, 221, 221]][level % 2]
+        roi = [[735, 194, 221, 221], [288, 187, 221, 221]][level % 2]
 
         context.run_task(
             "SOSNoiseSelect",
