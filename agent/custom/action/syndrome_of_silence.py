@@ -73,16 +73,38 @@ class SOSSelectNode(CustomAction):
 
         if event_name_roi:
             # 看下当前事件名
-            img = context.tasker.controller.post_screencap().wait().get()
-            reco_detail = context.run_recognition(
-                "SOSEventRec", img, {"SOSEventRec": {"roi": event_name_roi}}
-            )
-            if reco_detail:
-                ocr_result = cast(OCRResult, reco_detail.best_result)
-                event = ocr_result.text
-                SOSSelectNode.event = event
-                logger.info(f"当前事件: {event}")
-            else:  # 识别失败
+            retry_times = 0
+
+            while retry_times < 3:
+                img = context.tasker.controller.post_screencap().wait().get()
+                reco_detail = context.run_recognition(
+                    "SOSEventRec", img, {"SOSEventRec": {"roi": event_name_roi}}
+                )
+
+                if reco_detail:
+                    ocr_result = cast(OCRResult, reco_detail.best_result)
+                    event = ocr_result.text
+                    SOSSelectNode.event = event
+                    logger.info(f"当前事件: {event}")
+                    break
+                else:
+                    # 检查并处理可能的弹窗节点
+                    interrupts = ["SOSLoseArtefact", "SOSStrengthenArtefact"]
+                    popup_handled = False
+
+                    for interrupt in interrupts:
+                        if context.run_recognition(interrupt, img):
+                            logger.debug(f"检测到弹窗，执行节点: {interrupt}")
+                            context.run_task(interrupt)
+                            retry_times = 0
+                            popup_handled = True
+                            break
+
+                    if not popup_handled:
+                        # 没有检测到已知弹窗，等待一下再重试
+                        time.sleep(1)
+                        retry_times += 1
+            else:
                 SOSSelectNode.event = ""
                 return CustomAction.RunResult(success=False)
         else:
