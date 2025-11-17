@@ -1044,7 +1044,7 @@ class SOSSelectNoise(CustomAction):
                     },
                 )
                 continue
-            elif page == 2 and level <= 3:
+            elif page == 2 and level < 3:
                 context.run_action(
                     "Click",
                     pipeline_override={
