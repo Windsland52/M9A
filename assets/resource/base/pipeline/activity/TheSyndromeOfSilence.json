@@ -471,6 +471,7 @@
                 "only_rec": true
             }
         },
+        "post_delay": 3000,
         "action": {
             "type": "Click"
         }

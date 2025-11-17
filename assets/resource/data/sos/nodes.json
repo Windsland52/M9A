@@ -171,17 +171,24 @@
                         "order_by": "Vertical"
                     },
                     {
-                        "type": "RunNode",
-                        "name": "SOSDice"
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "进入战斗"
                     },
                     {
                         "type": "RunNode",
-                        "name": "SOSNextMessage_left"
+                        "name": "SOSTeamSelect"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
                     }
                 ],
                 "interrupts": [
                     "SOSArtefactsObtained",
-                    "SOSNextMessage_left"
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec",
+                    "SOSDice"
                 ]
             },
             "魔精爱丽丝": {
