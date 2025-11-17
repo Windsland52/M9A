@@ -635,11 +635,7 @@
             },
             {
                 "type": "RunNode",
-                "name": "BackButton"
-            },
-            {
-                "type": "RunNode",
-                "name": "SOSConfirm"
+                "name": "SOSShoppingExit"
             }
         ],
         "interrupts": [

@@ -514,10 +514,32 @@
                 "only_rec": true
             }
         },
-        "post_delay": 3000,
+        "post_delay": 1500,
         "action": {
             "type": "Click"
-        }
+        },
+        "next": [
+            "SOSConfirmFinished",
+            "SOSConfirm"
+        ]
+    },
+    "SOSConfirmFinished": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    764,
+                    404,
+                    73,
+                    35
+                ],
+                "expected": [
+                    "确认"
+                ],
+                "only_rec": true
+            }
+        },
+        "inverse": true
     },
     "SOSStart": {
         "recognition": {
@@ -1638,6 +1660,30 @@
         "action": {
             "type": "Click"
         }
+    },
+    "SOSShoppingExit": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    0,
+                    0,
+                    134,
+                    138
+                ],
+                "template": [
+                    "StartUp/BackButton.png"
+                ],
+                "green_mask": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSConfirm",
+            "SOSShoppingExit"
+        ]
     },
     // 工具节点
     "SOSEventRec": {
