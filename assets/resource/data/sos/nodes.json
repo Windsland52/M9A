@@ -1252,6 +1252,27 @@
                     "SOSStatsUp",
                     "SOSDice"
                 ]
+            },
+            "城市的缝隙": {
+                "actions": [
+                    {
+                        "type": "RunNode",
+                        "name": "SOSContinue"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage",
+                    "SOSStatsUpButton",
+                    "SOSStatsUp"
+                ]
             }
         }
     },
