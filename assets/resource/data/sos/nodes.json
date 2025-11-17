@@ -187,8 +187,8 @@
                 "interrupts": [
                     "SOSArtefactsObtained",
                     "SOSNextMessage_left",
-                    "SOSClickEventRec",
-                    "SOSDice"
+                    "SOSDice",
+                    "SOSClickEventRec"
                 ]
             },
             "魔精爱丽丝": {
@@ -249,8 +249,8 @@
                     "SOSSelectHarmonic",
                     "SOSSelectArtefact",
                     "SOSNextMessage_left",
-                    "SOSClickEventRec",
-                    "SOSDice"
+                    "SOSDice",
+                    "SOSClickEventRec"
                 ]
             },
             "西岱岛漫游": {
@@ -265,8 +265,8 @@
                     "SOSSelectHarmonic",
                     "SOSSelectArtefact",
                     "SOSNextMessage_left",
-                    "SOSClickEventRec",
-                    "SOSDice"
+                    "SOSDice",
+                    "SOSClickEventRec"
                 ]
             },
             "旋律与舞步": {
@@ -291,9 +291,9 @@
                     "SOSSelectHarmonic",
                     "SOSSelectArtefact",
                     "SOSNextMessage_left",
-                    "SOSClickEventRec",
                     "SOSDice",
-                    "SOSCloseTip"
+                    "SOSCloseTip",
+                    "SOSClickEventRec"
                 ]
             },
             "水晶的颂礼": {
@@ -496,7 +496,8 @@
                 ],
                 "interrupts": [
                     "SOSNextMessage_left",
-                    "SOSDice"
+                    "SOSDice",
+                    "SOSClickEventRec"
                 ]
             },
             "互帮互助": {
