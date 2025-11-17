@@ -200,10 +200,6 @@
                         "order_by": "Vertical"
                     },
                     {
-                        "type": "RunNode",
-                        "name": "SOSDice"
-                    },
-                    {
                         "type": "SelectEncounterOption",
                         "method": "HSV"
                     }
@@ -211,6 +207,9 @@
                 "interrupts": [
                     "SOSArtefactsObtained",
                     "SOSNextMessage_left",
+                    "SOSSelectArtefact",
+                    "SOSStatsUp",
+                    "SOSDice",
                     "SOSClickEventRec"
                 ]
             },
@@ -222,10 +221,6 @@
                         "expected": "继续向前"
                     },
                     {
-                        "type": "RunNode",
-                        "name": "SOSDice"
-                    },
-                    {
                         "type": "SelectEncounterOption",
                         "method": "OCR",
                         "expected": "离开"
@@ -234,6 +229,7 @@
                 "interrupts": [
                     "SOSSelectHarmonic",
                     "SOSNextMessage_left",
+                    "SOSDice",
                     "SOSClickEventRec"
                 ]
             },
