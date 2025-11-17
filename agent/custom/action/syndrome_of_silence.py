@@ -624,6 +624,9 @@ class SOSBuyItems(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
 
+        # 获取 interrupts 配置（购买后可能出现的弹窗）
+        interrupts = ["SOSLoseArtefact", "SOSStrengthenArtefact"]
+
         # 识别右上角当前金雀子儿
         img = context.tasker.controller.post_screencap().wait().get()
         money_roi = [1125, 18, 88, 28]  # 右上角金雀子儿的ROI，需要根据实际调整
@@ -798,7 +801,7 @@ class SOSBuyItems(CustomAction):
                 if item_price > remaining_money:
                     continue
 
-                if self._buy_item_on_screen(context, item_name, result):
+                if self._buy_item_on_screen(context, item_name, result, interrupts):
                     purchased_items.append((item_name, item_price))
                     purchased_set.add(item_name)
                     remaining_money -= item_price
@@ -842,10 +845,11 @@ class SOSBuyItems(CustomAction):
         return CustomAction.RunResult(success=True)
 
     def _buy_item_on_screen(
-        self, context: Context, item_name: str, result: dict
+        self, context: Context, item_name: str, result: dict, interrupts: list
     ) -> bool:
         """
         购买当前屏幕上的指定物品
+        interrupts: 购买后可能出现的弹窗节点列表
         """
         box = result.get("box", [0, 0, 0, 0])
 
@@ -903,8 +907,12 @@ class SOSBuyItems(CustomAction):
             while buy_retry < 5:
                 context.run_task("SOSBuyButton")
 
-                # 等待并确认购买成功（按钮变为"已购买"）
+                # 先处理可能出现的弹窗
                 time.sleep(0.5)
+                self._handle_interrupts(context, interrupts)
+
+                # 弹窗处理完后，检查是否购买成功
+                time.sleep(0.3)
                 img = context.tasker.controller.post_screencap().wait().get()
                 confirm_reco = context.run_recognition(
                     "OCR",
@@ -928,6 +936,30 @@ class SOSBuyItems(CustomAction):
         else:
             logger.warning(f"未找到购买按钮")
             return False
+
+    def _handle_interrupts(self, context: Context, interrupts: list) -> None:
+        """
+        处理购买后可能出现的弹窗
+        interrupts: 弹窗节点名称列表
+        """
+        if not interrupts:
+            return
+
+        max_attempts = 3
+        for _ in range(max_attempts):
+            time.sleep(1.5)
+            img = context.tasker.controller.post_screencap().wait().get()
+
+            # 检查每个可能的弹窗
+            for interrupt in interrupts:
+                if context.run_recognition(interrupt, img):
+                    logger.debug(f"检测到弹窗，执行节点: {interrupt}")
+                    context.run_task(interrupt)
+                    # 执行后重新开始检测，可能有连续弹窗
+                    break
+            else:
+                # 没有检测到任何弹窗，退出
+                break
 
 
 @AgentServer.custom_action("SOSSelectNoise")
