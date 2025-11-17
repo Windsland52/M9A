@@ -588,6 +588,19 @@
                     "SOSNextMessage_left",
                     "SOSClickEventRec"
                 ]
+            },
+            "街角的共鸣": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "离开"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec"
+                ]
             }
         }
     },
