@@ -85,7 +85,7 @@
             "SOSSelectNoise"
         ],
         "interrupt": [
-            "SOSConfirm", // 先不管旅伴，直接跳过，后面有需要再处理
+            "SOSConfirm", // 不管旅伴，直接跳过
             "SOSStart"
         ]
     },
@@ -146,10 +146,34 @@
             }
         },
         "next": [
-            "SOSKeepsakeDetailsAdd"
+            "SOSKeepsakeDetailsAdd",
+            "SOSLackOfMaterials"
         ],
         "interrupt": [
             "SOSSpider"
+        ]
+    },
+    "SOSLackOfMaterials": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    843,
+                    453,
+                    57,
+                    30
+                ],
+                "only_rec": true,
+                "expected": "缺少"
+            }
+        },
+        "next": [
+            "SOSSelectNoise"
+        ],
+        "interrupt": [
+            "SOSConfirm", // 不管旅伴，直接跳过
+            "SOSStart",
+            "BackButtonWithDelay"
         ]
     },
     "SOSKeepsakeDetailsAdd": {
