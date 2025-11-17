@@ -549,6 +549,18 @@
                     "SOSDice",
                     "SOSClickEventRec"
                 ]
+            },
+            "恩德与回报Ⅱ": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "躲避刀刃"
+                    }
+                ],
+                "interrupts": [
+                    "SOSClickEventRec"
+                ]
             }
         }
     },
