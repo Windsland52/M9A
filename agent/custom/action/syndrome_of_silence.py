@@ -360,7 +360,7 @@ class SOSSelectEncounterOption_OCR(CustomAction):
                         }
                     },
                 )
-            return CustomAction.RunResult(success=True)
+                return CustomAction.RunResult(success=True)
         return CustomAction.RunResult(success=False)
 
 
