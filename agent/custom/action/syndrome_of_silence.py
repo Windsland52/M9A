@@ -1027,37 +1027,72 @@ class SOSSelectNoise(CustomAction):
         if reco_detail:
             ocr_result = cast(OCRResult, reco_detail.best_result)
             current_level_text = ocr_result.text
-
-            page = 1 if current_level_text == "颤动" else 2
+            page = 1 if "颤动" in current_level_text else 2
         else:
             logger.error("无法识别当前噪音类型页面")
             return CustomAction.RunResult(success=False)
 
         # 到目标页面
         while True:
-            if page == 1 and level >= 2:
-                context.run_action(
+            if page == 1 and level >= 3:
+                context.run_task(
                     "Click",
-                    pipeline_override={
+                    {
                         "Click": {
                             "action": "Click",
                             "target": [1070, 297, 38, 67],
-                            "post_delay": 1500,
+                            "post_delay": 500,
                         }
                     },
                 )
+                # 更新页面状态
+                time.sleep(0.5)
+                img = context.tasker.controller.post_screencap().wait().get()
+                reco_detail = context.run_recognition(
+                    "OCR",
+                    img,
+                    {
+                        "OCR": {
+                            "recognition": "OCR",
+                            "roi": [343, 427, 84, 46],
+                            "expected": ".*",
+                        }
+                    },
+                )
+                if reco_detail:
+                    ocr_result = cast(OCRResult, reco_detail.best_result)
+                    current_level_text = ocr_result.text
+                    page = 1 if "颤动" in current_level_text else 2
                 continue
             elif page == 2 and level < 3:
-                context.run_action(
+                context.run_task(
                     "Click",
-                    pipeline_override={
+                    {
                         "Click": {
                             "action": "Click",
                             "target": [121, 295, 37, 63],
-                            "post_delay": 1500,
+                            "post_delay": 500,
                         }
                     },
                 )
+                # 更新页面状态
+                time.sleep(0.5)
+                img = context.tasker.controller.post_screencap().wait().get()
+                reco_detail = context.run_recognition(
+                    "OCR",
+                    img,
+                    {
+                        "OCR": {
+                            "recognition": "OCR",
+                            "roi": [343, 427, 84, 46],
+                            "expected": ".*",
+                        }
+                    },
+                )
+                if reco_detail:
+                    ocr_result = cast(OCRResult, reco_detail.best_result)
+                    current_level_text = ocr_result.text
+                    page = 1 if "颤动" in current_level_text else 2
                 continue
             break
 
