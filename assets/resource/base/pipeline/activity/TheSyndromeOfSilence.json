@@ -1594,7 +1594,7 @@
                 ]
             }
         },
-        "post_delay": 1500
+        "post_delay": 3000
     },
     "SOSSelectEncounterOption_HSV_Unselected": {
         "recognition": {
