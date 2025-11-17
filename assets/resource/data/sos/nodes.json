@@ -534,6 +534,20 @@
                     "SOSStatsUpButton",
                     "SOSStatsUp"
                 ]
+            },
+            "迷途羔羊": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "跟随声音"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSDice",
+                    "SOSClickEventRec"
+                ]
             }
         }
     },
