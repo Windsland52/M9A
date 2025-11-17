@@ -1067,3 +1067,34 @@ class SOSSelectNoise(CustomAction):
         )
 
         return CustomAction.RunResult(success=True)
+
+
+@AgentServer.custom_action("SOSSelectInstrument")
+class SOSSelectInstrument(CustomAction):
+    """
+    局外演绎：无声综合征-选择配器类型
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+
+        instrument: str = json.loads(argv.custom_action_param)["instrument"]
+
+        logger.info(f"选择配器类型: {instrument}")
+
+        instrument_map = {"管钟": "TubularBell", "拨弦": "Strings"}
+
+        context.run_task(
+            "SOSInstrumentSelect",
+            {
+                "SOSInstrumentSelect": {"expected": instrument},
+                "SOSInstrumentSelectFinished": {
+                    "template": f"SyndromeOfSilence/{instrument_map[instrument]}.png"
+                },
+            },
+        )
+
+        return CustomAction.RunResult(success=True)

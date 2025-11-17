@@ -550,7 +550,6 @@
         ]
     },
     "SOSSelectInstrument": {
-        // 选择 buff 界面
         "recognition": {
             "type": "OCR",
             "param": {
@@ -566,7 +565,15 @@
                 ]
             }
         },
-        // TODO: 选择 buff
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSSelectInstrument",
+                "custom_action_param": {
+                    "instrument": "管钟"
+                }
+            }
+        },
         "next": [
             "SOSMain"
         ],
@@ -575,6 +582,43 @@
             "SOSArtefactsObtained",
             "SOSResonatorObtained"
         ]
+    },
+    "SOSInstrumentSelect": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    326,
+                    594,
+                    604,
+                    80
+                ],
+                "expected": "管钟"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSInstrumentSelectFinished",
+            "SOSInstrumentSelect"
+        ]
+    },
+    "SOSInstrumentSelectFinished": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    295,
+                    583,
+                    639,
+                    96
+                ],
+                "template": [
+                    "SyndromeOfSilence/TubularBell.png"
+                ]
+            }
+        }
     },
     "SOSMain": {
         "recognition": {

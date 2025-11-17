@@ -218,7 +218,8 @@
             "option": [
                 "战斗编队",
                 "携带好旅伴",
-                "难度选择"
+                "难度选择",
+                "配器选择"
             ],
             "doc": "[size:15][color:darkgray]本功能支持3.2及3.3版本的局外演绎推图[/color][/size]\n[size:15][color:darkgray]M9A不能检查是否处于自动战斗状态，请自行调整[/color][/size]\n[size:15][color:orange]⚠更多详细说明请看文档[/color][/size]"
         },
@@ -2004,6 +2005,38 @@
                                 "param": {
                                     "custom_action_param": {
                                         "level": 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "配器选择": {
+            "cases": [
+                {
+                    "name": "管钟",
+                    "pipeline_override": {
+                        "SOSSelectInstrument": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "instrument": "管钟"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "拨弦",
+                    "pipeline_override": {
+                        "SOSSelectInstrument": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "instrument": "拨弦"
                                     }
                                 }
                             }
