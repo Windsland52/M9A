@@ -436,6 +436,25 @@
             "type": "Click"
         }
     },
+    "SOSEnding": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    411,
+                    158,
+                    355,
+                    185
+                ],
+                "template": [
+                    "SyndromeOfSilence/Ending2.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
     "SOSGiveup": {
         "recognition": {
             "type": "TemplateMatch",
@@ -596,6 +615,7 @@
             "SOSLoseArtefact",
             "SOSStrengthenArtefact",
             "SOSSummary",
+            "SOSEnding",
             "SOSGiveup",
             "SOSStart",
             "SOS_Skip",
