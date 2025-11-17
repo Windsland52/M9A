@@ -531,8 +531,8 @@
                 "interrupts": [
                     "SOSDice",
                     "SOSNextMessage_left",
-                    "SOSStatsUp",
-                    "SOSStatsUpButton"
+                    "SOSStatsUpButton",
+                    "SOSStatsUp"
                 ]
             }
         }
