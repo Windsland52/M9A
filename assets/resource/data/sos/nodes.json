@@ -498,6 +498,42 @@
                     "SOSNextMessage_left",
                     "SOSDice"
                 ]
+            },
+            "互帮互助": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "HSV",
+                        "order_by": "Horizontal"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "HSV",
+                        "order_by": "Horizontal",
+                        "index": 1
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "HSV",
+                        "order_by": "Horizontal"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "HSV",
+                        "order_by": "Vertical"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "给你"
+                    }
+                ],
+                "interrupts": [
+                    "SOSDice",
+                    "SOSNextMessage_left",
+                    "SOSStatsUpButton",
+                    "SOSStatsUp"
+                ]
             }
         }
     },
