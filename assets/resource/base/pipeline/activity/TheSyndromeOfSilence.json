@@ -1176,7 +1176,8 @@
         "rate_limit": 3000,
         "next": [
             "SOSVictory",
-            "SOSCombat"
+            "SOSCombat",
+            "SOSFailed"
         ]
     },
     "SOSVictory": {
