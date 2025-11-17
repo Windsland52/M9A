@@ -89,7 +89,11 @@ class SOSSelectNode(CustomAction):
                     break
                 else:
                     # 检查并处理可能的弹窗节点
-                    interrupts = ["SOSLoseArtefact", "SOSStrengthenArtefact"]
+                    interrupts = [
+                        "SOSLoseArtefact",
+                        "SOSStrengthenArtefact",
+                        "SOSHarmonicObtained",
+                    ]
                     popup_handled = False
 
                     for interrupt in interrupts:
