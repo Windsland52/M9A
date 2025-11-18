@@ -1218,7 +1218,28 @@
                 666,
                 263
             ]
-        }
+        },
+        "next": [
+            "SOSVictoryFinished",
+            "SOSVictory"
+        ]
+    },
+    "SOSVictoryFinished": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    678,
+                    10,
+                    473,
+                    240
+                ],
+                "expected": [
+                    "战斗胜利"
+                ]
+            }
+        },
+        "inverse": true
     },
     "SOSFailed": {
         "recognition": {
