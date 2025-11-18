@@ -14,6 +14,39 @@
         "必经之路",
         "藏宝地"
     ],
+    "common_interrupts": {
+        "message": [
+            "SOSNextMessage"
+        ],
+        "message_left": [
+            "SOSNextMessage_left"
+        ],
+        "stats": [
+            "SOSStatsUpButton",
+            "SOSStatsUp"
+        ],
+        "artefact": [
+            "SOSArtefactsObtained",
+            "SOSSelectArtefact",
+            "SOSLoseArtefact",
+            "SOSStrengthenArtefact"
+        ],
+        "harmonic": [
+            "SOSHarmonicObtained",
+            "SOSSelectHarmonic"
+        ],
+        "resonator": [
+            "SOSResonatorObtained",
+            "SOSSelectResonator"
+        ],
+        "others": [
+            "SOSDice",
+            "SOSContinue",
+            "SOSEventEnd"
+        ],
+        "EncounterAlongTheWay": "@message_left+@stats+@artefact+@harmonic+@resonator+@others+SOSClickEventRec",
+        "TheOnlyWay": "@message+@stats+@artefact+@harmonic+@resonator+@others"
+    },
     "冲突": {
         "event_name_roi": null,
         "actions": [
@@ -26,12 +59,7 @@
                 "name": "SOSCombat"
             }
         ],
-        "interrupts": [
-            "SOSSelectArtefact",
-            "SOSSelectHarmonic",
-            "SOSLoseArtefact",
-            "SOSStatsUp"
-        ]
+        "interrupts": "@stats+@artefact+@harmonic+@resonator"
     },
     "险象环生": {
         "event_name_roi": [
@@ -81,12 +109,7 @@
                         "name": "SOSCombat"
                     }
                 ],
-                "interrupts": [
-                    "SOSSelectHarmonic",
-                    "SOSSelectArtefact",
-                    "SOSSelectResonator",
-                    "SOSStatsUp"
-                ]
+                "interrupts": "@stats+@artefact+@harmonic+@resonator"
             },
             "险象环生": {
                 "actions": [
@@ -128,12 +151,7 @@
                         "name": "SOSCombat"
                     }
                 ],
-                "interrupts": [
-                    "SOSSelectHarmonic",
-                    "SOSSelectArtefact",
-                    "SOSSelectResonator",
-                    "SOSStatsUp"
-                ]
+                "interrupts": "@stats+@artefact+@harmonic+@resonator"
             }
         }
     },
@@ -149,10 +167,7 @@
                 "name": "SOSCombat"
             }
         ],
-        "interrupts": [
-            "SOSSelectHarmonic",
-            "SOSHarmonicObtained"
-        ]
+        "interrupts": "@stats+@artefact+@harmonic+@resonator"
     },
     "途中偶遇": {
         "event_name_roi": [
@@ -184,12 +199,7 @@
                         "name": "SOSCombat"
                     }
                 ],
-                "interrupts": [
-                    "SOSArtefactsObtained",
-                    "SOSNextMessage_left",
-                    "SOSDice",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "魔精爱丽丝": {
                 "actions": [
@@ -204,14 +214,7 @@
                         "method": "HSV"
                     }
                 ],
-                "interrupts": [
-                    "SOSArtefactsObtained",
-                    "SOSNextMessage_left",
-                    "SOSSelectArtefact",
-                    "SOSStatsUp",
-                    "SOSDice",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "墓穴岔口": {
                 "actions": [
@@ -226,14 +229,9 @@
                         "expected": "离开"
                     }
                 ],
-                "interrupts": [
-                    "SOSSelectHarmonic",
-                    "SOSNextMessage_left",
-                    "SOSDice",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
-            "迪亚波罗": {
+            "“迪亚波罗”": {
                 "actions": [
                     {
                         "type": "SelectEncounterOption",
@@ -241,13 +239,7 @@
                         "expected": "打开酒桶"
                     }
                 ],
-                "interrupts": [
-                    "SOSSelectHarmonic",
-                    "SOSSelectArtefact",
-                    "SOSNextMessage_left",
-                    "SOSDice",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "西岱岛漫游": {
                 "actions": [
@@ -257,13 +249,7 @@
                         "expected": "为她打开鸟笼"
                     }
                 ],
-                "interrupts": [
-                    "SOSSelectHarmonic",
-                    "SOSSelectArtefact",
-                    "SOSNextMessage_left",
-                    "SOSDice",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "旋律与舞步": {
                 "actions": [
@@ -283,37 +269,7 @@
                         "expected": "记住"
                     }
                 ],
-                "interrupts": [
-                    "SOSSelectHarmonic",
-                    "SOSSelectArtefact",
-                    "SOSNextMessage_left",
-                    "SOSDice",
-                    "SOSCloseTip",
-                    "SOSClickEventRec"
-                ]
-            },
-            "水晶的颂礼": {
-                "actions": [
-                    {
-                        "type": "SelectEncounterOption",
-                        "method": "OCR",
-                        "expected": "继续"
-                    },
-                    {
-                        "type": "SelectEncounterOption",
-                        "method": "OCR",
-                        "expected": "和一旁的蓝色妖精玩耍"
-                    },
-                    {
-                        "type": "SelectEncounterOption",
-                        "method": "OCR",
-                        "expected": "结束"
-                    }
-                ],
-                "interrupts": [
-                    "SOSDice",
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "“毛茸茸奥贝日”": {
                 "actions": [
@@ -332,11 +288,7 @@
                         "name": "SOSCombat"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left",
-                    "SOSDice",
-                    "SOSArtefactsObtained"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "鬃毛的回报": {
                 "actions": [
@@ -346,9 +298,7 @@
                         "expected": "不给"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "街边沙龙": {
                 "actions": [
@@ -358,9 +308,7 @@
                         "expected": "离开此处"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "急需工人": {
                 "actions": [
@@ -381,10 +329,7 @@
                         "expected": "模仿他的手势"
                     }
                 ],
-                "interrupts": [
-                    "SOSDice",
-                    "SOSNextMessage_left"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "被“偷走”的愿望": {
                 "actions": [
@@ -394,10 +339,7 @@
                         "expected": "模仿仪式"
                     }
                 ],
-                "interrupts": [
-                    "SOSDice",
-                    "SOSNextMessage_left"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "“最佳适配位”": {
                 "actions": [
@@ -407,9 +349,7 @@
                         "expected": "离开"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "绝路": {
                 "actions": [
@@ -429,11 +369,7 @@
                         "expected": "原路返回"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left",
-                    "SOSArtefactsObtained",
-                    "SOSSelectArtefact"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "闲逛的后果": {
                 "actions": [
@@ -468,9 +404,7 @@
                         "expected": "接取一个简单的委托"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "能者多得": {
                 "actions": [
@@ -490,11 +424,7 @@
                         "expected": "支付代价"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left",
-                    "SOSDice",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "互帮互助": {
                 "actions": [
@@ -525,12 +455,7 @@
                         "expected": "给你"
                     }
                 ],
-                "interrupts": [
-                    "SOSDice",
-                    "SOSNextMessage_left",
-                    "SOSStatsUpButton",
-                    "SOSStatsUp"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "迷途羔羊": {
                 "actions": [
@@ -540,11 +465,7 @@
                         "expected": "跟随声音"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left",
-                    "SOSDice",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "恩德与回报Ⅱ": {
                 "actions": [
@@ -554,9 +475,7 @@
                         "expected": "躲避刀刃"
                     }
                 ],
-                "interrupts": [
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "恩德与回报Ⅰ": {
                 "actions": [
@@ -571,10 +490,7 @@
                         "order_by": "Horizontal"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "秋季沙龙": {
                 "actions": [
@@ -584,10 +500,7 @@
                         "expected": "沉默着离开"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
             },
             "街角的共鸣": {
                 "actions": [
@@ -597,10 +510,30 @@
                         "expected": "离开"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage_left",
-                    "SOSClickEventRec"
-                ]
+                "interrupts": "@EncounterAlongTheWay"
+            },
+            "香榭丽舍奇遇": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "用左手抵挡"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "进入战斗"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSTeamSelect"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": "@EncounterAlongTheWay"
             }
         }
     },
@@ -616,10 +549,7 @@
                 "name": "SOSCombat"
             }
         ],
-        "interrupts": [
-            "SOSHarmonicObtained",
-            "SOSSelectHarmonic"
-        ]
+        "interrupts": "@stats+@artefact+@harmonic+@resonator"
     },
     "恶战": {
         "event_name_roi": null,
@@ -633,16 +563,7 @@
                 "name": "SOSCombat"
             }
         ],
-        "interrupts": [
-            "SOSHarmonicObtained",
-            "SOSSelectResonator",
-            "SOSSelectArtefact",
-            "SOSLoseArtefact",
-            "SOSSelectHarmonic",
-            "SOSStatsUp",
-            "SOSStrengthenArtefact",
-            "SOSResonatorObtained"
-        ]
+        "interrupts": "@stats+@artefact+@harmonic+@resonator"
     },
     "休憩处": {
         "event_name_roi": [
@@ -655,26 +576,12 @@
             "俱乐部来客": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "HSV",
                         "index": -1
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSArtefactsObtained",
-                    "SOSStatsUpButton",
-                    "SOSStatsUp",
-                    "SOSLoseArtefact",
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@message+@stats+@artefact+@harmonic+@resonator+@others"
             }
         }
     },
@@ -690,17 +597,11 @@
                 "name": "SOSShoppingExit"
             }
         ],
-        "interrupts": [
-            "SOSHarmonicObtained"
-        ]
+        "interrupts": "@stats+@artefact+@harmonic+@resonator"
     },
     "巧匠之手": {
         "event_name_roi": null,
         "actions": [
-            {
-                "type": "RunNode",
-                "name": "SOSContinue"
-            },
             {
                 "type": "SelectOption",
                 "method": "OCR",
@@ -716,10 +617,7 @@
                 ]
             }
         ],
-        "interrupts": [
-            "SOSStatsUp",
-            "SOSHarmonicObtained"
-        ]
+        "interrupts": "@stats+@artefact+@harmonic+@resonator+@others"
     },
     "必经之路": {
         "event_name_roi": [
@@ -732,10 +630,6 @@
             "旅途的开始": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
@@ -745,48 +639,25 @@
                             "反应",
                             "感知"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSSelectHarmonic",
-                    "SOSHarmonicObtained",
-                    "SOSStatsUp"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "花朵与入迷": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
                             "先找到她"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSArtefactsObtained",
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "据点": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
@@ -798,10 +669,6 @@
                         ]
                     },
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
@@ -809,62 +676,31 @@
                         ]
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage",
-                    "SOSStatsUp",
-                    "SOSHarmonicObtained"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "使命": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSStatsUpButton",
-                    "SOSStatsUp",
-                    "SOSArtefactsObtained",
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "摇篮曲": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "愤怒行军": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "OCR",
@@ -906,43 +742,19 @@
                         ]
                     }
                 ],
-                "interrupts": [
-                    "SOSStatsUp",
-                    "SOSNextMessage",
-                    "SOSContinue",
-                    "SOSDice",
-                    "SOSHarmonicObtained",
-                    "SOSSelectHarmonic",
-                    "SOSStatsUp"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "乌合的野兽": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSStatsUpButton",
-                    "SOSStatsUp",
-                    "SOSNextMessage",
-                    "SOSLoseArtefact",
-                    "SOSStrengthenArtefact",
-                    "SOSHarmonicObtained",
-                    "SOSArtefactsObtained"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "论无能": {
                 "actions": [
@@ -972,17 +784,7 @@
                         ]
                     }
                 ],
-                "interrupts": [
-                    "SOSStatsUpButton",
-                    "SOSStatsUp",
-                    "SOSNextMessage",
-                    "SOSContinue",
-                    "SOSSelectArtefact",
-                    "SOSLoseArtefact",
-                    "SOSStrengthenArtefact",
-                    "SOSResonatorObtained",
-                    "SOSHarmonicObtained"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "巧合": {
                 "actions": [
@@ -999,34 +801,18 @@
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSContinue",
-                    "SOSStatsUp",
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "刽子手应聘": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
                     },
                     {
                         "type": "SelectOption",
@@ -1036,19 +822,10 @@
                         ]
                     }
                 ],
-                "interrupts": [
-                    "SOSStatsUpButton",
-                    "SOSStatsUp",
-                    "SOSNextMessage",
-                    "SOSSelectResonator"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "最终难题": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "HSV",
@@ -1056,65 +833,32 @@
                     },
                     {
                         "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
-                        "type": "RunNode",
                         "name": "SOSCombat"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "回到起点": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
-                        "method": "HSV",
-                        "index": 0
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
+                        "method": "HSV"
                     }
                 ],
-                "interrupts": [
-                    "SOSSelectHarmonic",
-                    "SOSHarmonicObtained"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "仙境冒险": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "HSV",
-                        "index": 1
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
+                        "index": -1
                     }
                 ],
-                "interrupts": [
-                    "SOSArtefactsObtained",
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "契玛的世界": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "HSV",
@@ -1129,36 +873,19 @@
                         "name": "SOSCombat"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage",
-                    "SOSSelectHarmonic"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "狂热行军": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "升华或是重生": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "OCR",
@@ -1169,151 +896,88 @@
                             "反应",
                             "感知"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSStatsUp",
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "严厉的教导": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
-                        "method": "HSV",
-                        "index": 0
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
+                        "method": "HSV"
                     }
                 ],
-                "interrupts": [
-                    "SOSDice",
-                    "SOSArtefactsObtained",
-                    "SOSNextMessage",
-                    "SOSSelectArtefact"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "接受": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage",
-                    "SOSSelectArtefact",
-                    "SOSArtefactsObtained"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "失去道路": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage",
-                    "SOSStatsUp",
-                    "SOSStatsUpButton"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "试演": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSDice",
-                    "SOSNextMessage"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "复调": {
                 "actions": [
-                    {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
                     {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
                             "仔细聆听"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage",
-                    "SOSLoseArtefact",
-                    "SOSStrengthenArtefact",
-                    "SOSStatsUp",
-                    "SOSDice"
-                ]
+                "interrupts": "@TheOnlyWay"
             },
             "城市的缝隙": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "水晶的颂礼": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "OCR",
+                        "expected": "和一旁的蓝色妖精玩耍"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "于房间中": {
+                "actions": [
                     {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSNextMessage",
-                    "SOSStatsUpButton",
-                    "SOSStatsUp"
-                ]
+                "interrupts": "@TheOnlyWay"
             }
         }
     },
@@ -1328,10 +992,6 @@
             "野兽居所": {
                 "actions": [
                     {
-                        "type": "RunNode",
-                        "name": "SOSContinue"
-                    },
-                    {
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": [
@@ -1341,19 +1001,9 @@
                             "反应",
                             "感知"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
-                "interrupts": [
-                    "SOSStatsUp",
-                    "SOSLoseArtefact",
-                    "SOSStrengthenArtefact",
-                    "SOSNextMessage",
-                    "SOSHarmonicObtained"
-                ]
+                "interrupts": "@message+@stats+@artefact+@harmonic+@resonator+@others"
             }
         }
     }

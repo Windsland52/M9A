@@ -699,6 +699,7 @@
             "SOSSelectNode",
             "SOSSelectHarmonic",
             "SOSHarmonicObtained",
+            "SOSStatsUpButton",
             "SOSStatsUp",
             "SOSSetOff",
             "SOSSelectResonator",
@@ -1543,6 +1544,18 @@
         "next": [
             "FlagInSOSMain",
             "SOSGoToNextScene"
+        ],
+        "interrupt": [
+            "SOSStatsUpButton",
+            "SOSStatsUp",
+            "SOSArtefactsObtained",
+            "SOSSelectArtefact",
+            "SOSLoseArtefact",
+            "SOSStrengthenArtefact",
+            "SOSHarmonicObtained",
+            "SOSSelectHarmonic",
+            "SOSResonatorObtained",
+            "SOSSelectResonator"
         ]
     },
     "SOSDice": {
@@ -1732,8 +1745,13 @@
                         "\"最",
                         "“最"
                     ],
-                    ["报[！!]",
-                     "报Ⅰ"
+                    [
+                        "报[！!]",
+                        "报Ⅰ"
+                    ],
+                    [
+                        "”迪",
+                        "“迪"
                     ]
                 ]
             }
