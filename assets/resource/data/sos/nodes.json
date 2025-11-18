@@ -975,7 +975,7 @@
                     {
                         "type": "SelectOption",
                         "method": "OCR",
-                        "expected": "和一旁的蓝色妖精玩耍"
+                        "expected": "妖精玩耍"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
