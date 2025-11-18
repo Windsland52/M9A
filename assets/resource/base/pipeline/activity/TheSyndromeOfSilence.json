@@ -772,20 +772,7 @@
             }
         }
     },
-    // 主页面各种弹窗处理
-    "SOSCloseTip": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "SyndromeOfSilence/SOSCloseTip.png"
-        ],
-        "roi": [
-            922,
-            10,
-            342,
-            206
-        ],
-        "action": "Click"
-    },
+    // 主页面各种弹窗处理,
     "SOSArtefactsObtained": {
         // 获得造物
         "recognition": {
