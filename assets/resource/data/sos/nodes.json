@@ -511,6 +511,29 @@
                     }
                 ],
                 "interrupts": "@EncounterAlongTheWay"
+            },
+            "香榭丽舍奇遇": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "用左手抵挡"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "进入战斗"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSTeamSelect"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": "@EncounterAlongTheWay"
             }
         }
     },
