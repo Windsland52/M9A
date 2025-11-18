@@ -422,7 +422,11 @@
                     {
                         "type": "SelectEncounterOption",
                         "method": "OCR",
-                        "expected": "支付代价"
+                        "expected": "拒绝支付"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
                     }
                 ],
                 "interrupts": "@EncounterAlongTheWay"
