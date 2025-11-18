@@ -1020,6 +1020,19 @@
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
+            },
+            "于房间中": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
             }
         }
     },
