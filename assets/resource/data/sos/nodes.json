@@ -993,6 +993,15 @@
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
+            },
+            "价值评估": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
             }
         }
     },
