@@ -183,21 +183,7 @@
                     {
                         "type": "SelectEncounterOption",
                         "method": "OCR",
-                        "expected": "指出问题",
-                        "order_by": "Vertical"
-                    },
-                    {
-                        "type": "SelectEncounterOption",
-                        "method": "OCR",
-                        "expected": "进入战斗"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSTeamSelect"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSCombat"
+                        "expected": "歪过头去"
                     }
                 ],
                 "interrupts": "@EncounterAlongTheWay"
