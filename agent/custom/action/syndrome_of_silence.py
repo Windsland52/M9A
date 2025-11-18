@@ -296,19 +296,15 @@ class SOSNodeProcess(CustomAction):
 
                     context.run_task("SOSSelectOption", pipeline_override=pp_override)
                 elif method == "HSV":
-                    logger.info("SelectOption HSV 方法被调用")
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
-                    logger.info(f"参数: order_by={order_by}, index={index}")
 
                     # 先识别一下是否有选项界面
                     img = context.tasker.controller.post_screencap().wait().get()
                     check_reco = context.run_recognition("SOSSelectOption", img)
                     if not check_reco or not check_reco.best_result:
-                        logger.warning("未识别到选项界面，跳过 SelectOption HSV")
                         return False
 
-                    logger.info("识别到选项界面，执行 SelectOption HSV")
                     pp_override = {
                         "SOSSelectOption": {"interrupt": ["SOSSelectOption_HSV"]},
                         "SOSSelectOption_HSV": {
