@@ -751,7 +751,7 @@
                     12
                 ],
                 "order_by": "Horizontal",
-                "index": 0
+                "index": -1
             }
         },
         "action": {
