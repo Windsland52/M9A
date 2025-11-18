@@ -1014,9 +1014,8 @@
                         "expected": "和一旁的蓝色妖精玩耍"
                     },
                     {
-                        "type": "SelectOption",
-                        "method": "OCR",
-                        "expected": "结束"
+                        "type": "RunNode",
+                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
