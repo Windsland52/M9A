@@ -142,7 +142,9 @@ class SOSNodeProcess(CustomAction):
             actions: list = nodes[type]["actions"] + [
                 {"type": "RunNode", "name": "FlagInSOSMain"}
             ]
-            interrupts: list = nodes[type].get("interrupts", [])
+            interrupts: list = self._resolve_interrupts(
+                nodes[type].get("interrupts", []), nodes
+            )
         else:
             # 有 event 的处理
             if event not in nodes[type]["events"]:
@@ -158,12 +160,48 @@ class SOSNodeProcess(CustomAction):
                 actions: list = info["actions"] + [
                     {"type": "RunNode", "name": "FlagInSOSMain"}
                 ]
-            interrupts: list = info.get("interrupts", [])
+            interrupts: list = self._resolve_interrupts(
+                info.get("interrupts", []), nodes
+            )
 
         for action in actions:
             if not self.exec_main(context, action, interrupts):
                 return CustomAction.RunResult(success=False)
         return CustomAction.RunResult(success=True)
+
+    def _resolve_interrupts(self, interrupts: str | list, nodes: dict) -> list:
+        """
+        解析 interrupts 配置，支持 @ 引用和 + 组合
+        @common_name: 引用 common_interrupts 中的配置
+        @name1+@name2: 组合多个引用
+        """
+        if isinstance(interrupts, list):
+            return interrupts
+
+        if not isinstance(interrupts, str):
+            return []
+
+        result = []
+        common = nodes.get("common_interrupts", {})
+
+        # 支持 + 分割多个引用
+        parts = interrupts.split("+")
+        for part in parts:
+            part = part.strip()
+            if part.startswith("@"):
+                ref_name = part[1:]  # 去掉 @
+                if ref_name in common:
+                    ref_value = common[ref_name]
+                    # 如果引用的值是字符串，递归解析
+                    if isinstance(ref_value, str):
+                        result.extend(self._resolve_interrupts(ref_value, nodes))
+                    elif isinstance(ref_value, list):
+                        result.extend(ref_value)
+            else:
+                if part:  # 避免添加空字符串
+                    result.append(part)
+
+        return result
 
     def exec_main(self, context: Context, action: dict | list, interrupts: list):
         retry_times = 0
@@ -258,20 +296,28 @@ class SOSNodeProcess(CustomAction):
 
                     context.run_task("SOSSelectOption", pipeline_override=pp_override)
                 elif method == "HSV":
+                    logger.info("SelectOption HSV 方法被调用")
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
+                    logger.info(f"参数: order_by={order_by}, index={index}")
 
                     # 先识别一下是否有选项界面
                     img = context.tasker.controller.post_screencap().wait().get()
                     check_reco = context.run_recognition("SOSSelectOption", img)
                     if not check_reco or not check_reco.best_result:
+                        logger.warning("未识别到选项界面，跳过 SelectOption HSV")
                         return False
 
+                    logger.info("识别到选项界面，执行 SelectOption HSV")
                     pp_override = {
                         "SOSSelectOption": {"interrupt": ["SOSSelectOption_HSV"]},
                         "SOSSelectOption_HSV": {
-                            "order_by": order_by,
-                            "index": index,
+                            "recognition": {
+                                "param": {
+                                    "order_by": order_by,
+                                    "index": index,
+                                }
+                            }
                         },
                     }
                     context.run_task("SOSSelectOption", pipeline_override=pp_override)
@@ -322,7 +368,12 @@ class SOSNodeProcess(CustomAction):
                         "SOSSelectEncounterOption_HSV",
                         pipeline_override={
                             "SOSSelectEncounterOptionRec_Template": {
-                                "order_by": order_by
+                                "recognition": {
+                                    "param": {
+                                        "order_by": order_by,
+                                        "index": index,
+                                    }
+                                }
                             }
                         },
                     )
