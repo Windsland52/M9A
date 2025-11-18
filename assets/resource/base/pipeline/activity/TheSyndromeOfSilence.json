@@ -699,6 +699,7 @@
             "SOSSelectNode",
             "SOSSelectHarmonic",
             "SOSHarmonicObtained",
+            "SOSStatsUpButton",
             "SOSStatsUp",
             "SOSSetOff",
             "SOSSelectResonator",
