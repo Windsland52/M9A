@@ -41,7 +41,8 @@
         ],
         "others": [
             "SOSDice",
-            "SOSContinue"
+            "SOSContinue",
+            "SOSEventEnd"
         ],
         "EncounterAlongTheWay": "@message_left+@stats+@artefact+@harmonic+@resonator+@others+SOSClickEventRec",
         "TheOnlyWay": "@message+@stats+@artefact+@harmonic+@resonator+@others"
@@ -555,10 +556,6 @@
                         "type": "SelectOption",
                         "method": "HSV",
                         "index": -1
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@message+@stats+@artefact+@harmonic+@resonator+@others"
@@ -619,10 +616,6 @@
                             "反应",
                             "感知"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -635,10 +628,6 @@
                         "expected": [
                             "先找到她"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -671,10 +660,6 @@
                     {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -687,10 +672,6 @@
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -748,10 +729,6 @@
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -801,10 +778,6 @@
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -846,12 +819,7 @@
                 "actions": [
                     {
                         "type": "SelectOption",
-                        "method": "HSV",
-                        "index": 0
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
+                        "method": "HSV"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -862,10 +830,6 @@
                         "type": "SelectOption",
                         "method": "HSV",
                         "index": -1
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -893,10 +857,6 @@
                     {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -913,10 +873,6 @@
                             "反应",
                             "感知"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -925,12 +881,7 @@
                 "actions": [
                     {
                         "type": "SelectOption",
-                        "method": "HSV",
-                        "index": 0
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
+                        "method": "HSV"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -940,10 +891,6 @@
                     {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -953,10 +900,6 @@
                     {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -969,10 +912,6 @@
                         "expected": [
                             "获得"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -985,10 +924,6 @@
                         "expected": [
                             "仔细聆听"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -998,10 +933,6 @@
                     {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -1012,10 +943,6 @@
                         "type": "SelectOption",
                         "method": "OCR",
                         "expected": "和一旁的蓝色妖精玩耍"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -1025,10 +952,6 @@
                     {
                         "type": "SelectOption",
                         "method": "HSV"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
@@ -1055,10 +978,6 @@
                             "反应",
                             "感知"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSEventEnd"
                     }
                 ],
                 "interrupts": "@message+@stats+@artefact+@harmonic+@resonator+@others"
