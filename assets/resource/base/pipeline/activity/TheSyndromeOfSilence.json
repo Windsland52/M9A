@@ -471,6 +471,7 @@
                     185
                 ],
                 "template": [
+                    "SyndromeOfSilence/Ending1.png",
                     "SyndromeOfSilence/Ending2.png"
                 ]
             }
@@ -699,6 +700,7 @@
             "SOSSelectNode",
             "SOSSelectHarmonic",
             "SOSHarmonicObtained",
+            "SOSStatsUpButton",
             "SOSStatsUp",
             "SOSSetOff",
             "SOSSelectResonator",
@@ -749,7 +751,7 @@
                     12
                 ],
                 "order_by": "Horizontal",
-                "index": 0
+                "index": -1
             }
         },
         "action": {
@@ -770,20 +772,7 @@
             }
         }
     },
-    // 主页面各种弹窗处理
-    "SOSCloseTip": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "SyndromeOfSilence/SOSCloseTip.png"
-        ],
-        "roi": [
-            922,
-            10,
-            342,
-            206
-        ],
-        "action": "Click"
-    },
+    // 主页面各种弹窗处理,
     "SOSArtefactsObtained": {
         // 获得造物
         "recognition": {
@@ -1178,7 +1167,30 @@
             "SOSVictory",
             "SOSCombat",
             "SOSFailed"
+        ],
+        "interrupt": [
+            "SOSCombatDialog"
         ]
+    },
+    "SOSCombatDialog": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    463,
+                    41,
+                    362,
+                    162
+                ],
+                "template": [
+                    "SyndromeOfSilence/Dialog1.png",
+                    "SyndromeOfSilence/Dialog2.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     },
     "SOSVictory": {
         "recognition": {
@@ -1191,8 +1203,7 @@
                     240
                 ],
                 "expected": [
-                    "战斗",
-                    "胜利"
+                    "战斗胜利"
                 ]
             }
         },
@@ -1389,7 +1400,7 @@
             "type": "Click"
         }
     },
-    "SelectEncounterOption_OCR": {
+    "SOSSelectEncounterOption_OCR": {
         "recognition": {
             "type": "Custom",
             "param": {
@@ -1404,7 +1415,7 @@
         },
         "next": [
             "SOSSelectEncounterOptionConfirm",
-            "SelectEncounterOption_OCR"
+            "SOSSelectEncounterOption_OCR"
         ]
     },
     "SOSSelectEncounterOptionConfirm": {
@@ -1423,7 +1434,7 @@
             "SOSSelectEncounterOptionConfirm"
         ]
     },
-    "SelectEncounterOption_HSV": {
+    "SOSSelectEncounterOption_HSV": {
         "recognition": {
             "type": "Custom",
             "param": {
@@ -1438,7 +1449,7 @@
         },
         "next": [
             "SOSSelectEncounterOptionConfirm",
-            "SelectEncounterOption_HSV"
+            "SOSSelectEncounterOption_HSV"
         ]
     },
     "SOSNextMessage": {
@@ -1480,11 +1491,17 @@
         }
     },
     "SOSClickEventRec": {
-        "action": {
-            "type": "Click",
+        "recognition": {
+            "type": "OCR",
             "param": {
-                "target": "SOSEventRec"
+                "roi": "SOSEventRec",
+                "expected": [
+                    "[\\u4e00-\\u9fa5]"
+                ]
             }
+        },
+        "action": {
+            "type": "Click"
         }
     },
     "SOSStatsUpButton": {
@@ -1543,6 +1560,18 @@
         "next": [
             "FlagInSOSMain",
             "SOSGoToNextScene"
+        ],
+        "interrupt": [
+            "SOSStatsUpButton",
+            "SOSStatsUp",
+            "SOSArtefactsObtained",
+            "SOSSelectArtefact",
+            "SOSLoseArtefact",
+            "SOSStrengthenArtefact",
+            "SOSHarmonicObtained",
+            "SOSSelectHarmonic",
+            "SOSResonatorObtained",
+            "SOSSelectResonator"
         ]
     },
     "SOSDice": {
@@ -1686,6 +1715,28 @@
             "SOSShoppingExit"
         ]
     },
+    "SOSWarning": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    961,
+                    49,
+                    151,
+                    151
+                ],
+                "template": [
+                    "SyndromeOfSilence/Warning.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSSwitchStat"
+            }
+        }
+    },
     // 工具节点
     "SOSEventRec": {
         "recognition": {
@@ -1721,7 +1772,7 @@
                         "鬃毛"
                     ],
                     [
-                        "\"毛",
+                        "[\"“]毛",
                         "“毛"
                     ],
                     [
@@ -1729,11 +1780,32 @@
                         "鬃毛的回报"
                     ],
                     [
-                        "\"最",
+                        "[\"“]最",
                         "“最"
                     ],
-                    ["报[！!]",
-                     "报Ⅰ"
+                    [
+                        "报[！!]",
+                        "报Ⅰ"
+                    ],
+                    [
+                        "[\"“]迪",
+                        "“迪"
+                    ],
+                    [
+                        "[\"“]社",
+                        "“社"
+                    ],
+                    [
+                        "练\"",
+                        "练”"
+                    ],
+                    [
+                        "急需工人一",
+                        "急需工人"
+                    ],
+                    [
+                        "[\"“]滂",
+                        "“滂"
                     ]
                 ]
             }

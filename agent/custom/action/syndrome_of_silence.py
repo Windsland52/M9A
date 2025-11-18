@@ -142,7 +142,9 @@ class SOSNodeProcess(CustomAction):
             actions: list = nodes[type]["actions"] + [
                 {"type": "RunNode", "name": "FlagInSOSMain"}
             ]
-            interrupts: list = nodes[type].get("interrupts", [])
+            interrupts: list = self._resolve_interrupts(
+                nodes[type].get("interrupts", []), nodes
+            )
         else:
             # 有 event 的处理
             if event not in nodes[type]["events"]:
@@ -158,12 +160,48 @@ class SOSNodeProcess(CustomAction):
                 actions: list = info["actions"] + [
                     {"type": "RunNode", "name": "FlagInSOSMain"}
                 ]
-            interrupts: list = info.get("interrupts", [])
+            interrupts: list = self._resolve_interrupts(
+                info.get("interrupts", []), nodes
+            )
 
         for action in actions:
             if not self.exec_main(context, action, interrupts):
                 return CustomAction.RunResult(success=False)
         return CustomAction.RunResult(success=True)
+
+    def _resolve_interrupts(self, interrupts: str | list, nodes: dict) -> list:
+        """
+        解析 interrupts 配置，支持 @ 引用和 + 组合
+        @common_name: 引用 common_interrupts 中的配置
+        @name1+@name2: 组合多个引用
+        """
+        if isinstance(interrupts, list):
+            return interrupts
+
+        if not isinstance(interrupts, str):
+            return []
+
+        result = []
+        common = nodes.get("common_interrupts", {})
+
+        # 支持 + 分割多个引用
+        parts = interrupts.split("+")
+        for part in parts:
+            part = part.strip()
+            if part.startswith("@"):
+                ref_name = part[1:]  # 去掉 @
+                if ref_name in common:
+                    ref_value = common[ref_name]
+                    # 如果引用的值是字符串，递归解析
+                    if isinstance(ref_value, str):
+                        result.extend(self._resolve_interrupts(ref_value, nodes))
+                    elif isinstance(ref_value, list):
+                        result.extend(ref_value)
+            else:
+                if part:  # 避免添加空字符串
+                    result.append(part)
+
+        return result
 
     def exec_main(self, context: Context, action: dict | list, interrupts: list):
         retry_times = 0
@@ -270,8 +308,12 @@ class SOSNodeProcess(CustomAction):
                     pp_override = {
                         "SOSSelectOption": {"interrupt": ["SOSSelectOption_HSV"]},
                         "SOSSelectOption_HSV": {
-                            "order_by": order_by,
-                            "index": index,
+                            "recognition": {
+                                "param": {
+                                    "order_by": order_by,
+                                    "index": index,
+                                }
+                            }
                         },
                     }
                     context.run_task("SOSSelectOption", pipeline_override=pp_override)
@@ -295,9 +337,9 @@ class SOSNodeProcess(CustomAction):
                         return False
 
                     context.run_task(
-                        "SelectEncounterOption_OCR",
+                        "SOSSelectEncounterOption_OCR",
                         pipeline_override={
-                            "SelectEncounterOption_OCR": {
+                            "SOSSelectEncounterOption_OCR": {
                                 "custom_action_param": {"expected": expected}
                             },
                             "SOSSelectEncounterOptionRec_Template": {
@@ -321,9 +363,17 @@ class SOSNodeProcess(CustomAction):
                     context.run_task(
                         "SOSSelectEncounterOption_HSV",
                         pipeline_override={
+                            "SOSSelectEncounterOption_HSV": {
+                                "custom_action_param": {"index": index}
+                            },
                             "SOSSelectEncounterOptionRec_Template": {
-                                "order_by": order_by
-                            }
+                                "recognition": {
+                                    "param": {
+                                        "order_by": order_by,
+                                        "index": index,
+                                    }
+                                }
+                            },
                         },
                     )
                 else:
@@ -350,12 +400,13 @@ class SOSSelectEncounterOption_OCR(CustomAction):
 
         for option in options:
             if expected in option["content"]:
+                x, y, w, h = option["roi"]
                 context.run_task(
                     "Click",
                     {
                         "Click": {
                             "action": "Click",
-                            "target": option["roi"],
+                            "target": [x + 30, y, w, h],
                             "post_delay": 1500,
                         }
                     },
@@ -376,17 +427,16 @@ class SOSSelectEncounterOption_HSV(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
 
-        index: int = json.loads(argv.custom_action_param).get(
-            "SOSSelectEncounterOption_HSV", 0
-        )
+        index: int = json.loads(argv.custom_action_param).get("index", 0)
         options: list[dict] = argv.reco_detail.raw_detail["best"]["detail"]["options"]
 
+        x, y, w, h = options[index]["roi"]
         context.run_task(
             "Click",
             {
                 "Click": {
                     "action": "Click",
-                    "target": options[index]["roi"],
+                    "target": [x + 30, y, w, h],
                     "post_delay": 1500,
                 }
             },
@@ -1132,6 +1182,66 @@ class SOSSelectInstrument(CustomAction):
                 "SOSInstrumentSelectFinished": {
                     "template": f"SyndromeOfSilence/{instrument_map[instrument]}.png"
                 },
+            },
+        )
+
+        return CustomAction.RunResult(success=True)
+
+
+@AgentServer.custom_action("SOSSwitchStat")
+class SOSSwitchStat(CustomAction):
+    """
+    局外演绎：无声综合征-切换待提升的属性
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+
+        img = context.tasker.controller.cached_image
+
+        context = context.clone()
+
+        num_rois = [
+            [444, 161, 53, 43],
+            [599, 256, 52, 43],
+            [544, 455, 52, 42],
+            [223, 455, 53, 42],
+            [169, 258, 52, 43],
+        ]
+        stat_icon_rois = [
+            [378, 176, 53, 43],
+            [534, 285, 53, 43],
+            [471, 469, 53, 43],
+            [280, 471, 52, 43],
+            [219, 287, 52, 43],
+        ]
+        stat_names = ["力量", "反应", "奥秘", "感知", "激情"]
+
+        results = []
+        for i, roi in enumerate(num_rois):
+            reco_detail = context.run_recognition(
+                "OCR",
+                img,
+                {"OCR": {"recognition": "OCR", "roi": roi, "expected": r"\d"}},
+            )
+            if not reco_detail:
+                logger.warning(f"无法识别属性数值: {stat_names[i]}")
+                results.append(13)
+                continue
+            ocr_result = cast(OCRResult, reco_detail.best_result)
+            results.append(int(ocr_result.text))
+
+        # 选择数值最小的属性
+        target_stat = stat_names[results.index(min(results))]
+        logger.info(f"切换属性为: {target_stat}")
+        context.run_action(
+            "Click",
+            pipeline_override={
+                "action": "Click",
+                "target": stat_icon_rois[results.index(min(results))],
             },
         )
 
