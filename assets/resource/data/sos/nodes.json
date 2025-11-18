@@ -199,7 +199,37 @@
                     {
                         "type": "SelectEncounterOption",
                         "method": "HSV"
-                    }
+                    },
+                    [
+                        {
+                            "type": "SelectEncounterOption",
+                            "method": "HSV"
+                        },
+                        {
+                            "type": "RunNode",
+                            "name": "FlagInSOSMain"
+                        }
+                    ],
+                    [
+                        {
+                            "type": "SelectEncounterOption",
+                            "method": "HSV"
+                        },
+                        {
+                            "type": "RunNode",
+                            "name": "FlagInSOSMain"
+                        }
+                    ],
+                    [
+                        {
+                            "type": "SelectEncounterOption",
+                            "method": "HSV"
+                        },
+                        {
+                            "type": "RunNode",
+                            "name": "FlagInSOSMain"
+                        }
+                    ]
                 ],
                 "interrupts": "@EncounterAlongTheWay"
             },

@@ -1400,7 +1400,7 @@
             "type": "Click"
         }
     },
-    "SelectEncounterOption_OCR": {
+    "SOSSelectEncounterOption_OCR": {
         "recognition": {
             "type": "Custom",
             "param": {
@@ -1415,7 +1415,7 @@
         },
         "next": [
             "SOSSelectEncounterOptionConfirm",
-            "SelectEncounterOption_OCR"
+            "SOSSelectEncounterOption_OCR"
         ]
     },
     "SOSSelectEncounterOptionConfirm": {
@@ -1434,7 +1434,7 @@
             "SOSSelectEncounterOptionConfirm"
         ]
     },
-    "SelectEncounterOption_HSV": {
+    "SOSSelectEncounterOption_HSV": {
         "recognition": {
             "type": "Custom",
             "param": {
@@ -1449,7 +1449,7 @@
         },
         "next": [
             "SOSSelectEncounterOptionConfirm",
-            "SelectEncounterOption_HSV"
+            "SOSSelectEncounterOption_HSV"
         ]
     },
     "SOSNextMessage": {

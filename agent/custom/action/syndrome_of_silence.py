@@ -337,9 +337,9 @@ class SOSNodeProcess(CustomAction):
                         return False
 
                     context.run_task(
-                        "SelectEncounterOption_OCR",
+                        "SOSSelectEncounterOption_OCR",
                         pipeline_override={
-                            "SelectEncounterOption_OCR": {
+                            "SOSSelectEncounterOption_OCR": {
                                 "custom_action_param": {"expected": expected}
                             },
                             "SOSSelectEncounterOptionRec_Template": {
@@ -363,6 +363,9 @@ class SOSNodeProcess(CustomAction):
                     context.run_task(
                         "SOSSelectEncounterOption_HSV",
                         pipeline_override={
+                            "SOSSelectEncounterOption_HSV": {
+                                "custom_action_param": {"index": index}
+                            },
                             "SOSSelectEncounterOptionRec_Template": {
                                 "recognition": {
                                     "param": {
@@ -370,7 +373,7 @@ class SOSNodeProcess(CustomAction):
                                         "index": index,
                                     }
                                 }
-                            }
+                            },
                         },
                     )
                 else:
@@ -423,9 +426,7 @@ class SOSSelectEncounterOption_HSV(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
 
-        index: int = json.loads(argv.custom_action_param).get(
-            "SOSSelectEncounterOption_HSV", 0
-        )
+        index: int = json.loads(argv.custom_action_param).get("index", 0)
         options: list[dict] = argv.reco_detail.raw_detail["best"]["detail"]["options"]
 
         context.run_task(
