@@ -1041,6 +1041,16 @@
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
+            },
+            "与死共舞": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": -1
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
             }
         }
     },
