@@ -1491,11 +1491,17 @@
         }
     },
     "SOSClickEventRec": {
-        "action": {
-            "type": "Click",
+        "recognition": {
+            "type": "OCR",
             "param": {
-                "target": "SOSEventRec"
+                "roi": "SOSEventRec",
+                "expected": [
+                    "[\\u4e00-\\u9fa5]"
+                ]
             }
+        },
+        "action": {
+            "type": "Click"
         }
     },
     "SOSStatsUpButton": {
