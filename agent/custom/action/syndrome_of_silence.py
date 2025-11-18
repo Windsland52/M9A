@@ -406,7 +406,7 @@ class SOSSelectEncounterOption_OCR(CustomAction):
                     {
                         "Click": {
                             "action": "Click",
-                            "target": [x + 130, y, w, h],
+                            "target": [x + 30, y, w, h],
                             "post_delay": 1500,
                         }
                     },
@@ -436,7 +436,7 @@ class SOSSelectEncounterOption_HSV(CustomAction):
             {
                 "Click": {
                     "action": "Click",
-                    "target": [x + 130, y, w, h],
+                    "target": [x + 30, y, w, h],
                     "post_delay": 1500,
                 }
             },
