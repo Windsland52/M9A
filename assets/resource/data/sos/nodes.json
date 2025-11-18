@@ -534,7 +534,8 @@
                     }
                 ],
                 "interrupts": "@EncounterAlongTheWay"
-            },"“社会化训练”": {
+            },
+            "“社会化训练”": {
                 "actions": [
                     {
                         "type": "SelectEncounterOption",
@@ -544,7 +545,6 @@
                 ],
                 "interrupts": "@EncounterAlongTheWay"
             }
-
         }
     },
     "途中余兴": {
