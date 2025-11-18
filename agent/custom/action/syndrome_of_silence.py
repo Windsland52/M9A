@@ -1183,3 +1183,63 @@ class SOSSelectInstrument(CustomAction):
         )
 
         return CustomAction.RunResult(success=True)
+
+
+@AgentServer.custom_action("SOSSwitchStat")
+class SOSSwitchStat(CustomAction):
+    """
+    局外演绎：无声综合征-切换待提升的属性
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+
+        img = context.tasker.controller.cached_image
+
+        context = context.clone()
+
+        num_rois = [
+            [444, 161, 53, 43],
+            [599, 256, 52, 43],
+            [544, 455, 52, 42],
+            [223, 455, 53, 42],
+            [169, 258, 52, 43],
+        ]
+        stat_icon_rois = [
+            [378, 176, 53, 43],
+            [534, 285, 53, 43],
+            [471, 469, 53, 43],
+            [280, 471, 52, 43],
+            [219, 287, 52, 43],
+        ]
+        stat_names = ["力量", "反应", "奥秘", "感知", "激情"]
+
+        results = []
+        for i, roi in enumerate(num_rois):
+            reco_detail = context.run_recognition(
+                "OCR",
+                img,
+                {"OCR": {"recognition": "OCR", "roi": roi, "expected": r"\d"}},
+            )
+            if not reco_detail:
+                logger.warning(f"无法识别属性数值: {stat_names[i]}")
+                results.append(13)
+                continue
+            ocr_result = cast(OCRResult, reco_detail.best_result)
+            results.append(int(ocr_result.text))
+
+        # 选择数值最小的属性
+        target_stat = stat_names[results.index(min(results))]
+        logger.info(f"切换属性为: {target_stat}")
+        context.run_action(
+            "Click",
+            pipeline_override={
+                "action": "Click",
+                "target": stat_icon_rois[results.index(min(results))],
+            },
+        )
+
+        return CustomAction.RunResult(success=True)

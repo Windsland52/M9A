@@ -22,6 +22,7 @@
             "SOSNextMessage_left"
         ],
         "stats": [
+            "SOSWarning",
             "SOSStatsUpButton",
             "SOSStatsUp"
         ],

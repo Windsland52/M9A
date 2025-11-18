@@ -1699,6 +1699,28 @@
             "SOSShoppingExit"
         ]
     },
+    "SOSWarning": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    961,
+                    49,
+                    151,
+                    151
+                ],
+                "template": [
+                    "SyndromeOfSilence/Warning.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SOSSwitchStat"
+            }
+        }
+    },
     // 工具节点
     "SOSEventRec": {
         "recognition": {
