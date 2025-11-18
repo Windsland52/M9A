@@ -1061,6 +1061,15 @@
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
+            },
+            "缝补恐惧": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
             }
         }
     },
