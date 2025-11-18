@@ -534,7 +534,17 @@
                     }
                 ],
                 "interrupts": "@EncounterAlongTheWay"
+            },"“社会化训练”": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "没有我想要的物品"
+                    }
+                ],
+                "interrupts": "@EncounterAlongTheWay"
             }
+
         }
     },
     "途中余兴": {
