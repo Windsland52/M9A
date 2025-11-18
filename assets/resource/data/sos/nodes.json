@@ -677,7 +677,7 @@
         "event_name_roi": [
             858,
             72,
-            132,
+            155,
             33
         ],
         "events": {
@@ -1038,6 +1038,16 @@
                     {
                         "type": "SelectOption",
                         "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "与死共舞": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": -1
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
