@@ -1051,6 +1051,16 @@
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
+            },
+            "长篇大论": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": 1
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
             }
         }
     },
