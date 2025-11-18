@@ -1180,7 +1180,30 @@
             "SOSVictory",
             "SOSCombat",
             "SOSFailed"
+        ],
+        "interrupt": [
+            "SOSCombatDialog"
         ]
+    },
+    "SOSCombatDialog": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    463,
+                    41,
+                    362,
+                    162
+                ],
+                "template": [
+                    "SyndromeOfSilence/Dialog1.png",
+                    "SyndromeOfSilence/Dialog2.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     },
     "SOSVictory": {
         "recognition": {
