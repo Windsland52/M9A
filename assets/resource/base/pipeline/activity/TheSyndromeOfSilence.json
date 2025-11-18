@@ -471,6 +471,7 @@
                     185
                 ],
                 "template": [
+                    "SyndromeOfSilence/Ending1.png",
                     "SyndromeOfSilence/Ending2.png"
                 ]
             }
@@ -771,20 +772,7 @@
             }
         }
     },
-    // 主页面各种弹窗处理
-    "SOSCloseTip": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "SyndromeOfSilence/SOSCloseTip.png"
-        ],
-        "roi": [
-            922,
-            10,
-            342,
-            206
-        ],
-        "action": "Click"
-    },
+    // 主页面各种弹窗处理,
     "SOSArtefactsObtained": {
         // 获得造物
         "recognition": {
@@ -1179,7 +1167,30 @@
             "SOSVictory",
             "SOSCombat",
             "SOSFailed"
+        ],
+        "interrupt": [
+            "SOSCombatDialog"
         ]
+    },
+    "SOSCombatDialog": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    463,
+                    41,
+                    362,
+                    162
+                ],
+                "template": [
+                    "SyndromeOfSilence/Dialog1.png",
+                    "SyndromeOfSilence/Dialog2.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     },
     "SOSVictory": {
         "recognition": {
@@ -1192,8 +1203,7 @@
                     240
                 ],
                 "expected": [
-                    "战斗",
-                    "胜利"
+                    "战斗胜利"
                 ]
             }
         },
