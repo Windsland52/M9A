@@ -1543,6 +1543,18 @@
         "next": [
             "FlagInSOSMain",
             "SOSGoToNextScene"
+        ],
+        "interrupt": [
+            "SOSStatsUpButton",
+            "SOSStatsUp",
+            "SOSArtefactsObtained",
+            "SOSSelectArtefact",
+            "SOSLoseArtefact",
+            "SOSStrengthenArtefact",
+            "SOSHarmonicObtained",
+            "SOSSelectHarmonic",
+            "SOSResonatorObtained",
+            "SOSSelectResonator"
         ]
     },
     "SOSDice": {
