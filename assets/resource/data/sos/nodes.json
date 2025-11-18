@@ -549,6 +549,29 @@
                     }
                 ],
                 "interrupts": "@EncounterAlongTheWay"
+            },
+            "“滂沱的自由”": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "神秘术"
+                    },
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "进入战斗"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSTeamSelect"
+                    },
+                    {
+                        "type": "RunNode",
+                        "name": "SOSCombat"
+                    }
+                ],
+                "interrupts": "@EncounterAlongTheWay"
             }
         }
     },
