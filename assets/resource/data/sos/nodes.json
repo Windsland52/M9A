@@ -575,6 +575,32 @@
                     "SOSNextMessage_left",
                     "SOSClickEventRec"
                 ]
+            },
+            "秋季沙龙": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "沉默着离开"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec"
+                ]
+            },
+            "街角的共鸣": {
+                "actions": [
+                    {
+                        "type": "SelectEncounterOption",
+                        "method": "OCR",
+                        "expected": "离开"
+                    }
+                ],
+                "interrupts": [
+                    "SOSNextMessage_left",
+                    "SOSClickEventRec"
+                ]
             }
         }
     },
