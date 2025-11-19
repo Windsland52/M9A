@@ -697,12 +697,12 @@
         "interrupt": [
             "SOSSelectArtefact",
             "SOSArtefactsObtained",
+            "SOSSetOff",
             "SOSSelectNode",
             "SOSSelectHarmonic",
             "SOSHarmonicObtained",
             "SOSStatsUpButton",
             "SOSStatsUp",
-            "SOSSetOff",
             "SOSSelectResonator",
             "SOSResonatorObtained",
             "SOSLoseArtefact",
