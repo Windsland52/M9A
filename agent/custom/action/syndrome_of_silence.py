@@ -58,11 +58,19 @@ class SOSSelectNode(CustomAction):
             ]
             if expected_results:
                 img = context.tasker.controller.cached_image
+                
+                # BGR2RGB
+                if len(img.shape) == 3 and img.shape[2] == 3:
+                    rgb_img = img[:, :, ::-1]
+                else:
+                    rgb_img = img
+                    logger.warning("当前截图并非三通道")
+                
                 timestamp = time.strftime("%Y%m%d_%H%M%S")
                 save_dir = "debug/custom/SOSSelectNode"
                 os.makedirs(save_dir, exist_ok=True)
                 save_path = f"{save_dir}/{timestamp}.png"
-                Image.fromarray(img).save(save_path)
+                Image.fromarray(rgb_img).save(save_path)
                 logger.debug(f"检测到低分数节点，截图已保存: {save_path}")
                 for i, r in enumerate(expected_results):
                     logger.debug(
