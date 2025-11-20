@@ -221,7 +221,7 @@
                 "难度选择",
                 "配器选择"
             ],
-            "doc": "[size:15][color:darkgray]M9A不能检查是否处于自动战斗状态，请确定上一次使用的是自动战斗[/color][/size]\n[size:15][color:orange]⚠使用前请先至少手动打到进入第一场战斗，更多详细说明请看文档[/color][/size]"
+            "doc": "[size:15][color:darkgray]M9A不能检查是否处于自动战斗状态，请确定上一次使用的是自动战斗[/color][/size]\n[size:15][color:orange]⚠使用前请先至少手动打完第一层，更多详细说明请看文档[/color][/size]"
         },
         {
             "name": "复刻活动推图",
