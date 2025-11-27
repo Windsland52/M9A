@@ -693,6 +693,51 @@
             }
         }
     },
+    "CCUpdate": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "Count",
+                "custom_recognition_param": {
+                    "target": 5
+                }
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "duration": 500
+            }
+        },
+        "timeout": 10000,
+        "next": [
+            "CCUpdateFinished",
+            "CCUpdate"
+        ]
+    },
+    "CCUpdateFinished": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "../../../tmp/ccupdate.png"
+            }
+        },
+        "inverse": true,
+        "next": [
+            "CCResetCCUpdateCount"
+        ]
+    },
+    "CCResetCCUpdateCount": {
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "ResetCount",
+                "custom_action_param": {
+                    "node_name": "CCUpdate"
+                }
+            }
+        }
+    },
     "CCSpirit": {
         "recognition": {
             "type": "TemplateMatch",

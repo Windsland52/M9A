@@ -289,16 +289,35 @@ class CCBuyCard(CustomAction):
                     < CCChessboard.get_chess_info(card_name)["max_level"]
                 ):
                     row, col = chess["row"], chess["col"]
-                    # 计算拖拽起点（卡牌中心）
-                    x1 = box[0] + box[2] // 2
-                    y1 = box[1] + box[3] // 2
                     # 计算拖拽终点（棋盘位置中心）
                     target_roi = CCChessboard.board_rois[row][col]
-                    x2 = target_roi[0] + target_roi[2] // 2
-                    y2 = target_roi[1] + target_roi[3] // 2
 
-                    # 先执行拖拽，再更新内部状态
-                    context.tasker.controller.post_swipe(x1, y1, x2, y2, 700)
+                    # 执行拖拽操作，先滑动再更新内部棋盘状态以避免状态不一致
+                    img = context.tasker.controller.cached_image
+                    # 用 np 截取目标区域图片
+                    roi_array = img[
+                        box[1] : box[1] + box[3],
+                        box[0] : box[0] + box[2],
+                    ]
+                    # BGR2RGB
+                    rgb_array = roi_array[:, :, ::-1]
+                    # 转换为 PIL Image
+                    img = Image.fromarray(rgb_array)
+                    # 保存图片
+                    save_path = "tmp/ccupdate.png"
+                    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+                    img.save(save_path)
+                    logger.info(f"已保存 CCUpdate 任务目标区域截图: {save_path}")
+                    context.run_task(
+                        "CCUpdate",
+                        {
+                            "CCUpdate": {
+                                "begin": list(box),
+                                "end": target_roi,
+                            },
+                            "CCUpdateFinished": {"roi": box},
+                        },
+                    )
                     if CCChessboard.upgrade_chess(row, col):
                         logger.debug(f"成功升级 {card_name} 在位置 ({row}, {col})")
                         return CustomAction.RunResult(success=True)
