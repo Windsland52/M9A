@@ -327,8 +327,6 @@ class CCBuyCard(CustomAction):
 
         elif action == 2:  # 卖出
             # 计算拖拽起点（卡牌中心）
-            x1 = box[0] + box[2] // 2
-            y1 = box[1] + box[3] // 2
             # 根据卡牌类型确定卖出位置
             if card_name in ["Item1", "Item2", "Item3", "unknown_1"]:
                 # Item类卖出到第二排第一列
@@ -337,13 +335,31 @@ class CCBuyCard(CustomAction):
                 # 卖到第三排第一列
                 row, col = 2, 0
             target_roi = CCChessboard.board_rois[row][col]
-            x2 = target_roi[0] + target_roi[2] // 2
-            y2 = target_roi[1] + target_roi[3] // 2
-            # 执行拖拽并等待，随后点击目标位置以打开单位界面，便于后续卖出
-            context.tasker.controller.post_swipe(x1, y1, x2, y2, 700).wait()
-            time.sleep(0.5)  # 等待界面稳定
-            context.tasker.controller.post_click(x2, y2).wait()
-            context.run_task("CCDeleteCard")
+            # 执行拖拽操作，先滑动再更新内部棋盘状态以避免状态不一致
+            img = context.tasker.controller.cached_image
+            # 用 np 截取目标区域图片
+            roi_array = img[
+                target_roi[1] : target_roi[1] + target_roi[3],
+                target_roi[0] : target_roi[0] + target_roi[2],
+            ]
+            # BGR2RGB
+            rgb_array = roi_array[:, :, ::-1]
+            # 转换为 PIL Image
+            img = Image.fromarray(rgb_array)
+            # 保存图片
+            save_path = "tmp/ccdeploy.png"
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+            img.save(save_path)
+            logger.info(f"已保存 CCDeploy 任务目标区域截图: {save_path}")
+            context.run_task(
+                "CCDeploy",
+                {
+                    "CCDeploy": {
+                        "target": target_roi,
+                    },
+                    "CCDeployFinished": {"roi": target_roi},
+                },
+            )
             logger.debug(f"成功卖出 {card_name}")
             return CustomAction.RunResult(success=True)
         else:

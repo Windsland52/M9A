@@ -738,6 +738,26 @@
             }
         }
     },
+    "CCClickCards": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "Count",
+                "custom_recognition_param": {
+                    "target": 5
+                }
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "timeout": 10000,
+        "next": [
+            "CCDeleteCard",
+            "CCClickCards"
+        ]
+    },
     "CCSpirit": {
         "recognition": {
             "type": "TemplateMatch",
