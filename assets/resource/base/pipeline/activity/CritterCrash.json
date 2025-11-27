@@ -345,7 +345,8 @@
             "CCStartCombat",
             "CCClickBlank",
             "ObtainedAwards",
-            "CCCombatEnd"
+            "CCCombatEnd",
+            "CCSpirit"
         ]
     },
     "CCCombatEnd": {
@@ -690,6 +691,25 @@
                     "node_name": "CCDeploy"
                 }
             }
+        }
+    },
+    "CCSpirit": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1145,
+                    55,
+                    106,
+                    119
+                ],
+                "template": [
+                    "CritterCrash/Spirit.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
         }
     }
 }
