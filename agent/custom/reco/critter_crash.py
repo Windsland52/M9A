@@ -6,6 +6,7 @@ from maa.agent.agent_server import AgentServer
 from maa.custom_recognition import CustomRecognition
 from maa.context import Context
 from maa.define import RectType, OCRResult
+import numpy as np
 
 from utils import logger
 from custom.action.critter_crash import CCChessboard
@@ -81,8 +82,7 @@ class CCBuyCardRec(CustomRecognition):
             reco_detail = context.run_recognition("CCRemainMoney", argv.image)
             if reco_detail and reco_detail.box:
                 # 钱够了
-                remain_money = int(reco_detail.best_result.text)
-                logger.debug(f"当前剩余缪斯币: {remain_money}")
+                pass
             else:
                 # 不够，退出
                 logger.debug("当前剩余缪斯币不足")
@@ -127,3 +127,34 @@ class CCBuyCardRec(CustomRecognition):
             # 没有找到合适的卡牌
             logger.debug("没有找到合适的卡牌")
             return CustomRecognition.AnalyzeResult(box=None, detail="")
+
+
+@AgentServer.custom_recognition("CCRemainMoney")
+class CCRemainMoney(CustomRecognition):
+    def analyze(
+        self,
+        context: Context,
+        argv: CustomRecognition.AnalyzeArg,
+    ) -> Union[CustomRecognition.AnalyzeResult, Optional[RectType]]:
+
+        img = argv.image
+        # 定义目标颜色和颜色容差
+        target_color = np.array([215, 241, 249])
+        tolerance = 55  # 颜色容差，可以根据需要调整
+
+        # 创建颜色过滤掩码
+        lower_bound = np.maximum(target_color - tolerance, 0)
+        upper_bound = np.minimum(target_color + tolerance, 255)
+
+        # 创建掩码：保留在目标颜色范围内的像素
+        color_mask = np.all((img >= lower_bound) & (img <= upper_bound), axis=-1)
+
+        # 处理图像：保留目标颜色，其他颜色变成黑色
+        processed_img = np.where(color_mask[..., None], img, 0).astype(np.uint8)
+
+        reco_detail = context.run_recognition("CCRemainMoney_rec", processed_img)
+
+        if reco_detail and reco_detail.box:
+            return CustomRecognition.AnalyzeResult(
+                box=reco_detail.box, detail=json.dumps(reco_detail.raw_detail)
+            )

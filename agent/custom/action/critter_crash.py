@@ -1,3 +1,4 @@
+import os
 import time
 import json
 import ast
@@ -50,16 +51,16 @@ class CCChessboard(CustomAction):
 
     chess_types = [
         {"name": "Kight1", "max_level": 8, "positions": [(0, 0), (2, 0)]},
-        {"name": "Cat1", "max_level": 4, "positions": [(2, 4)]},
-        {"name": "Cat2", "max_level": 4, "positions": [(2, 3)]},
-        {"name": "Cat3", "max_level": 4, "positions": [(2, 2)]},
         {"name": "Cat4", "max_level": 4, "positions": [(2, 1)]},
+        {"name": "Cat3", "max_level": 4, "positions": [(2, 2)]},
+        {"name": "Cat2", "max_level": 4, "positions": [(2, 3)]},
+        {"name": "Cat1", "max_level": 4, "positions": [(2, 4)]},
+        {"name": "Robot3", "max_level": 4, "positions": [(0, 1)]},
         {"name": "Robot1", "max_level": 1, "positions": [(0, 4), (0, 3), (0, 2)]},
         {"name": "Robot2", "max_level": 1, "positions": [(0, 4), (0, 3), (0, 2)]},
-        {"name": "Robot3", "max_level": 4, "positions": [(0, 1)]},
+        {"name": "Item3", "max_level": 1, "positions": [(1, 3)]},
         {"name": "Item1", "max_level": 1, "positions": [(1, 1)]},
         {"name": "Item2", "max_level": 1, "positions": [(1, 2)]},
-        {"name": "Item3", "max_level": 1, "positions": [(1, 3)]},
     ]
 
     board_chesses = []
@@ -241,16 +242,34 @@ class CCBuyCard(CustomAction):
                 return CustomAction.RunResult(success=False)
 
             row, col = empty_pos
-            # 计算拖拽起点（卡牌中心）
-            x1 = box[0] + box[2] // 2
-            y1 = box[1] + box[3] // 2
-            # 计算拖拽终点（棋盘位置中心）
             target_roi = CCChessboard.board_rois[row][col]
-            x2 = target_roi[0] + target_roi[2] // 2
-            y2 = target_roi[1] + target_roi[3] // 2
 
             # 执行拖拽操作，先滑动再更新内部棋盘状态以避免状态不一致
-            context.tasker.controller.post_swipe(x1, y1, x2, y2, 700)
+            img = context.tasker.controller.cached_image
+            # 用 np 截取目标区域图片
+            roi_array = img[
+                target_roi[1] : target_roi[1] + target_roi[3],
+                target_roi[0] : target_roi[0] + target_roi[2],
+            ]
+            # BGR2RGB
+            rgb_array = roi_array[:, :, ::-1]
+            # 转换为 PIL Image
+            img = Image.fromarray(rgb_array)
+            # 保存图片
+            save_path = "tmp/ccdeploy.png"
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+            img.save(save_path)
+            logger.info(f"已保存 CCDeploy 任务目标区域截图: {save_path}")
+            context.run_task(
+                "CCDeploy",
+                {
+                    "CCDeploy": {
+                        "begin": list(box),
+                        "end": target_roi,
+                    },
+                    "CCDeployFinished": {"roi": target_roi},
+                },
+            )
             # 尝试更新内部棋盘状态
             if CCChessboard.place_chess(row, col, card_name):
                 logger.debug(f"成功放置 {card_name} 到位置 ({row}, {col})")

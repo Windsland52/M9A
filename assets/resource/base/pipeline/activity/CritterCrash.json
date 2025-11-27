@@ -407,10 +407,7 @@
                     98
                 ],
                 "template": [
-                    "CritterCrash/StartCombat.png",
-                    "CritterCrash/StartCombat1.png",
-                    "CritterCrash/StartCombat2.png",
-                    "CritterCrash/StartCombat3.png"
+                    "CritterCrash/StartCombat/"
                 ]
             }
         },
@@ -604,6 +601,14 @@
     },
     "CCRemainMoney": {
         "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "CCRemainMoney"
+            }
+        }
+    },
+    "CCRemainMoney_rec": {
+        "recognition": {
             "type": "OCR",
             "param": {
                 "roi": [
@@ -639,6 +644,51 @@
                     "0",
                     "1"
                 ]
+            }
+        }
+    },
+    "CCDeploy": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "Count",
+                "custom_recognition_param": {
+                    "target": 5
+                }
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "duration": 500
+            }
+        },
+        "timeout": 10000,
+        "next": [
+            "CCDeployFinished",
+            "CCDeploy"
+        ]
+    },
+    "CCDeployFinished": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "../../../tmp/ccdeploy.png"
+            }
+        },
+        "inverse": true,
+        "next": [
+            "CCResetCCDeployCount"
+        ]
+    },
+    "CCResetCCDeployCount": {
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "ResetCount",
+                "custom_action_param": {
+                    "node_name": "CCDeploy"
+                }
             }
         }
     }
