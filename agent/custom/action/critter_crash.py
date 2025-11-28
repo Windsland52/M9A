@@ -50,7 +50,7 @@ class CCChessboard(CustomAction):
     ]
 
     chess_types = [
-        {"name": "Kight1", "max_level": 8, "positions": [(0, 0), (2, 0)]},
+        {"name": "Knight", "max_level": 8, "positions": [(0, 0), (2, 0)]},
         {"name": "Cat4", "max_level": 4, "positions": [(2, 1)]},
         {"name": "Cat3", "max_level": 4, "positions": [(2, 2)]},
         {"name": "Cat2", "max_level": 4, "positions": [(2, 3)]},
