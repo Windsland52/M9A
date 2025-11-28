@@ -55,6 +55,7 @@ class CCChessboard(CustomAction):
         {"name": "Cat3", "max_level": 4, "positions": [(2, 2)]},
         {"name": "Cat2", "max_level": 4, "positions": [(2, 3)]},
         {"name": "Cat1", "max_level": 4, "positions": [(2, 4)]},
+        {"name": "Robot4", "max_level": 4, "positions": [(0, 1)]},
         {"name": "Robot3", "max_level": 4, "positions": [(0, 1)]},
         {"name": "Robot1", "max_level": 1, "positions": [(0, 4), (0, 3), (0, 2)]},
         {"name": "Robot2", "max_level": 1, "positions": [(0, 4), (0, 3), (0, 2)]},
