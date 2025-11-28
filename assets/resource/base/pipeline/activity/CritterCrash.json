@@ -86,8 +86,7 @@
                     63
                 ],
                 "template": [
-                    "CritterCrash/ClickBlank.png",
-                    "CritterCrash/ClickBlank1.png"
+                    "CritterCrash/Blank/"
                 ]
             }
         },
