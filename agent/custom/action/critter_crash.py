@@ -315,7 +315,7 @@ class CCBuyCard(CustomAction):
                                 "begin": list(box),
                                 "end": target_roi,
                             },
-                            "CCUpdateFinished": {"roi": box},
+                            "CCUpdateFinished": {"roi": list(box)},
                         },
                     )
                     if CCChessboard.upgrade_chess(row, col):
@@ -355,11 +355,13 @@ class CCBuyCard(CustomAction):
                 "CCDeploy",
                 {
                     "CCDeploy": {
-                        "target": target_roi,
+                        "begin": list(box),
+                        "end": target_roi,
                     },
                     "CCDeployFinished": {"roi": target_roi},
                 },
             )
+            context.run_task("CCClickCards", {"CCClickCards": {"target": target_roi}})
             logger.debug(f"成功卖出 {card_name}")
             return CustomAction.RunResult(success=True)
         else:
