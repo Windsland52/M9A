@@ -382,61 +382,6 @@ class CCBuyCard(CustomAction):
             return None
 
 
-@AgentServer.custom_action("CCSelectAwardCard")
-class CCSelectAwardCard(CustomAction):
-    """
-    翻斗棋：选择奖励卡牌
-    """
-
-    def run(
-        self,
-        context: Context,
-        argv: CustomAction.RunArg,
-    ) -> CustomAction.RunResult:
-        # 这里可以添加选择奖励卡牌的逻辑
-        # 例如，优先选择能升级的棋子或空位置可放置的棋子
-
-        # 获取奖励卡牌识别结果
-        reco_result = context.run_recognition("CCBuyCardAwardRec_Template", argv.image)  # type: ignore
-        if not reco_result or not reco_result.box:
-            logger.debug("未识别到奖励卡牌")
-            return CustomAction.RunResult(success=False)
-
-        # 解析卡牌名字
-        card_name = self._parse_card_name(reco_result.detail)  # type: ignore
-        if not card_name:
-            logger.debug("无法解析奖励卡牌名字")
-            return CustomAction.RunResult(success=False)
-
-        # 检查是否能升级现有棋子
-        if self._can_upgrade_existing(card_name):
-            logger.debug(f"选择奖励卡牌 {card_name} 用于升级")
-            context.click(reco_result.box)  # type: ignore
-            return CustomAction.RunResult(success=True)
-
-        # 检查是否有空位置放置
-        empty_pos = CCChessboard.find_empty_position(card_name)
-        if empty_pos:
-            logger.debug(f"选择奖励卡牌 {card_name} 用于放置")
-            context.click(reco_result.box)  # type: ignore
-            return CustomAction.RunResult(success=True)
-
-        logger.debug(f"奖励卡牌 {card_name} 无用，跳过")
-        return CustomAction.RunResult(success=False)
-
-    def _can_upgrade_existing(self, card_name: str) -> bool:
-        """检查是否有现有棋子可以升级"""
-        return CCChessboard.can_upgrade_existing(card_name)
-
-    def _parse_card_name(self, detail: str) -> str | None:
-        """从识别结果中解析卡牌名字"""
-        try:
-            data = json.loads(detail)
-            return data.get("name")
-        except:
-            return detail.strip() if detail else None
-
-
 @AgentServer.custom_action("CCLevelUp")
 class CCLevelUp(CustomAction):
     """

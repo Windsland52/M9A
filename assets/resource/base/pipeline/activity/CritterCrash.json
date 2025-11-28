@@ -270,6 +270,7 @@
                 ]
             }
         },
+        "post_delay": 1000,
         "action": {
             "type": "Click"
         }
@@ -290,6 +291,7 @@
                 ]
             }
         },
+        "post_delay": 1000,
         "action": {
             "type": "Click"
         }
@@ -438,14 +440,62 @@
     "CCSelectAwardCard": {
         "recognition": {
             "type": "TemplateMatch",
-            "param": {}
+            "param": {
+                "roi": [
+                    554,
+                    25,
+                    179,
+                    68
+                ],
+                "template": [
+                    "CritterCrash/ObtainAwards.png"
+                ]
+            }
+        },
+        "next": [
+            "CCFlagInCombatMain"
+        ],
+        "interrupt": [
+            "CCSelectAwardCard_Template"
+        ]
+    },
+    "CCSelectAwardCard_Template": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    111,
+                    154,
+                    1063,
+                    257
+                ],
+                "template": [
+                    "CritterCrash/Award/"
+                ]
+            }
+        },
+        "next": [
+            "CCSelectAwardCard_Option"
+        ]
+    },
+    "CCSelectAwardCard_Option": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": "CCSelectAwardCard_Template",
+                "roi_offset": [
+                    -150,
+                    361,
+                    272,
+                    46
+                ],
+                "expected": [
+                    "选择"
+                ]
+            }
         },
         "action": {
-            "type": "Custom",
-            "param": {
-                // TODO
-                "custom_action": "CCSelectAwardCard"
-            }
+            "type": "Click"
         }
     },
     "CCBuyCard": {
