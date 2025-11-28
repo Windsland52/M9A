@@ -60,10 +60,10 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    774,
+                    766,
                     404,
-                    62,
-                    33
+                    70,
+                    34
                 ],
                 "only_rec": true,
                 "expected": [
@@ -348,7 +348,8 @@
             "CCClickBlank",
             "ObtainedAwards",
             "CCCombatEnd",
-            "CCSpirit"
+            "CCSpirit",
+            "CCConfirm"
         ]
     },
     "CCCombatEnd": {
