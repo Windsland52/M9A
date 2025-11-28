@@ -339,16 +339,16 @@
             "CritterCrash"
         ],
         "interrupt": [
-            "CCBuyCard",
-            "CCRefreshCard",
-            "CCSelectAwardCard",
             "CCSkipCombat",
-            "CCStartCombat",
             "CCClickBlank",
             "ObtainedAwards",
             "CCCombatEnd",
             "CCSpirit",
-            "CCConfirm"
+            "CCConfirm",
+            "CCBuyCard",
+            "CCRefreshCard",
+            "CCSelectAwardCard",
+            "CCStartCombat"
         ]
     },
     "CCCombatEnd": {
