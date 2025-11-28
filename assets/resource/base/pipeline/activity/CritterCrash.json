@@ -457,7 +457,8 @@
             "CCFlagInCombatMain"
         ],
         "interrupt": [
-            "CCSelectAwardCard_Template"
+            "CCSelectAwardCard_Template",
+            "CCSelectAwardCard_NoMore"
         ]
     },
     "CCSelectAwardCard_Template": {
@@ -479,6 +480,25 @@
             "CCSelectAwardCard_Option"
         ]
     },
+    "CCSelectAwardCard_NoMore": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    153,
+                    638,
+                    195,
+                    70
+                ],
+                "expected": [
+                    "选择"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
     "CCSelectAwardCard_Option": {
         "recognition": {
             "type": "OCR",
@@ -488,7 +508,7 @@
                     -150,
                     361,
                     272,
-                    46
+                    146
                 ],
                 "expected": [
                     "选择"
