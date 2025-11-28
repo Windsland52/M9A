@@ -260,7 +260,7 @@ class CCBuyCard(CustomAction):
             save_path = "tmp/ccdeploy.png"
             os.makedirs(os.path.dirname(save_path), exist_ok=True)
             img.save(save_path)
-            logger.info(f"已保存 CCDeploy 任务目标区域截图: {save_path}")
+            logger.debug(f"已保存 CCDeploy 任务目标区域截图: {save_path}")
             context.run_task(
                 "CCDeploy",
                 {
@@ -308,7 +308,7 @@ class CCBuyCard(CustomAction):
                     save_path = "tmp/ccupdate.png"
                     os.makedirs(os.path.dirname(save_path), exist_ok=True)
                     img.save(save_path)
-                    logger.info(f"已保存 CCUpdate 任务目标区域截图: {save_path}")
+                    logger.debug(f"已保存 CCUpdate 任务目标区域截图: {save_path}")
                     context.run_task(
                         "CCUpdate",
                         {
@@ -351,7 +351,7 @@ class CCBuyCard(CustomAction):
             save_path = "tmp/ccdeploy.png"
             os.makedirs(os.path.dirname(save_path), exist_ok=True)
             img.save(save_path)
-            logger.info(f"已保存 CCDeploy 任务目标区域截图: {save_path}")
+            logger.debug(f"已保存 CCDeploy 任务目标区域截图: {save_path}")
             context.run_task(
                 "CCDeploy",
                 {
