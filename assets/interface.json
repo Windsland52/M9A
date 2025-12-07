@@ -147,7 +147,8 @@
             "option": [
                 "自定义作战关卡",
                 "吃糖",
-                "自定义作战次数"
+                "自定义作战次数",
+                "掉落统计上报"
             ],
             "description": "点击放大图片，仅限刷材料关卡\n![bydjl](resource/announcement/images/mojing_tjb.png)"
         },
@@ -1084,6 +1085,28 @@
                 }
             ],
             "description": "是否吃糖"
+        },
+        "掉落统计上报": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "DropRecognition": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "DropRecognition": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ],
+            "description": "是否统计主线关卡掉落并将掉落结果上报到[必要的记录](https://www.kdocs.cn/l/cd5MWeCl5bKw)（仅主线关卡生效）"
         },
         "糖果有效期": {
             "label": "有效期",
