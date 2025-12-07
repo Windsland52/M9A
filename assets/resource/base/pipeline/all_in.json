@@ -430,5 +430,37 @@
         "next": [
             "ResetEatCandyFlag"
         ]
+    },
+    "DropRegionRec": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    661,
+                    549,
+                    561,
+                    68
+                ],
+                "template": [
+                    "Items_processed/"
+                ],
+                "green_mask": true,
+                "method": 1,
+                "threshold": 0.15,
+                "order_by": "Score",
+                "index": -1
+            }
+        }
+    },
+    "DropCountRec": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "^\\d+$"
+                ],
+                "only_rec": true
+            }
+        }
     }
 }

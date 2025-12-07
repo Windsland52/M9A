@@ -666,6 +666,42 @@ class SelectCombatStage(CustomAction):
                 "StageDifficulty": {
                     "next": [f"StageDifficulty_{level}", "TargetStageName"]
                 },
+                # 掉落识别相关节点
+                "TargetCountVictory": {
+                    "action": {"type": "DoNothing"},
+                    "next": ["DropRecognition", "TargetCountVictoryClick"],
+                },
+                "DropRecognition": {
+                    "recognition": {
+                        "type": "OCR",
+                        "param": {
+                            "roi": [678, 10, 473, 240],
+                            "expected": ["战斗", "胜利"],
+                        },
+                    },
+                    "action": {
+                        "type": "Custom",
+                        "param": {"custom_action": "DropRecognition"},
+                    },
+                    "next": [
+                        "TargetCountVictoryClick",
+                    ],
+                },
+                "TargetCountVictoryClick": {
+                    "recognition": {
+                        "type": "OCR",
+                        "param": {
+                            "roi": [678, 10, 473, 240],
+                            "expected": ["战斗", "胜利"],
+                        },
+                    },
+                    "action": {"type": "Click"},
+                    "next": [
+                        "TargetCountWaitReplay",
+                        "[JumpBack]CombatEntering",
+                        "TargetCountVictoryClick",
+                    ],
+                },
             }
         else:
             mainStoryChapter = None
@@ -1013,4 +1049,166 @@ class ResetEatCandyFlag(CustomAction):
         from custom.reco.combat import CandyPageRecord
 
         CandyPageRecord.reset_eaten_flag()
+        return CustomAction.RunResult(success=True)
+
+
+class DropRecognitionState:
+    """掉落识别状态"""
+
+    drop_index: dict = {}  # 关卡掉落索引
+    items_data: dict = {}  # 物品数据
+    id_to_name: dict = {}  # id -> name 映射
+    current_drops: dict = {}  # 当前战斗掉落 {item_id: count}
+    total_drops: dict = {}  # 累计掉落 {item_id: count}
+    _loaded: bool = False  # 是否已加载
+
+    @classmethod
+    def load_data(cls):
+        """加载掉落数据"""
+        if cls._loaded:
+            return
+
+        try:
+            with open("resource/data/combat/drop_index.json", encoding="utf-8") as f:
+                cls.drop_index = json.load(f)
+            logger.info(f"已加载掉落索引，共 {len(cls.drop_index)} 个关卡")
+        except Exception as e:
+            logger.error(f"加载 drop_index.json 失败: {e}")
+            cls.drop_index = {}
+
+        try:
+            with open("resource/data/combat/items.json", encoding="utf-8") as f:
+                cls.items_data = json.load(f)
+            # 构建 id -> name 映射
+            cls.id_to_name = {}
+            for rarity_items in cls.items_data.values():
+                for item_id, item_info in rarity_items.items():
+                    cls.id_to_name[int(item_id)] = item_info["name"]
+            logger.info(f"已加载物品数据，共 {len(cls.id_to_name)} 个物品")
+        except Exception as e:
+            logger.error(f"加载 items.json 失败: {e}")
+            cls.items_data = {}
+            cls.id_to_name = {}
+
+        cls._loaded = True
+
+    @classmethod
+    def reset_current(cls):
+        """重置当前战斗掉落"""
+        cls.current_drops = {}
+
+    @classmethod
+    def add_drop(cls, item_id: int, count: int = 1):
+        """记录掉落"""
+        cls.current_drops[item_id] = cls.current_drops.get(item_id, 0) + count
+        cls.total_drops[item_id] = cls.total_drops.get(item_id, 0) + count
+
+    @classmethod
+    def get_level_key(cls) -> str:
+        """获取当前关卡的 drop_index key"""
+        stage = SelectCombatStage.stage  # 如 "5-19"
+        level = SelectCombatStage.level  # "Hard" 或 "Story"
+        suffix = "E" if level == "Hard" else "G"
+        return f"{stage}{suffix}"
+
+
+@AgentServer.custom_action("DropRecognition")
+class DropRecognition(CustomAction):
+    """
+    掉落物品识别。
+    在战斗胜利后识别掉落的物品和数量。
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+
+        # 加载数据
+        DropRecognitionState.load_data()
+        DropRecognitionState.reset_current()
+
+        # 获取当前关卡的候选物品
+        level_key = DropRecognitionState.get_level_key()
+        possible_items = DropRecognitionState.drop_index.get(level_key, [])
+
+        if not possible_items:
+            logger.warning(f"关卡 {level_key} 没有掉落验证数据，跳过掉落识别")
+            return CustomAction.RunResult(success=True)
+
+        # 识别掉落物品
+        recognized_ids = set()  # 已识别的物品ID，避免重复
+        max_swipe = 5  # 最大滑动次数
+
+        for swipe_count in range(max_swipe + 1):
+            # 1. 截图
+            img = context.tasker.controller.post_screencap().wait().get()
+
+            # 2. 对每个候选物品进行模板匹配
+            matched_items = []
+            for item_id in possible_items:
+                if item_id in recognized_ids:
+                    continue  # 跳过已识别的物品
+
+                rec = context.run_recognition(
+                    "DropRegionRec",
+                    img,
+                    {
+                        "DropRegionRec": {
+                            "template": [f"Items_processed/Item-{item_id}.png"]
+                        }
+                    },
+                )
+                if rec is not None and not getattr(rec, "box", None):
+                    item_name = DropRecognitionState.id_to_name.get(
+                        item_id, str(item_id)
+                    )
+                    box = rec.box
+                    logger.info(f"识别到掉落: {item_name} ({item_id}) at {(box)}")
+                    matched_items.append((item_id, box))
+
+            # 3. 识别数量
+            for item_id, box in matched_items:
+                # 数量在物品右下角，调整 ROI
+                count_roi = [box[0], box[1] + 58, box[2], box[3] - 38]
+                rec = context.run_recognition(
+                    "DropCountRec",
+                    img,
+                    {"DropCountRec": {"roi": count_roi}},
+                )
+                item_name = DropRecognitionState.id_to_name.get(item_id, str(item_id))
+
+                if rec is None or getattr(rec, "best_result", None) is None:
+                    logger.error(f"数量识别失败: {item_name} ({item_id})，中止掉落识别")
+                    return CustomAction.RunResult(success=True)
+
+                try:
+                    text = getattr(rec.best_result, "text", None)
+                    if not text:
+                        raise ValueError("OCR 结果为空")
+                    count = int(text)
+                except (ValueError, AttributeError) as e:
+                    logger.error(
+                        f"数量解析失败: {item_name} ({item_id})，原因: {e}，中止掉落识别"
+                    )
+                    return CustomAction.RunResult(success=True)
+
+                logger.info(f"掉落: {item_name} x{count}")
+                DropRecognitionState.add_drop(item_id, count)
+                recognized_ids.add(item_id)
+
+            # 4. 检查是否需要滑动
+            if not matched_items or swipe_count >= max_swipe:
+                break  # 没有新物品或达到最大滑动次数
+
+            # 滑动查看更多
+            context.tasker.controller.post_swipe(1155, 572, 921, 571, 500).wait()
+            time.sleep(0.3)  # 等待滑动动画
+
+        # 5. 输出结果
+        logger.info(
+            f"掉落识别完成，共识别 {len(recognized_ids)} 种物品，"
+            f"累计 {sum(DropRecognitionState.current_drops.values())} 个"
+        )
         return CustomAction.RunResult(success=True)
