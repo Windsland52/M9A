@@ -438,7 +438,7 @@
                 "roi": [
                     661,
                     549,
-                    561,
+                    598,
                     68
                 ],
                 "template": [
@@ -462,5 +462,75 @@
                 "only_rec": true
             }
         }
+    },
+    "DropRarityGold": {
+        "recognition": "ColorMatch",
+        "lower": [
+            245,
+            245,
+            112
+        ],
+        "upper": [
+            255,
+            255,
+            132
+        ],
+        "count": 150
+    },
+    "DropRarityYellow": {
+        "recognition": "ColorMatch",
+        "lower": [
+            189,
+            159,
+            86
+        ],
+        "upper": [
+            209,
+            179,
+            106
+        ],
+        "count": 200
+    },
+    "DropRarityPurple": {
+        "recognition": "ColorMatch",
+        "lower": [
+            127,
+            90,
+            129
+        ],
+        "upper": [
+            147,
+            110,
+            149
+        ],
+        "count": 200
+    },
+    "DropRarityBlue": {
+        "recognition": "ColorMatch",
+        "lower": [
+            90,
+            100,
+            129
+        ],
+        "upper": [
+            110,
+            120,
+            149
+        ],
+        "count": 200
+    },
+    "DropRarityGreen": {
+        "recognition": "ColorMatch",
+        "lower": [
+            86,
+            117,
+            78
+        ],
+        "upper": [
+            106,
+            137,
+            98
+        ],
+        "count": 200
     }
 }

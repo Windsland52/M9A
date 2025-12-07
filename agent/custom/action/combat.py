@@ -1,6 +1,9 @@
 import re
 import json
 import time
+import uuid
+import hashlib
+import requests
 
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
@@ -1058,9 +1061,23 @@ class DropRecognitionState:
     drop_index: dict = {}  # 关卡掉落索引
     items_data: dict = {}  # 物品数据
     id_to_name: dict = {}  # id -> name 映射
+    id_to_rarity: dict = {}  # id -> rarity 映射
     current_drops: dict = {}  # 当前战斗掉落 {item_id: count}
     total_drops: dict = {}  # 累计掉落 {item_id: count}
     _loaded: bool = False  # 是否已加载
+    _user_id: str = ""  # 设备唯一标识
+
+    API_URL = "https://mojing.org/api/insertItem"
+    _version: str = ""  # M9A 版本号
+
+    # 稀有度 -> 颜色匹配节点名映射
+    RARITY_TO_COLOR_NODE = {
+        "gold": "DropRarityGold",
+        "yellow": "DropRarityYellow",
+        "purple": "DropRarityPurple",
+        "blue": "DropRarityBlue",
+        "green": "DropRarityGreen",
+    }
 
     @classmethod
     def load_data(cls):
@@ -1079,18 +1096,64 @@ class DropRecognitionState:
         try:
             with open("resource/data/combat/items.json", encoding="utf-8") as f:
                 cls.items_data = json.load(f)
-            # 构建 id -> name 映射
+            # 构建 id -> name 和 id -> rarity 映射
             cls.id_to_name = {}
-            for rarity_items in cls.items_data.values():
+            cls.id_to_rarity = {}
+            for rarity, rarity_items in cls.items_data.items():
                 for item_id, item_info in rarity_items.items():
                     cls.id_to_name[int(item_id)] = item_info["name"]
+                    cls.id_to_rarity[int(item_id)] = rarity
             logger.info(f"已加载物品数据，共 {len(cls.id_to_name)} 个物品")
         except Exception as e:
             logger.error(f"加载 items.json 失败: {e}")
             cls.items_data = {}
             cls.id_to_name = {}
+            cls.id_to_rarity = {}
 
         cls._loaded = True
+
+    @classmethod
+    def get_version(cls) -> str:
+        """获取 M9A 版本号"""
+        if cls._version:
+            return cls._version
+
+        try:
+            with open("resource/interface.json", "r", encoding="utf-8") as f:
+                interface_data = json.load(f)
+                cls._version = interface_data.get("version", "debug")
+        except Exception:
+            cls._version = "debug"
+
+        return cls._version
+
+    @classmethod
+    def get_user_id(cls) -> str:
+        """获取或生成设备唯一标识"""
+        if cls._user_id:
+            return cls._user_id
+
+        # 尝试读取已保存的 user_id
+        try:
+            with open("config/user_id.txt", "r", encoding="utf-8") as f:
+                cls._user_id = f.read().strip()
+                if cls._user_id:
+                    return cls._user_id
+        except FileNotFoundError:
+            pass
+
+        # 基于 MAC 地址生成唯一 ID
+        mac = uuid.getnode()
+        cls._user_id = hashlib.md5(str(mac).encode()).hexdigest()[:16]
+
+        # 保存到文件
+        try:
+            with open("config/user_id.txt", "w", encoding="utf-8") as f:
+                f.write(cls._user_id)
+        except Exception as e:
+            logger.warning(f"保存 user_id 失败: {e}")
+
+        return cls._user_id
 
     @classmethod
     def reset_current(cls):
@@ -1110,6 +1173,154 @@ class DropRecognitionState:
         level = SelectCombatStage.level  # "Hard" 或 "Story"
         suffix = "E" if level == "Hard" else "G"
         return f"{stage}{suffix}"
+
+    @classmethod
+    def get_level_id(cls) -> str:
+        """获取用于上报的 levelId，格式如 '6-4厄险'"""
+        stage = SelectCombatStage.stage  # 如 "5-19"
+        level = SelectCombatStage.level  # "Hard" 或 "Story"
+        difficulty = "厄险" if level == "Hard" else "故事"
+        return f"{stage}{difficulty}"
+
+    @classmethod
+    def verify_rarity_color(cls, context, img, box, item_id: int) -> bool:
+        """验证物品边框颜色是否与稀有度匹配
+
+        Args:
+            context: MaaFramework Context
+            img: numpy 图像数组
+            box: 物品的识别框 Rect(x, y, w, h)
+            item_id: 物品 ID
+
+        Returns:
+            bool: 颜色是否匹配
+        """
+        rarity = cls.id_to_rarity.get(item_id)
+        if not rarity or rarity not in cls.RARITY_TO_COLOR_NODE:
+            return True  # 未知稀有度，跳过验证
+
+        color_node = cls.RARITY_TO_COLOR_NODE[rarity]
+
+        # 使用 run_recognition 进行颜色匹配
+        # ROI 在物品正下方边框区域
+        color_roi = [box[0] - 5, box[1] + 76, box[2] - 8, box[3] + 46]
+        rec = context.run_recognition(
+            color_node,
+            img,
+            {color_node: {"roi": color_roi}},
+        )
+
+        return rec is not None and rec.hit
+
+    @staticmethod
+    def boxes_overlap(box1, box2, threshold: float = 0.5) -> bool:
+        """检测两个 box 是否重叠
+
+        Args:
+            box1, box2: Rect(x, y, w, h) 格式
+            threshold: 重叠面积占较小 box 面积的比例阈值
+
+        Returns:
+            bool: 是否重叠
+        """
+        x1, y1, w1, h1 = box1[0], box1[1], box1[2], box1[3]
+        x2, y2, w2, h2 = box2[0], box2[1], box2[2], box2[3]
+
+        # 计算交集
+        inter_x1 = max(x1, x2)
+        inter_y1 = max(y1, y2)
+        inter_x2 = min(x1 + w1, x2 + w2)
+        inter_y2 = min(y1 + h1, y2 + h2)
+
+        if inter_x1 >= inter_x2 or inter_y1 >= inter_y2:
+            return False  # 无交集
+
+        inter_area = (inter_x2 - inter_x1) * (inter_y2 - inter_y1)
+        min_area = min(w1 * h1, w2 * h2)
+
+        return inter_area / min_area >= threshold
+
+    @staticmethod
+    def filter_overlapping_matches(matches: list) -> list:
+        """过滤重叠的匹配结果，保留分数最高的
+
+        Args:
+            matches: [(item_id, box, score), ...]
+
+        Returns:
+            过滤后的列表
+        """
+        if not matches:
+            return []
+
+        # 按分数降序排序
+        sorted_matches = sorted(matches, key=lambda x: x[2], reverse=True)
+        result = []
+
+        for item_id, box, score in sorted_matches:
+            # 检查是否与已保留的 box 重叠
+            is_overlapping = False
+            for _, kept_box, _ in result:
+                if DropRecognitionState.boxes_overlap(box, kept_box):
+                    is_overlapping = True
+                    break
+
+            if not is_overlapping:
+                result.append((item_id, box, score))
+
+        return result
+
+    @classmethod
+    def report_drops(cls) -> bool:
+        """上报当前战斗掉落数据"""
+        if not cls.current_drops:
+            logger.info("本次战斗无掉落，跳过上报")
+            return True
+
+        # 构造 item 列表，过滤掉落数为 0 的物品
+        items = []
+        total = 0
+        for item_id, count in cls.current_drops.items():
+            if count <= 0:
+                continue
+            item_name = cls.id_to_name.get(item_id, str(item_id))
+            items.append({"name": item_name, "num": count, "id": item_id})
+            total += count
+
+        if not items:
+            logger.info("无有效掉落数据，跳过上报")
+            return True
+
+        # 构造请求体
+        payload = {
+            "userId": cls.get_user_id(),
+            "levelId": cls.get_level_id(),
+            "total": total,
+            "item": items,
+        }
+
+        try:
+            response = requests.post(
+                cls.API_URL,
+                json=payload,
+                headers={
+                    "Content-Type": "application/json",
+                    "User-Agent": f"M9A/{cls.get_version()}",
+                },
+                timeout=15,
+                verify=False,  # 禁用 SSL 证书验证
+            )
+            if response.status_code == 200:
+                logger.debug(f"掉落上报成功: {cls.get_level_id()}, {total} 个物品")
+                return True
+            else:
+                logger.error(
+                    f"掉落上报失败: HTTP {response.status_code}, {response.text}"
+                )
+                return False
+        except requests.RequestException as e:
+            logger.error(f"掉落上报请求异常: {e}")
+            return False
 
 
 @AgentServer.custom_action("DropRecognition")
@@ -1146,7 +1357,7 @@ class DropRecognition(CustomAction):
             img = context.tasker.controller.post_screencap().wait().get()
 
             # 2. 对每个候选物品进行模板匹配
-            matched_items = []
+            raw_matches = []  # [(item_id, box, score), ...]
             for item_id in possible_items:
                 if item_id in recognized_ids:
                     continue  # 跳过已识别的物品
@@ -1160,16 +1371,42 @@ class DropRecognition(CustomAction):
                         }
                     },
                 )
-                if rec is not None and not getattr(rec, "box", None):
+                if rec is not None and rec.hit and getattr(rec, "box", None):
+                    box = rec.box
+                    # 获取匹配分数
+                    score = 1.0
+                    if rec.best_result:
+                        score = getattr(rec.best_result, "score", 1.0)
+
+                    # 验证稀有度颜色
+                    if not DropRecognitionState.verify_rarity_color(
+                        context, img, box, item_id
+                    ):
+                        item_name = DropRecognitionState.id_to_name.get(
+                            item_id, str(item_id)
+                        )
+                        rarity = DropRecognitionState.id_to_rarity.get(item_id, "?")
+                        logger.debug(
+                            f"颜色验证失败: {item_name} ({item_id}, {rarity}) at {box}"
+                        )
+                        continue
+
                     item_name = DropRecognitionState.id_to_name.get(
                         item_id, str(item_id)
                     )
-                    box = rec.box
-                    logger.info(f"识别到掉落: {item_name} ({item_id}) at {(box)}")
-                    matched_items.append((item_id, box))
+                    logger.debug(
+                        f"模板匹配: {item_name} ({item_id}) at {box}, score={score:.3f}"
+                    )
+                    raw_matches.append((item_id, box, score))
 
-            # 3. 识别数量
-            for item_id, box in matched_items:
+            # 3. 过滤重叠匹配，保留分数最高的
+            matched_items = DropRecognitionState.filter_overlapping_matches(raw_matches)
+            for item_id, box, score in matched_items:
+                item_name = DropRecognitionState.id_to_name.get(item_id, str(item_id))
+                logger.info(f"识别到掉落: {item_name} ({item_id}) at {box}")
+
+            # 4. 识别数量
+            for item_id, box, _ in matched_items:
                 # 数量在物品右下角，调整 ROI
                 count_roi = [box[0], box[1] + 58, box[2], box[3] - 38]
                 rec = context.run_recognition(
@@ -1206,9 +1443,13 @@ class DropRecognition(CustomAction):
             context.tasker.controller.post_swipe(1155, 572, 921, 571, 500).wait()
             time.sleep(0.3)  # 等待滑动动画
 
-        # 5. 输出结果
+        # 5. 输出结果并上报
         logger.info(
             f"掉落识别完成，共识别 {len(recognized_ids)} 种物品，"
             f"累计 {sum(DropRecognitionState.current_drops.values())} 个"
         )
+
+        # 上报掉落数据
+        DropRecognitionState.report_drops()
+
         return CustomAction.RunResult(success=True)
