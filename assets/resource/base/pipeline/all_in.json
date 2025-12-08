@@ -457,7 +457,7 @@
             "type": "OCR",
             "param": {
                 "expected": [
-                    "^\\d+$"
+                    "\\d+"
                 ],
                 "only_rec": true
             }

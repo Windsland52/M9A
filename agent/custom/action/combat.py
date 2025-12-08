@@ -3,7 +3,11 @@ import json
 import time
 import uuid
 import hashlib
+import warnings
 import requests
+
+# 禁用 SSL 警告
+warnings.filterwarnings("ignore", message="Unverified HTTPS request")
 
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
@@ -1203,7 +1207,7 @@ class DropRecognitionState:
 
         # 使用 run_recognition 进行颜色匹配
         # ROI 在物品正下方边框区域
-        color_roi = [box[0] - 5, box[1] + 76, box[2] - 8, box[3] + 46]
+        color_roi = [box[0] - 5, box[1] + 76, box[2] + 14, box[3] - 39]
         rec = context.run_recognition(
             color_node,
             img,
@@ -1310,7 +1314,7 @@ class DropRecognitionState:
                 timeout=15,
                 verify=False,  # 禁用 SSL 证书验证
             )
-            if response.status_code == 200:
+            if response.status_code in (200, 201):
                 logger.debug(f"掉落上报成功: {cls.get_level_id()}, {total} 个物品")
                 return True
             else:
@@ -1416,7 +1420,11 @@ class DropRecognition(CustomAction):
                 )
                 item_name = DropRecognitionState.id_to_name.get(item_id, str(item_id))
 
-                if rec is None or getattr(rec, "best_result", None) is None:
+                if (
+                    rec is None
+                    or not rec.hit
+                    or getattr(rec, "best_result", None) is None
+                ):
                     logger.error(f"数量识别失败: {item_name} ({item_id})，中止掉落识别")
                     return CustomAction.RunResult(success=True)
 
@@ -1424,7 +1432,11 @@ class DropRecognition(CustomAction):
                     text = getattr(rec.best_result, "text", None)
                     if not text:
                         raise ValueError("OCR 结果为空")
-                    count = int(text)
+                    # 清理非数字字符（如 ￥5 -> 5）
+                    digits = re.sub(r"\D", "", text)
+                    if not digits:
+                        raise ValueError(f"OCR 结果无数字: {text}")
+                    count = int(digits)
                 except (ValueError, AttributeError) as e:
                     logger.error(
                         f"数量解析失败: {item_name} ({item_id})，原因: {e}，中止掉落识别"
