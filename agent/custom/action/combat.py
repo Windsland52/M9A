@@ -1318,9 +1318,9 @@ class DropRecognitionState:
         try:
             response = requests.post(
                 cls.API_URL,
-                json=payload,
+                data=json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
                 headers={
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json; charset=utf-8",
                     "User-Agent": f"M9A/{cls.get_version()}",
                 },
                 timeout=15,
