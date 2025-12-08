@@ -1083,6 +1083,16 @@ class DropRecognitionState:
         "green": "DropRarityGreen",
     }
 
+    # 稀有度 -> ANSI 颜色码 (用于终端彩色输出)
+    RARITY_ANSI_COLORS = {
+        "gold": "\033[93m",  # 亮黄色
+        "yellow": "\033[33m",  # 黄色
+        "purple": "\033[95m",  # 亮紫色
+        "blue": "\033[94m",  # 亮蓝色
+        "green": "\033[92m",  # 亮绿色
+    }
+    ANSI_RESET = "\033[0m"
+
     @classmethod
     def load_data(cls):
         """加载掉落数据"""
@@ -1092,7 +1102,7 @@ class DropRecognitionState:
         try:
             with open("resource/data/combat/drop_index.json", encoding="utf-8") as f:
                 cls.drop_index = json.load(f)
-            logger.info(f"已加载掉落索引，共 {len(cls.drop_index)} 个关卡")
+            logger.debug(f"已加载掉落索引，共 {len(cls.drop_index)} 个关卡")
         except Exception as e:
             logger.error(f"加载 drop_index.json 失败: {e}")
             cls.drop_index = {}
@@ -1107,7 +1117,7 @@ class DropRecognitionState:
                 for item_id, item_info in rarity_items.items():
                     cls.id_to_name[int(item_id)] = item_info["name"]
                     cls.id_to_rarity[int(item_id)] = rarity
-            logger.info(f"已加载物品数据，共 {len(cls.id_to_name)} 个物品")
+            logger.debug(f"已加载物品数据，共 {len(cls.id_to_name)} 个物品")
         except Exception as e:
             logger.error(f"加载 items.json 失败: {e}")
             cls.items_data = {}
@@ -1252,12 +1262,12 @@ class DropRecognitionState:
             matches: [(item_id, box, score), ...]
 
         Returns:
-            过滤后的列表
+            过滤后的列表，按 x 坐标从左到右排序
         """
         if not matches:
             return []
 
-        # 按分数降序排序
+        # 按分数降序排序（用于处理重叠时保留分数最高的）
         sorted_matches = sorted(matches, key=lambda x: x[2], reverse=True)
         result = []
 
@@ -1272,6 +1282,8 @@ class DropRecognitionState:
             if not is_overlapping:
                 result.append((item_id, box, score))
 
+        # 按 x 坐标排序（从左到右，符合屏幕顺序）
+        result.sort(key=lambda x: x[1][0])
         return result
 
     @classmethod
@@ -1405,9 +1417,6 @@ class DropRecognition(CustomAction):
 
             # 3. 过滤重叠匹配，保留分数最高的
             matched_items = DropRecognitionState.filter_overlapping_matches(raw_matches)
-            for item_id, box, score in matched_items:
-                item_name = DropRecognitionState.id_to_name.get(item_id, str(item_id))
-                logger.info(f"识别到掉落: {item_name} ({item_id}) at {box}")
 
             # 4. 识别数量
             for item_id, box, _ in matched_items:
@@ -1425,7 +1434,7 @@ class DropRecognition(CustomAction):
                     or not rec.hit
                     or getattr(rec, "best_result", None) is None
                 ):
-                    logger.error(f"数量识别失败: {item_name} ({item_id})，中止掉落识别")
+                    logger.warning(f"掉落识别中止: {item_name} 数量识别失败")
                     return CustomAction.RunResult(success=True)
 
                 try:
@@ -1438,12 +1447,10 @@ class DropRecognition(CustomAction):
                         raise ValueError(f"OCR 结果无数字: {text}")
                     count = int(digits)
                 except (ValueError, AttributeError) as e:
-                    logger.error(
-                        f"数量解析失败: {item_name} ({item_id})，原因: {e}，中止掉落识别"
-                    )
+                    logger.warning(f"掉落识别中止: {item_name} 数量解析失败 ({e})")
                     return CustomAction.RunResult(success=True)
 
-                logger.info(f"掉落: {item_name} x{count}")
+                logger.debug(f"掉落: {item_name} x{count}")
                 DropRecognitionState.add_drop(item_id, count)
                 recognized_ids.add(item_id)
 
@@ -1456,10 +1463,14 @@ class DropRecognition(CustomAction):
             time.sleep(0.3)  # 等待滑动动画
 
         # 5. 输出结果并上报
-        logger.info(
-            f"掉落识别完成，共识别 {len(recognized_ids)} 种物品，"
-            f"累计 {sum(DropRecognitionState.current_drops.values())} 个"
-        )
+        if DropRecognitionState.current_drops:
+            logger.info("掉落统计:")
+            for item_id, count in DropRecognitionState.current_drops.items():
+                item_name = DropRecognitionState.id_to_name.get(item_id, str(item_id))
+                rarity = DropRecognitionState.id_to_rarity.get(item_id, "")
+                color = DropRecognitionState.RARITY_ANSI_COLORS.get(rarity, "")
+                reset = DropRecognitionState.ANSI_RESET if color else ""
+                logger.info(f"  {color}{item_name}{reset} x{count}")
 
         # 上报掉落数据
         DropRecognitionState.report_drops()
