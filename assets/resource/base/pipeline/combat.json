@@ -431,7 +431,8 @@
                 ],
                 "template": [
                     "Combat/Insight/MEEnter.png"
-                ]
+                ],
+                "threshold": 0.9
             }
         },
         "action": {
@@ -461,7 +462,8 @@
                 ],
                 "template": [
                     "Combat/Insight/SLEnter.png"
-                ]
+                ],
+                "threshold": 0.9
             }
         },
         "action": {
@@ -493,7 +495,8 @@
                     "Combat/Insight/MEEnter.png",
                     "Combat/Insight/SLEnter.png",
                     "Combat/Insight/SSEnter.png"
-                ]
+                ],
+                "threshold": 0.9
             }
         },
         "next": [
@@ -513,7 +516,8 @@
                 ],
                 "template": [
                     "Combat/Insight/SSEnter.png"
-                ]
+                ],
+                "threshold": 0.9
             }
         },
         "action": {
@@ -545,7 +549,8 @@
                     "Combat/Insight/MEEnter.png",
                     "Combat/Insight/SLEnter.png",
                     "Combat/Insight/SSEnter.png"
-                ]
+                ],
+                "threshold": 0.9
             }
         },
         "next": [
@@ -565,7 +570,8 @@
                 ],
                 "template": [
                     "Combat/Insight/BWEnter.png"
-                ]
+                ],
+                "threshold": 0.9
             }
         },
         "action": {
