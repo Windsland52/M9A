@@ -681,7 +681,7 @@
         "recognition": {
             "type": "Custom",
             "param": {
-                "custom_recognition": "ColorOCR",
+                "custom_recognition": "ColorOCRWithFallback",
                 "custom_recognition_param": {
                     "recognition": "TargetStageName_OCR",
                     "target_color": [
@@ -713,12 +713,13 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    0,
-                    470,
-                    1280,
-                    160
+                    64,
+                    539,
+                    1155,
+                    46
                 ],
-                "expected_code": "Set in code."
+                "expected_code": "Set in code.",
+                "threshold": 0.4
             }
         }
     },

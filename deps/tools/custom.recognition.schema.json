@@ -6,7 +6,8 @@
             "enum": [
                 "MultiRecognition",
                 "Count",
-                "ColorOCR"
+                "ColorOCR",
+                "ColorOCRWithFallback"
             ]
         }
     },
@@ -19,6 +20,9 @@
         },
         {
             "$ref": "#/$defs/ColorOCR"
+        },
+        {
+            "$ref": "#/$defs/ColorOCRWithFallback"
         }
     ],
     "$defs": {
@@ -155,6 +159,50 @@
             "properties": {
                 "custom_recognition": {
                     "const": "ColorOCR"
+                },
+                "custom_recognition_param": {
+                    "type": "object",
+                    "properties": {
+                        "target_color": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 255
+                            },
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "default": [255, 255, 255],
+                            "description": "目标颜色RGB值，默认 [255, 255, 255] (白色)"
+                        },
+                        "tolerance": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 255,
+                            "default": 55,
+                            "description": "颜色容差，默认55"
+                        },
+                        "recognition": {
+                            "type": "string",
+                            "description": "要运行的OCR识别节点名称"
+                        }
+                    },
+                    "required": [
+                        "recognition"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
+        "ColorOCRWithFallback": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/RequiredParam"
+                }
+            ],
+            "properties": {
+                "custom_recognition": {
+                    "const": "ColorOCRWithFallback"
                 },
                 "custom_recognition_param": {
                     "type": "object",
