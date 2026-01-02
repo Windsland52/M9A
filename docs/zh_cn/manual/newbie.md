@@ -209,7 +209,6 @@ M9A 下载（更新）地址： [GitHub 发布页](https://github.com/MAA1999/M9
 | :---: | :---: | :---: | :---: | :---: |
 | 模拟器支持 | 支持主流模拟器 | 支持主流模拟器 | 自行尝试 | / |
 | 需要adb功能 | 是 | 是 | 是 | 是 |
-| 备注 |  | [暂不支持 PlayCover](https://github.com/MaaXYZ/MaaFramework/issues/405) |  |  |
 
 </div>
 

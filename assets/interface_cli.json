@@ -23,6 +23,10 @@
                 "mouse": "SendMessageWithCursorPos",
                 "keyboard": "SendMessageWithCursorPos"
             }
+        },
+        {
+            "name": "PlayCover",
+            "type": "PlayCover"
         }
     ],
     "resource": [
@@ -32,7 +36,8 @@
                 "./resource/base"
             ],
             "controller": [
-                "ADB"
+                "ADB",
+                "PlayCover"
             ]
         },
         {
@@ -42,7 +47,8 @@
                 "./resource/bilibili"
             ],
             "controller": [
-                "ADB"
+                "ADB",
+                "PlayCover"
             ]
         },
         {
@@ -52,7 +58,8 @@
                 "./resource/oppo"
             ],
             "controller": [
-                "ADB"
+                "ADB",
+                "PlayCover"
             ]
         },
         {
@@ -62,7 +69,8 @@
                 "./resource/mi"
             ],
             "controller": [
-                "ADB"
+                "ADB",
+                "PlayCover"
             ]
         },
         {
@@ -72,7 +80,8 @@
                 "./resource/huawei"
             ],
             "controller": [
-                "ADB"
+                "ADB",
+                "PlayCover"
             ]
         },
         {
@@ -84,7 +93,8 @@
             ],
             "controller": [
                 "ADB",
-                "PC"
+                "PC",
+                "PlayCover"
             ]
         },
         {
@@ -95,7 +105,8 @@
             ],
             "controller": [
                 "ADB",
-                "PC"
+                "PC",
+                "PlayCover"
             ]
         },
         {
@@ -107,7 +118,8 @@
             ],
             "controller": [
                 "ADB",
-                "PC"
+                "PC",
+                "PlayCover"
             ]
         },
         {
@@ -119,7 +131,8 @@
             ],
             "controller": [
                 "ADB",
-                "PC"
+                "PC",
+                "PlayCover"
             ]
         }
     ],

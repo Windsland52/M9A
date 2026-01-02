@@ -209,7 +209,6 @@ Chinese users can also download at high speed through [MirrorChyan](https://mirr
 | :---: | :---: | :---: | :---: | :---: |
 | Emulator Support | Supports mainstream emulators | Supports mainstream emulators | Self-test | / |
 | ADB Function Required | Yes | Yes | Yes | Yes |
-| Notes |  | [PlayCover is temporarily not supported](https://github.com/MaaXYZ/MaaFramework/issues/405) |  |  |
 
 </div>
 
