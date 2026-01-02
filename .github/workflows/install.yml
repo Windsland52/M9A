@@ -19,7 +19,7 @@ on:
 
 env:
   MAA_FRAMEWORK_VERSION: "v5.3.0"
-  MFAA_VERSION: "v2.2.7"
+  MFAA_VERSION: "v2.4.0"
 
 permissions:
   contents: write
