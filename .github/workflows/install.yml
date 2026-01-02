@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
 
 env:
-  MAA_FRAMEWORK_VERSION: "v5.3.0-beta.5"
+  MAA_FRAMEWORK_VERSION: "v5.3.0"
   MFAA_VERSION: "v2.2.7"
 
 permissions:
