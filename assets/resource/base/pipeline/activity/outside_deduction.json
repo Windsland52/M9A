@@ -3394,10 +3394,10 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    346,
-                    364,
-                    157,
-                    192
+                    245,
+                    337,
+                    259,
+                    219
                 ],
                 "template": "OutsideDeduction/SOD_Ending_2.png"
             }
