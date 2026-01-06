@@ -681,7 +681,7 @@
         "recognition": {
             "type": "Custom",
             "param": {
-                "custom_recognition": "ColorOCRWithFallback",
+                "custom_recognition": "ColorOCR",
                 "custom_recognition_param": {
                     "recognition": "TargetStageName_OCR",
                     "target_color": [
