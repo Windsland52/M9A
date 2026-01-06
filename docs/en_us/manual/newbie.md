@@ -383,7 +383,7 @@ The following demonstrations are for reference only, please refer to the actual 
   </blockquote>
 </details>
 
-In the main interface, you can see six major sections: **`Resource Type`** **`Task List`** **`Task Settings`** **`Task Description`** **`Connection`** **`Log`**.
+In the main interface, you can see seven major sections: **`Resource Type`** **`Task List`** **`Task Settings`** **`Task Description`** **`Connection`** **`Log`** **`Live View`**.
 
 > [!CAUTION]
 > When starting MFA for the first time, M9A will initialize. After the `Log` section shows "**AgentServer Started**" until you see "**All tasks completed**", please do not click `Stop Tasks`.
@@ -527,7 +527,7 @@ At least configure **`Resource Type`** and **`Connection`**. When configured inc
       <blockquote>
         <ul>
           <li>You need to select the 1999 server installed in the emulator.</li>
-          <li>Currently supports: <b>Official Server</b>, <b>Bilibili Server</b>, <b>International Server (EN)</b>, <b>International Server (JP)</b>, <b>OPPO Server</b>, <b>Xiaomi Server</b>.</li>
+          <li>Currently supports: <b>Official Server</b>, <b>Bilibili Server</b>, <b>International Server (EN)</b>, <b>International Server (JP)</b>, <b>International Server (KR)</b>, <b>Hong Kong, Macau, and Taiwan Server</b>, <b>OPPO Server</b>, <b>Xiaomi Server</b>, <b>Huawei Server</b>.</li>
         </ul>
       </blockquote>
     </details>
@@ -563,6 +563,7 @@ At least configure **`Resource Type`** and **`Connection`**. When configured inc
           <summary>Interface Button Descriptions</summary>
             <ul>
               <li>Click <b>Custom</b>: Modify ADB parameters (generally no manual modification required).</li>
+              <li>Click <b>Reconnect</b>: Reconnect to the selected emulator.</li>
               <li>Click <b>Refresh</b>: Re-detect all running emulators.</li>
               <li><b>Connection Status</b>: Green indicates connected.</li>
             </ul>
@@ -571,18 +572,29 @@ At least configure **`Resource Type`** and **`Connection`**. When configured inc
     </blockquote>
   </details>
 
-When using the International Server PC client, simply click the PC icon in the connection area to automatically detect and connect to any open PC client window.  
+When using the International Server PC client, select PC in the **Controller Type** section of the connection area to automatically detect and connect to an open PC client window.
 > [!WARNING]
 >
 > When connecting to a PC, run M9A in **administrator mode**, and **do not minimize the game window**!
 
-***
   <details>
     <summary>Illustration</summary>
     <p></p>
     <blockquote>
       <ul>
         <img src="/images/en-us/newbie-main-interface-connection-pc.webp" alt="connection-pc">
+      </ul>
+    </blockquote>
+  </details>
+
+For Mac users using PlayCover, select PlayCover in the **Controller Type** section of the connection area. For details, please refer to [PlayCover Usage](https://docs.maa.plus/en-us/manual/device/macos.html#apple-silicon-chips).
+
+<details>
+    <summary>Illustration</summary>
+    <p></p>
+    <blockquote>
+      <ul>
+        <img src="/images/en-us/newbie-main-interface-connection-playcover.webp" alt="PlayCover">
       </ul>
     </blockquote>
   </details>
