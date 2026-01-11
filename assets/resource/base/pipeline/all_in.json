@@ -496,13 +496,13 @@
     "DropRarityYellow": {
         "recognition": "ColorMatch",
         "lower": [
-            189,
-            159,
-            86
+            130,
+            109,
+            52
         ],
         "upper": [
-            209,
-            179,
+            211,
+            181,
             106
         ],
         "count": 100
