@@ -635,6 +635,7 @@
             "[JumpBack]SOSArtefactsObtained",
             "[JumpBack]SOSResonatorObtained",
             "[JumpBack]SOSHarmonicObtained",
+            "[JumpBack]SOSStatBreakthrough",
             "[JumpBack]SOS_Skip"
         ]
     },
@@ -680,9 +681,9 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    613,
+                    575,
                     40,
-                    134,
+                    172,
                     31
                 ],
                 "only_rec": true,
@@ -708,6 +709,7 @@
             "[JumpBack]SOSHarmonicObtained",
             "[JumpBack]SOSStatsUpButton",
             "[JumpBack]SOSStatsUp",
+            "[JumpBack]SOSStatBreakthrough",
             "[JumpBack]SOSSelectResonator",
             "[JumpBack]SOSResonatorObtained",
             "[JumpBack]SOSLoseArtefact",
@@ -869,17 +871,40 @@
     "SOSResonatorObtained": {
         // 获得共鸣器
         "recognition": {
-            "type": "OCR",
+            "type": "Or",
             "param": {
-                "roi": [
-                    561,
-                    50,
-                    159,
-                    37
-                ],
-                "only_rec": true,
-                "expected": [
-                    "获得共鸣器"
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "roi": [
+                                    534,
+                                    11,
+                                    230,
+                                    95
+                                ],
+                                "template": "SyndromeOfSilence/ResonatorObtained.png"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    561,
+                                    50,
+                                    159,
+                                    37
+                                ],
+                                "only_rec": true,
+                                "expected": [
+                                    "获得共鸣器"
+                                ]
+                            }
+                        }
+                    }
                 ]
             }
         },
@@ -1033,17 +1058,40 @@
     },
     "SOSHarmonicObtained": {
         "recognition": {
-            "type": "OCR",
+            "type": "Or",
             "param": {
-                "roi": [
-                    581,
-                    52,
-                    118,
-                    33
-                ],
-                "only_rec": true,
-                "expected": [
-                    "获得谐波"
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "roi": [
+                                    534,
+                                    11,
+                                    230,
+                                    95
+                                ],
+                                "template": "SyndromeOfSilence/HarmonicObtained.png"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    581,
+                                    52,
+                                    118,
+                                    33
+                                ],
+                                "only_rec": true,
+                                "expected": [
+                                    "获得谐波"
+                                ]
+                            }
+                        }
+                    }
                 ]
             }
         },
@@ -1072,6 +1120,57 @@
             "type": "Click"
         },
         "post_wait_freezes": 500
+    },
+    "SOSStatBreakthrough": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    549,
+                    52,
+                    182,
+                    34
+                ],
+                "only_rec": true,
+                "expected": [
+                    "属性突破选择"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    388,
+                    495,
+                    105,
+                    33
+                ]
+            }
+        },
+        "post_wait_freezes": 300,
+        "next": [
+            "SOSStatBreakthroughFinish",
+            "SOSStatBreakthrough"
+        ]
+    },
+    "SOSStatBreakthroughFinish": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    549,
+                    52,
+                    182,
+                    34
+                ],
+                "only_rec": true,
+                "expected": [
+                    "属性突破选择"
+                ]
+            }
+        },
+        "inverse": true
     },
     "SOSEventEnd": {
         "recognition": {
@@ -1253,17 +1352,40 @@
     },
     "SOSSelectHarmonic": {
         "recognition": {
-            "type": "OCR",
+            "type": "Or",
             "param": {
-                "roi": [
-                    581,
-                    52,
-                    118,
-                    33
-                ],
-                "only_rec": true,
-                "expected": [
-                    "谐波选择"
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "roi": [
+                                    534,
+                                    11,
+                                    230,
+                                    95
+                                ],
+                                "template": "SyndromeOfSilence/SelectHarmonic.png"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    581,
+                                    52,
+                                    118,
+                                    33
+                                ],
+                                "only_rec": true,
+                                "expected": [
+                                    "谐波选择"
+                                ]
+                            }
+                        }
+                    }
                 ]
             }
         },
@@ -1574,6 +1696,7 @@
         "next": [
             "FlagInSOSMain",
             "SOSGoToNextScene",
+            "[JumpBack]SOSStatBreakthrough",
             "[JumpBack]SOSStatsUpButton",
             "[JumpBack]SOSStatsUp",
             "[JumpBack]SOSArtefactsObtained",
@@ -1857,9 +1980,9 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    613,
+                    575,
                     40,
-                    134,
+                    172,
                     31
                 ],
                 "only_rec": true,

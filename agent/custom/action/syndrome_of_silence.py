@@ -170,6 +170,7 @@ class SOSSelectNode(CustomAction):
                     # 检查并处理可能的弹窗节点
                     interrupts = [
                         "SOSWarning",
+                        "SOSStatBreakthrough",
                         "SOSStatsUpButton",
                         "SOSStatsUp",
                         "SOSArtefactsObtained",
@@ -901,6 +902,7 @@ class SOSBuyItems(CustomAction):
             "SOSLoseArtefact",
             "SOSStrengthenArtefact",
             "SOSWarning",
+            "SOSStatBreakthrough",
             "SOSStatsUpButton",
             "SOSStatsUp",
             "CloseTip",
@@ -1407,7 +1409,7 @@ class SOSSelectInstrument(CustomAction):
 
         logger.info(f"选择配器类型: {instrument}")
 
-        instrument_map = {"管钟": "TubularBell", "拨弦": "Strings"}
+        instrument_map = {"管钟": "TubularBell", "拨弦": "Strings", "乐鞭": "SlapStick"}
 
         context.run_task(
             "SOSInstrumentSelect",
