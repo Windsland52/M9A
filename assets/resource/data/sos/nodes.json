@@ -47,8 +47,8 @@
             "SOSEventEnd",
             "CloseTip"
         ],
-        "EncounterAlongTheWay": "@message_left+@stats+@artefact+@harmonic+@resonator+@others+SOSClickEventRec",
-        "TheOnlyWay": "@message+@stats+@artefact+@harmonic+@resonator+@others"
+        "EncounterAlongTheWay": "@stats+@artefact+@harmonic+@resonator+@others+@message_left+SOSClickEventRec",
+        "TheOnlyWay": "@stats+@artefact+@harmonic+@resonator+@others+@message"
     },
     "冲突": {
         "event_name_roi": null,
