@@ -87,7 +87,7 @@
     "resource/base/image/Items_processed/Item-111013": "3d1144ca1a9250887e2ca24d621dd47c4b864d512aeca93353a1a42c5c6c1877",
     "resource/base/image/Items_processed/Item-110103": "bea8a7f2a5228a3ab974d7a210b4ed6832bcb22ef011376ba8d06baad30fee12",
     "resource/base/image/Items_processed/Item-110402": "4d4bd5bc03c90e487d9dd97b197d19b10b7a7357c7bcda7a875564430569bfd0",
-    "resource/base/image/Items_processed/Item-110404": "f4df7eb14a4300f742d82ee0c1f0603fea70f9f5afddb977a2d931ef2c831874",
+    "resource/base/image/Items_processed/Item-110404": "eaabcde3419c4266729c4a42b3f51abde54f91c6b06827b97abf7101352edb5e",
     "resource/base/image/Items_processed/Item-110403": "860602d19cc56c7e4b78672c5ab7760b468708ab9f51f8857efc8fe556ad1a7c",
     "resource/base/image/Items_processed/Item-110703": "4743519af9ab2b8cecd4ec51c92353773390babcd651f462234e3a096a3eda88",
     "resource/base/image/Items_processed/Item-110902": "90e4d7978b53ee89b7576e668d5936c2f7075dcc79641643b70b519e88464cef",
@@ -423,5 +423,9 @@
     "resource/base/image/Combat/Insight/Label": "e86cba100f8934204d70f69b327e7185b428081547361e7ce5a3de612868d761",
     "resource/base/image/Wilderness/CollectProductAwards": "06bd4af85fad8e75f10ffcc15e5db236ef35bda84e367485bca01c2e27d042da",
     "resource/announcement/images/newbie-main-interface": "704540d32e9790523cb4d0f817a6d3055180e7d5653aec01acfb2ccf9f3c1c96",
-    "resource/base/image/SyndromeOfSilence/SOSCollectBack": "b59b274883470c744dd8ceff172626c806278ff29f924b05dde773bd8c916b39"
+    "resource/base/image/SyndromeOfSilence/SOSCollectBack": "b59b274883470c744dd8ceff172626c806278ff29f924b05dde773bd8c916b39",
+    "resource/base/image/SyndromeOfSilence/SlapStick": "e413c9457da31eead1cf0d37c3e145f57d6619a9578dc5c15bc3dc00016c9bf8",
+    "resource/base/image/SyndromeOfSilence/ResonatorObtained": "55c9ec46fdaf4fb6d402fcb0fe50087b7ec7563282f3232e26b59ac29b579cf7",
+    "resource/base/image/SyndromeOfSilence/HarmonicObtained": "1f5ef0ac7b248fbceb328ce46c63b285a289e234174f594661746eb4e8e0b33b",
+    "resource/base/image/SyndromeOfSilence/SelectHarmonic": "387b7a6b6fd355880436d9e3b5a2b005e9a9a6d4ca6570f78e3cc650ec3fae03"
 }
