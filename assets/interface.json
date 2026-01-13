@@ -3060,6 +3060,34 @@
                             }
                         }
                     }
+                },
+                {
+                    "name": "尖啸 Ⅰ",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "尖啸 Ⅱ",
+                    "pipeline_override": {
+                        "SOSSelectNoise": {
+                            "action": {
+                                "param": {
+                                    "custom_action_param": {
+                                        "level": 6
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             ]
         },
