@@ -148,7 +148,9 @@
         {
             "name": "启动游戏",
             "entry": "StartUp",
-            "description": "暂不支持国际服PC端运行该任务",
+            "controller": [
+                "ADB"
+            ],
             "default_check": true
         },
         {
@@ -254,7 +256,9 @@
         {
             "name": "关闭游戏",
             "entry": "Close1999",
-            "description": "暂不支持国际服PC端运行该任务",
+            "controller": [
+                "ADB"
+            ],
             "default_check": true
         },
         {
