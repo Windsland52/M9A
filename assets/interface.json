@@ -22,7 +22,8 @@
                 "screencap": "PrintWindow",
                 "mouse": "SendMessageWithCursorPos",
                 "keyboard": "SendMessageWithCursorPos"
-            }
+            },
+            "permission_required": true
         },
         {
             "name": "PlayCover",
