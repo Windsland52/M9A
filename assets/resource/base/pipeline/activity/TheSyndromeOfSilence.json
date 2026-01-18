@@ -7,10 +7,46 @@
             "[JumpBack]FlagInSOSMenu",
             "[JumpBack]ReturnMain",
             "[JumpBack]EnterTheActivityMain",
-            "[JumpBack]EnterSOSMenu"
+            "[JumpBack]EnterSOSMenu",
+            "[JumpBack]SOSSwipeBottomBar"
         ]
     },
     // 到 SOS Main Menu
+    "SOSSwipeBottomBar": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    918,
+                    8,
+                    355,
+                    75
+                ],
+                "expected": [
+                    "预告",
+                    "成就"
+                ]
+            }
+        },
+        "max_hit": 5,
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    701,
+                    630,
+                    79,
+                    32
+                ],
+                "end": [
+                    508,
+                    624,
+                    79,
+                    32
+                ]
+            }
+        }
+    },
     "FlagInSOSMenu": {
         // 版本活动列表界面 OR 活动列表界面在未开始游戏的情况下点开后的界面
         "recognition": {
