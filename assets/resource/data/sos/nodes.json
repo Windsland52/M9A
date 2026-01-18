@@ -16,9 +16,11 @@
     ],
     "common_interrupts": {
         "message": [
+            "SOSSkipMessage",
             "SOSNextMessage"
         ],
         "message_left": [
+            "SOSSkipMessage",
             "SOSNextMessage_left"
         ],
         "stats": [

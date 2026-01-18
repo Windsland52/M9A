@@ -1660,6 +1660,35 @@
             "type": "Click"
         }
     },
+    "SOSSkipMessage": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1020,
+                    642,
+                    69,
+                    38
+                ],
+                "only_rec": true,
+                "expected": [
+                    "跳过"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": {
+            "time": 700,
+            "target": [
+                852,
+                131,
+                393,
+                488
+            ]
+        }
+    },
     "SOSClickEventRec": {
         "recognition": {
             "type": "OCR",
