@@ -39,13 +39,13 @@ icon: ri:game-fill
             "SOSStatsUpButton",
             "SOSStatsUp"
         ],
-        "artefact": [                                     // 遗器相关中断组
+        "artefact": [                                     // 造物相关中断组
             "SOSArtefactsObtained",
             "SOSSelectArtefact",
             "SOSLoseArtefact",
             "SOSStrengthenArtefact"
         ],
-        "harmonic": [                                     // 和弦相关中断组
+        "harmonic": [                                     // 谐波相关中断组
             "SOSHarmonicObtained",
             "SOSSelectHarmonic"
         ],
@@ -192,12 +192,12 @@ icon: ri:game-fill
 
 在执行动作过程中可能触发的中断处理节点：
 
-- `SOSSelectHarmonic` - 选择和弦
-- `SOSHarmonicObtained` - 获得和弦
-- `SOSSelectArtefact` - 选择遗器
-- `SOSArtefactsObtained` - 获得遗器
-- `SOSLoseArtefact` - 失去遗器
-- `SOSStrengthenArtefact` - 强化遗器
+- `SOSSelectHarmonic` - 选择谐波
+- `SOSHarmonicObtained` - 获得谐波
+- `SOSSelectArtefact` - 选择造物
+- `SOSArtefactsObtained` - 获得造物
+- `SOSLoseArtefact` - 失去造物
+- `SOSStrengthenArtefact` - 强化造物
 - `SOSSelectResonator` - 选择共鸣者
 - `SOSResonatorObtained` - 获得共鸣者
 - `SOSStatBreakthrough` - 属性突破
