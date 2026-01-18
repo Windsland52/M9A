@@ -463,7 +463,7 @@
                 ],
                 "green_mask": true,
                 "method": 10001,
-                "threshold": 0.85,
+                "threshold": 0.9,
                 "order_by": "Score"
             }
         }
