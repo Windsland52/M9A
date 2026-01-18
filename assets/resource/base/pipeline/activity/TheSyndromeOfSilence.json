@@ -604,7 +604,15 @@
             }
         },
         "action": {
-            "type": "Click"
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    0,
+                    0,
+                    -50,
+                    0
+                ]
+            }
         },
         "post_delay": 1500
     },
