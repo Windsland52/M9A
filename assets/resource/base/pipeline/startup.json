@@ -573,13 +573,7 @@
                     297,
                     148
                 ],
-                "template": [
-                    "StartUp/Reward.png",
-                    "StartUp/Reward1.png",
-                    "StartUp/Reward2.png",
-                    "StartUp/Reward3.png", // 刺客联动版本
-                    "StartUp/Reward4.png"
-                ]
+                "template": "StartUp/Rewards/"
             }
         },
         "action": {
