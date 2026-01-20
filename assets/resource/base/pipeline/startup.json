@@ -642,12 +642,7 @@
                     239,
                     178
                 ],
-                "template": [
-                    "StartUp/CloseRewardPage_2.2.png",
-                    "StartUp/CloseRewardPage_2.4.png",
-                    "StartUp/CloseItemDetail.png",
-                    "StartUp/CloseItemDetail1.png"
-                ],
+                "template": "StartUp/CloseButton/",
                 "green_mask": true,
                 "threshold": 0.6,
                 "order_by": "Score"
@@ -670,12 +665,7 @@
                     394,
                     177
                 ],
-                "template": [
-                    "StartUp/CloseRewardPage_2.2.png",
-                    "StartUp/CloseRewardPage_2.4.png",
-                    "StartUp/CloseItemDetail.png",
-                    "StartUp/CloseItemDetail1.png"
-                ],
+                "template": "StartUp/CloseButton/",
                 "green_mask": true,
                 "threshold": 0.6,
                 "order_by": "Score"
