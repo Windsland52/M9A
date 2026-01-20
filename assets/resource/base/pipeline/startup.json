@@ -637,9 +637,9 @@
             "type": "TemplateMatch",
             "param": {
                 "roi": [
-                    1040,
+                    1013,
                     40,
-                    239,
+                    266,
                     178
                 ],
                 "template": "StartUp/CloseButton/",
