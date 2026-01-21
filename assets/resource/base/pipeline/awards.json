@@ -18,7 +18,8 @@
                 "template": [
                     "StartUp/HomeFlag.png",
                     "StartUp/HomeFlag_sp01.png",
-                    "StartUp/HomeFlag3.2.png"
+                    "StartUp/HomeFlag3.2.png",
+                    "StartUp/HomeFlag3.4.png"
                 ]
             }
         },
@@ -38,10 +39,42 @@
             "[JumpBack]Sub_DailyBadge",
             "[JumpBack]Sub_JukeboxBadge",
             "[JumpBack]Sub_JukeboxBadge_3.2",
+            "[JumpBack]HomeFlagMaxTimesFive",
             "HomeFlag",
             "[JumpBack]HomeButton",
             "[JumpBack]BackButton"
         ]
+    },
+    "HomeFlagMaxTimesFive": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1022,
+                    419,
+                    194,
+                    166
+                ],
+                "template": [
+                    "StartUp/HomeFlag.png",
+                    "StartUp/HomeFlag_sp01.png",
+                    "StartUp/HomeFlag3.2.png",
+                    "StartUp/HomeFlag3.4.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    576,
+                    298,
+                    68,
+                    64
+                ]
+            }
+        },
+        "max_hit": 5
     },
     "Sub_MailBadge": {
         "recognition": {
@@ -56,7 +89,8 @@
                 "template": [
                     "Awards/MailBadge.png",
                     "Awards/MailBadge_sp01.png",
-                    "Awards/MailBadge3.2.png"
+                    "Awards/MailBadge3.2.png",
+                    "Awards/MailBadge3.4.png"
                 ],
                 "threshold": 0.9
             }
@@ -82,7 +116,8 @@
                 "template": [
                     "Awards/MailBadge.png",
                     "Awards/MailBadge_sp01.png",
-                    "Awards/MailBadge3.2.png"
+                    "Awards/MailBadge3.2.png",
+                    "Awards/MailBadge3.4.png"
                 ],
                 "threshold": 0.9
             }
@@ -407,7 +442,8 @@
                 "template": [
                     "Awards/DailyBadge.png",
                     "Awards/DailyBadge_sp01.png",
-                    "Awards/DailyBadge3.2.png"
+                    "Awards/DailyBadge3.2.png",
+                    "Awards/DailyBadge3.4.png"
                 ],
                 "threshold": 0.9
             }
