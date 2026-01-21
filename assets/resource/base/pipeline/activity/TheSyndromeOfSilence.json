@@ -4,11 +4,11 @@
         "next": [
             "SOSMainMenu",
             "[JumpBack]SOSStop",
-            "[JumpBack]FlagInSOSMenu",
-            "[JumpBack]ReturnMain",
-            "[JumpBack]EnterTheActivityMain",
-            "[JumpBack]EnterSOSMenu",
-            "[JumpBack]SOSSwipeBottomBar"
+            "[JumpBack]FlagInSOSMenu"
+            // "[JumpBack]ReturnMain",
+            // "[JumpBack]EnterTheActivityMain",
+            // "[JumpBack]EnterSOSMenu",
+            // "[JumpBack]SOSSwipeBottomBar"
         ]
     },
     // 到 SOS Main Menu
