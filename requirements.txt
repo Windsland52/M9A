@@ -1,4 +1,4 @@
-maafw==5.4.2
+maafw==5.5.0-beta.1
 loguru
 pillow
 pytz
