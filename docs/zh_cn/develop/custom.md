@@ -39,7 +39,7 @@ class YourAction(CustomAction):
         return CustomAction.RunResult(success=True)
 ```
 
-以上动作在pipeline的调用方法如下。其中传递的参数可以是任意json object，它在上述部分中会被加载为dict类型。如果需要按照用户的输入来更改传入参数，则可以使用interface的pipeline_override操作（详情见[interface v2 协议](https://maafw.xyz/docs/3.3-ProjectInterfaceV2)）。
+以上动作在pipeline的调用方法如下。其中传递的参数可以是任意JSON object，它在上述部分中会被加载为dict类型。如果需要按照用户的输入来更改传入参数，则可以使用interface的pipeline_override操作（详情见[interface v2 协议](https://maafw.xyz/docs/3.3-ProjectInterfaceV2)）。
 
 ```jsonc
 {
@@ -106,7 +106,7 @@ class YourRecognition(CustomRecognition):
         return CustomRecognition.AnalyzeResult(box=[x, y, w, h], detail={})
 ```
 
-以上识别过程在pipeline的调用方法如下。其中传递的参数可以是任意json object，它在上述部分中会被加载为dict类型。如果需要按照用户的输入来更改传入参数，则可以使用interface的pipeline_override操作（详情见[interface v2 协议](https://maafw.xyz/docs/3.3-ProjectInterfaceV2)）。
+以上识别过程在pipeline的调用方法如下。其中传递的参数可以是任意JSON object，它在上述部分中会被加载为dict类型。如果需要按照用户的输入来更改传入参数，则可以使用interface的pipeline_override操作（详情见[interface v2 协议](https://maafw.xyz/docs/3.3-ProjectInterfaceV2)）。
 
 ```jsonc
 {
@@ -187,6 +187,10 @@ context.override_image("image_name", image_array)
 # 获取截图
 img = context.tasker.controller.post_screencap().wait().get()
 ```
+
+> [!INFO]
+> MaaFramework 使用 OpenCV 处理图片，因此获取到的图片数据均为 numpy.ndarray 类型，且为 **BGR** 格式。
+> 在与 MaaFramework 进行交互时无需另行处理，但如果需要保存图片，需先转换为 **RGB** 格式。（参考用例：[Screenshot](https://github.com/MAA1999/M9A/blob/1cc7ca5e212fe0393fa544eae7acfd93aac9c2d7/agent/custom/action/general.py#L25)）
 
 ### 识别结果处理
 
