@@ -238,22 +238,19 @@ jobs:
             echo "MXU directory not found, skipping copy."
           fi
 
-      - name: Replace Assets with custom assets folder
+      - name: Copy custom icons
         shell: bash
         run: |
-          # 删除大写的 Assets 文件夹
+          # 删除 MFAA 自带的 Assets 文件夹
           if [ -d "install/Assets" ]; then
             rm -rf install/Assets
             echo "Removed original Assets folder"
           fi
 
-          # 创建小写的 assets 文件夹
-          mkdir -p install/assets
-
-          # 如果有自定义图标，复制并重命名为 logo.ico
+          # MFAA 版本的图标放根目录
           if [ -f "m9a.ico" ]; then
-            cp m9a.ico install/assets/logo.ico
-            echo "Copied custom icon to assets/logo.ico"
+            cp m9a.ico install/logo.ico
+            echo "Copied custom icon to install/logo.ico"
           fi
 
           # MXU 版本的图标
@@ -420,22 +417,19 @@ jobs:
             echo "MXU directory not found on Linux, skipping copy."
           fi
 
-      - name: Replace Assets with custom assets folder
+      - name: Copy custom icons
         shell: bash
         run: |
-          # 删除大写的 Assets 文件夹
+          # 删除 MFAA 自带的 Assets 文件夹
           if [ -d "install/Assets" ]; then
             rm -rf install/Assets
             echo "Removed original Assets folder"
           fi
 
-          # 创建小写的 assets 文件夹
-          mkdir -p install/assets
-
-          # 如果有自定义图标，复制并重命名为 logo.ico
+          # MFAA 版本的图标放根目录
           if [ -f "m9a.ico" ]; then
-            cp m9a.ico install/assets/logo.ico
-            echo "Copied custom icon to assets/logo.ico"
+            cp m9a.ico install/logo.ico
+            echo "Copied custom icon to install/logo.ico"
           fi
 
           # MXU 版本的图标
@@ -610,22 +604,19 @@ jobs:
             echo "MXU directory not found on macOS, skipping copy."
           fi
 
-      - name: Replace Assets with custom assets folder
+      - name: Copy custom icons
         shell: bash
         run: |
-          # 删除大写的 Assets 文件夹
+          # 删除 MFAA 自带的 Assets 文件夹
           if [ -d "install/Assets" ]; then
             rm -rf install/Assets
             echo "Removed original Assets folder"
           fi
 
-          # 创建小写的 assets 文件夹
-          mkdir -p install/assets
-
-          # 如果有自定义图标，复制并重命名为 logo.ico
+          # MFAA 版本的图标放根目录
           if [ -f "m9a.ico" ]; then
-            cp m9a.ico install/assets/logo.ico
-            echo "Copied custom icon to assets/logo.ico"
+            cp m9a.ico install/logo.ico
+            echo "Copied custom icon to install/logo.ico"
           fi
 
           # MXU 版本的图标
