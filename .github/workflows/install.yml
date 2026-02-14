@@ -265,7 +265,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: M9A-win-${{ matrix.arch }}-${{ needs.meta.outputs.tag }}-Lite
+          name: M9A-win-${{ matrix.arch }}-${{ needs.meta.outputs.tag }}-PiCLI
           path: "install-cli"
 
       - uses: actions/upload-artifact@v4
@@ -444,7 +444,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: M9A-linux-${{ matrix.arch }}-${{ needs.meta.outputs.tag }}-Lite
+          name: M9A-linux-${{ matrix.arch }}-${{ needs.meta.outputs.tag }}-PiCLI
           path: "install-cli"
 
       - uses: actions/upload-artifact@v4
@@ -631,7 +631,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: M9A-macos-${{ matrix.arch }}-${{ needs.meta.outputs.tag }}-Lite
+          name: M9A-macos-${{ matrix.arch }}-${{ needs.meta.outputs.tag }}-PiCLI
           path: "install-cli"
 
       - uses: actions/upload-artifact@v4

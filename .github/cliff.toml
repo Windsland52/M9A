@@ -78,7 +78,7 @@ footer = """
 **绝大部分用户请下载 M9A-win-x86_64-vx.x.x-MFAA.zip 或 M9A-win-x86_64-vx.x.x-MXU.zip，没找到的请点 show all x assets**
 {%- endif %}
 
-> MFAA = 图形界面版 | MXU = 图形界面版 | Lite = 命令行版
+> MFAA = 图形界面版 | MXU = 图形界面版 | PiCLI = 命令行版
 
 [已有 Mirror酱 CDK？点击前往高速下载](https://mirrorchyan.com/zh/projects?rid=M9A&source=m9agh-release)
 
