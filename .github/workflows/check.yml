@@ -19,27 +19,39 @@ on:
 
 jobs:
   resource:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run maa-checker
+        run: |
+          npx @nekosu/maa-checker@latest ./assets/interface.json --github=.
+          npx @nekosu/maa-checker@latest ./assets/interface_cli.json --github=.
+
       # Install maafw: dynamically read version/spec from requirements.txt and install that
       - name: Install maafw (from requirements.txt)
-        shell: powershell
         run: |
           python -m pip install --upgrade pip
           # 在 requirements.txt 中查找以 maafw 开头的行（例如: maafw==5.1.0 或 maafw>=4.5）
-          $line = Get-Content requirements.txt | Where-Object { $_ -match '^\s*maafw' } | Select-Object -First 1
-          if ($line) {
-            $pkg = $line.Trim()
-          } else {
-            $pkg = 'maafw'
-          }
-          Write-Host "Installing $pkg"
-          python -m pip install --upgrade $pkg
+          pkg=$(grep -E '^\s*maafw' requirements.txt | head -1 | tr -d '[:space:]')
+          if [ -z "$pkg" ]; then
+            pkg='maafw'
+          fi
+          echo "Installing $pkg"
+          python -m pip install --upgrade "$pkg"
 
       - name: Check Resource
         run: |
-            python ./tools/ci/check_resource.py ./assets/resource/base/ ./assets/resource/bilibili/ ./assets/resource/global_en/ ./assets/resource/global_jp/
+            python ./tools/ci/check_resource.py ./assets/resource/base/ ./assets/resource/bilibili/ ./assets/resource/global_en/ ./assets/resource/global_jp/ ./assets/resource/global_kr/ ./assets/resource/tw/ ./assets/resource/huawei/ ./assets/resource/mi/ ./assets/resource/oppo/
+
+      - name: Validate JSON Schema
+        run: |
+          python -m pip install jsonschema==4.26.0 referencing==0.37.0
+          python tools/validate_schema.py --schema-dir deps/tools --resource-dirs assets/resource --exclude-dirs assets/resource/announcement assets/resource/data --interface-files assets/interface.json assets/interface_cli.json
