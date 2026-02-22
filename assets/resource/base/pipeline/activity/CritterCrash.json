@@ -27,6 +27,7 @@
             }
         },
         "next": [
+            "CCFlagInCombatMain",
             "[JumpBack]CCStop",
             "CCStart",
             "[JumpBack]CCConfirm",
