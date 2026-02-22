@@ -392,22 +392,18 @@
                             }
                         }
                     },
-                    "ActivityTargetLevelClick": {
-                        "action": {
-                            "param": {
-                                "custom_action_param": {
-                                    "clicks": [
-                                        [
-                                            912,
-                                            584
-                                        ],
-                                        [
-                                            1211,
-                                            585
-                                        ]
-                                    ]
-                                }
-                            }
+                    "ActivityTargetLevel": {
+                        "attach": {
+                            "clicks": [
+                                [
+                                    912,
+                                    584
+                                ],
+                                [
+                                    1211,
+                                    585
+                                ]
+                            ]
                         }
                     },
                     "ActivityTargetLevelRec": {
@@ -523,22 +519,18 @@
                             }
                         }
                     },
-                    "ActivityTargetLevelClick": {
-                        "action": {
-                            "param": {
-                                "custom_action_param": {
-                                    "clicks": [
-                                        [
-                                            912,
-                                            584
-                                        ],
-                                        [
-                                            1211,
-                                            585
-                                        ]
-                                    ]
-                                }
-                            }
+                    "ActivityTargetLevel": {
+                        "attach": {
+                            "clicks": [
+                                [
+                                    912,
+                                    584
+                                ],
+                                [
+                                    1211,
+                                    585
+                                ]
+                            ]
                         }
                     },
                     "ActivityTargetLevelRec": {
