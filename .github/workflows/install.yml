@@ -112,7 +112,7 @@ jobs:
         id: download_mfa
         uses: robinraju/release-downloader@v1
         with:
-          repository: SweetSmellFox/MFAAvalonia
+          repository: MaaXYZ/MFAAvalonia
           fileName: "MFAAvalonia-*-win-${{ steps.platform.outputs.tag }}*"
           tag: ${{ env.MFAA_VERSION }}
           out-file-path: "MFA"
@@ -309,7 +309,7 @@ jobs:
         id: download_mfa
         uses: robinraju/release-downloader@v1
         with:
-          repository: SweetSmellFox/MFAAvalonia
+          repository: MaaXYZ/MFAAvalonia
           fileName: "MFAAvalonia-*-linux-${{ steps.platform.outputs.tag }}*"
           tag: ${{ env.MFAA_VERSION }}
           out-file-path: "MFA"
@@ -492,7 +492,7 @@ jobs:
         id: download_mfa
         uses: robinraju/release-downloader@v1
         with:
-          repository: SweetSmellFox/MFAAvalonia
+          repository: MaaXYZ/MFAAvalonia
           fileName: "MFAAvalonia-*-osx-${{ steps.platform.outputs.tag }}*"
           tag: ${{ env.MFAA_VERSION }}
           out-file-path: "MFA"
