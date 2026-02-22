@@ -560,6 +560,8 @@
                 }
             },
             "re-release": {
+                "name": "唐人街影话",
+                "alias": "唐人街",
                 "start_time": 1771534800000,
                 "end_time": 1772398799000,
                 "override": {
