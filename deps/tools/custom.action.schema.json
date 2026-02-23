@@ -4,7 +4,6 @@
     "properties": {
         "custom_action": {
             "enum": [
-                "Screenshot",
                 "DisableNode",
                 "NodeOverride",
                 "ResetCount",
@@ -33,7 +32,6 @@
                 "TargetCountFinish",
                 "TargetCountAbort",
                 "JudgeDepthsOfMythWeekly",
-                "CheckResolution",
                 "ResetEatCandyFlag",
                 "CombatActivityOverride",
                 "SOSShoppingList",
@@ -59,9 +57,6 @@
         }
     },
     "anyOf": [
-        {
-            "$ref": "#/$defs/Screenshot"
-        },
         {
             "$ref": "#/$defs/DisableNode"
         },
@@ -145,9 +140,6 @@
         },
         {
             "$ref": "#/$defs/JudgeDepthsOfMythWeekly"
-        },
-        {
-            "$ref": "#/$defs/CheckResolution"
         },
         {
             "$ref": "#/$defs/ResetEatCandyFlag"
@@ -242,33 +234,6 @@
             "required": [
                 "custom_action_param"
             ]
-        },
-        "Screenshot": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/RequiredParam"
-                }
-            ],
-            "properties": {
-                "custom_action": {
-                    "const": "Screenshot",
-                    "description": "自定义截图动作，保存当前屏幕截图到指定目录"
-                },
-                "custom_action_param": {
-                    "type": "object",
-                    "description": "截图动作的参数配置",
-                    "properties": {
-                        "save_dir": {
-                            "type": "string",
-                            "description": "保存截图的目录路径"
-                        }
-                    },
-                    "required": [
-                        "save_dir"
-                    ],
-                    "unevaluatedProperties": false
-                }
-            }
         },
         "DisableNode": {
             "allOf": [
@@ -846,14 +811,6 @@
                         "resource"
                     ],
                     "unevaluatedProperties": false
-                }
-            }
-        },
-        "CheckResolution": {
-            "properties": {
-                "custom_action": {
-                    "const": "CheckResolution",
-                    "description": "检查当前模拟器分辨率是否符合预期（16:9）"
                 }
             }
         },

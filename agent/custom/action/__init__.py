@@ -10,7 +10,6 @@ from .syndrome_of_silence import *
 from .critter_crash import *
 
 __all__ = [
-    "Screenshot",
     "DisableNode",
     "NodeOverride",
     "ResetCount",
