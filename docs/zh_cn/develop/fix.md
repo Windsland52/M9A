@@ -42,7 +42,6 @@ M9A 的日志一般在以下位置：
 
 - `debug/maa.log` - MaaFramework 核心日志
 - `debug/custom/` - Custom 模块生成的日志
-- `debug/sink/` - Sink 事件监听日志（结构化 JSONL 格式）（Deprecated）
 - `logs/` - MFA 的日志（仅 MFA 运行时）
 
 ### 手动分析（备用方案）

@@ -146,25 +146,32 @@ class YourRecognition(CustomRecognition):
 
 位置：`agent/custom/sink/`
 
-用途：监听 MaaFramework 的运行事件，实现日志记录、调试输出、性能监控等。
+用途：监听 MaaFramework 的运行事件，实现任务前置检查、日志记录、性能监控等。
 
 **基本结构**：
 
 ```python
 from maa.agent.agent_server import AgentServer
-from maa.context import Context, ContextEventSink
+from maa.tasker import Tasker, TaskerEventSink
+from maa.event_sink import NotificationType
 
-@AgentServer.context_sink()
-class MyContextSink(ContextEventSink):
-    def on_raw_notification(self, context: Context, msg: str, details: dict):
-        # 处理事件通知
-        pass
+@AgentServer.tasker_sink()
+class MyTaskerSink(TaskerEventSink):
+    def on_tasker_task(
+        self,
+        tasker: Tasker,
+        noti_type: NotificationType,
+        detail: TaskerEventSink.TaskerTaskDetail,
+    ):
+        # 在任务开始/成功/失败时执行逻辑
+        if noti_type == NotificationType.Starting:
+            # 任务开始前的检查
+            pass
 ```
 
 **项目实例**：
 
-- [Sink 模块](https://github.com/MAA1999/M9A/blob/main/agent/custom/sink/__init__.py) - 实现了 Resource、Controller、Tasker、Context 四类事件监听
-- [Logger 模块](https://github.com/MAA1999/M9A/blob/main/agent/custom/sink/logger.py) - 结构化日志系统（废弃）
+- [AspectRatioChecker](https://github.com/MAA1999/M9A/blob/main/agent/custom/sink/aspect_ratio.py) - 任务开始前检查模拟器分辨率是否为 16:9
 
 ## 常用 API
 

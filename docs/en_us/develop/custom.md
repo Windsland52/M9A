@@ -146,25 +146,32 @@ The method to call the above recognition process in the pipeline is as follows. 
 
 Location: `agent/custom/sink/`
 
-Purpose: Listen to MaaFramework runtime events for logging, debug output, performance monitoring, etc.
+Purpose: Listen to MaaFramework runtime events for pre-task checks, logging, performance monitoring, etc.
 
 **Basic Structure**:
 
 ```python
 from maa.agent.agent_server import AgentServer
-from maa.context import Context, ContextEventSink
+from maa.tasker import Tasker, TaskerEventSink
+from maa.event_sink import NotificationType
 
-@AgentServer.context_sink()
-class MyContextSink(ContextEventSink):
-    def on_raw_notification(self, context: Context, msg: str, details: dict):
-        # Handle event notifications
-        pass
+@AgentServer.tasker_sink()
+class MyTaskerSink(TaskerEventSink):
+    def on_tasker_task(
+        self,
+        tasker: Tasker,
+        noti_type: NotificationType,
+        detail: TaskerEventSink.TaskerTaskDetail,
+    ):
+        # Execute logic on task start/success/failure
+        if noti_type == NotificationType.Starting:
+            # Pre-task checks
+            pass
 ```
 
 **Project Examples**:
 
-- [Sink Module](https://github.com/MAA1999/M9A/blob/main/agent/custom/sink/__init__.py) - Implements Resource, Controller, Tasker, Context event listeners
-- [Logger Module](https://github.com/MAA1999/M9A/blob/main/agent/custom/sink/logger.py) - Structured logging system(Deprecated)
+- [AspectRatioChecker](https://github.com/MAA1999/M9A/blob/main/agent/custom/sink/aspect_ratio.py) - Checks if emulator resolution is 16:9 before task starts
 
 ## Common APIs
 
