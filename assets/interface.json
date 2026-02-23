@@ -236,11 +236,11 @@
             "option": [
                 "领取邮件奖励",
                 "领取任务奖励",
-                "领取活动奖励",
                 "领取吼吼点唱机",
-                "领取前线观察室奖励"
+                "领取前线观察室奖励",
+                "领取拉普拉斯论坛奖励"
             ],
-            "description": "<span style=\"color:tomato;font-size:15px\">领取活动奖励仅支持默认UI</span>",
+            "description": "<span style=\"color:tomato;font-size:15px\">领取拉普拉斯论坛奖励仅支持默认UI</span>",
             "default_check": true
         },
         {
@@ -2644,9 +2644,9 @@
                 }
             ]
         },
-        "领取活动奖励": {
+        "领取拉普拉斯论坛奖励": {
             "type": "switch",
-            "label": "领取活动奖励",
+            "label": "领取拉普拉斯论坛奖励",
             "cases": [
                 {
                     "name": "No",
