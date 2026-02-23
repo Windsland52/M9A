@@ -763,10 +763,19 @@
             }
         },
         "action": {
-            "type": "Click"
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    -10,
+                    10,
+                    0,
+                    0
+                ]
+            }
         },
         "next": [
             "AwardWarRoomTelegram",
+            "AwardWarRoom",
             "BackButton"
         ]
     },
@@ -786,7 +795,15 @@
             }
         },
         "action": {
-            "type": "Click"
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    10,
+                    10,
+                    0,
+                    0
+                ]
+            }
         },
         "next": [
             "AwardWarRoomTelegramScroll",
@@ -809,11 +826,31 @@
             }
         },
         "action": {
-            "type": "Click"
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    -20,
+                    20,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                499,
+                45,
+                770,
+                635
+            ]
         },
         "next": [
-            "AwardWarRoomTelegramScrollClaim",
-            "AwardWarRoomTelegramAwardClaim"
+            "[JumpBack]AwardWarRoomTelegramScrollClaim",
+            "[JumpBack]AwardWarRoomTelegramAwardClaim",
+            "AwardWarRoomTelegramScroll",
+            "[JumpBack]ObtainedAwards",
+            "HomeButton"
         ]
     },
     "AwardWarRoomTelegramScrollClaim": {
@@ -837,11 +874,7 @@
         "action": {
             "type": "Click"
         },
-        "post_delay": 1500,
-        "next": [
-            "[JumpBack]ObtainedAwards",
-            "AwardWarRoomTelegramAwardClaim"
-        ]
+        "post_delay": 1500
     },
     "AwardWarRoomTelegramAwardClaim": {
         "doc": "领取下方奖励",
@@ -849,7 +882,6 @@
             "type": "OCR",
             "param": {
                 "expected": "领取",
-                // "only_rec": true,
                 "roi": [
                     656,
                     564,
@@ -861,11 +893,6 @@
         "action": {
             "type": "Click"
         },
-        "post_delay": 1500,
-        "next": [
-            "[JumpBack]ObtainedAwards",
-            "AwardWarRoomTelegramAwardClaim", // 第一次点击可能失效，此时回滚
-            "HomeButton"
-        ]
+        "post_delay": 1500
     }
 }
