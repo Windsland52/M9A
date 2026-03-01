@@ -600,17 +600,14 @@
     },
     "CCRefreshCard_pre": {
         "recognition": {
-            "type": "Custom",
+            "type": "And",
             "param": {
-                "custom_recognition": "MultiRecognition",
-                "custom_recognition_param": {
-                    "nodes": [
-                        "CCRemainMoney",
-                        "CCRefreshMoney_pre",
-                        "CCRoundPre"
-                    ],
-                    "return": "$1"
-                }
+                "all_of": [
+                    "CCRemainMoney",
+                    "CCRefreshMoney_pre",
+                    "CCRoundPre"
+                ],
+                "box_index": 1
             }
         },
         "action": {
@@ -620,16 +617,13 @@
     },
     "CCRefreshCard_post": {
         "recognition": {
-            "type": "Custom",
+            "type": "And",
             "param": {
-                "custom_recognition": "MultiRecognition",
-                "custom_recognition_param": {
-                    "nodes": [
-                        "CCRemainMoney",
-                        "CCRefreshMoney_post"
-                    ],
-                    "return": "$1"
-                }
+                "all_of": [
+                    "CCRemainMoney",
+                    "CCRefreshMoney_post"
+                ],
+                "box_index": 1
             }
         },
         "action": {
