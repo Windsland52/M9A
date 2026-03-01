@@ -849,6 +849,7 @@
             "[JumpBack]AwardWarRoomTelegramScrollClaim",
             "[JumpBack]AwardWarRoomTelegramAwardClaim",
             "AwardWarRoomTelegramScroll",
+            "[JumpBack]AwardWarRoomSelectSection",
             "[JumpBack]ObtainedAwards",
             "HomeButton"
         ]
@@ -894,5 +895,42 @@
             "type": "Click"
         },
         "post_delay": 1500
+    },
+    "AwardWarRoomSelectSection": {
+        "doc": "选择有可领取奖励的部分（解构进程/遗落事项）",
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [
+                    867,
+                    26,
+                    413,
+                    34
+                ],
+                "connected": true,
+                "count": 50,
+                "upper": [
+                    201,
+                    62,
+                    47
+                ],
+                "lower": [
+                    181,
+                    42,
+                    27
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    -20,
+                    20,
+                    0,
+                    0
+                ]
+            }
+        }
     }
 }
