@@ -146,6 +146,16 @@
         ]
     },
     "task": [],
+    "group": [
+        {
+            "name": "daily",
+            "label": "日常任务"
+        },
+        {
+            "name": "standalone",
+            "label": "独立任务"
+        }
+    ],
     "option": {},
     "import": [
         "resource/tasks/preset/Daily.json",
