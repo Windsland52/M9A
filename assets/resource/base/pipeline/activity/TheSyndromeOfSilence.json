@@ -787,7 +787,8 @@
         },
         "next": [
             "SOSNodeProcess"
-        ]
+        ],
+        "on_error": ["SOSMain"]
     },
     "SOSNodeProcess": {
         "action": {
