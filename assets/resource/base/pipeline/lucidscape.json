@@ -120,7 +120,8 @@
         },
         "next": [
             "HomeFlag",
-            "[JumpBack]HomeButton"
+            "[JumpBack]HomeButton",
+            "[JumpBack]BackButton"
         ]
     },
     "LucidscapeStageSelect": {
