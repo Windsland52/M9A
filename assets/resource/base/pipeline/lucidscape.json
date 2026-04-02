@@ -10,6 +10,7 @@
             "[JumpBack]EnterTheShow",
             "[JumpBack]ClickBlank",
             "[JumpBack]ArtificialSleepwalking",
+            "LucidscapeUnlocked",
             "[JumpBack]ReturnMain"
         ]
     },
@@ -48,6 +49,27 @@
         "next": [
             "LucidscapeStageSelect"
         ]
+    },
+    "LucidscapeUnlocked": {
+        "desc": "未解锁深眠域",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    863,
+                    531,
+                    133,
+                    35
+                ],
+                "expected": "浅眠域"
+            }
+        },
+        "next": [
+            "ResetReturnMain"
+        ],
+        "focus": {
+            "Node.Recognition.Succeeded": "warn:未解锁深眠域，本功能无法使用"
+        }
     },
     "LucidscapeTotalAwards": {
         "action": {
