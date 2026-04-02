@@ -51,7 +51,7 @@
         ]
     },
     "LucidscapeUnlocked": {
-        "desc": "未解锁深眠域",
+        "desc": "未解锁深眠域/醒梦域",
         "recognition": {
             "type": "OCR",
             "param": {
@@ -68,7 +68,7 @@
             "ResetReturnMain"
         ],
         "focus": {
-            "Node.Recognition.Succeeded": "warn:未解锁深眠域，本功能无法使用"
+            "Node.Recognition.Succeeded": "warn:未解锁深眠域/醒梦域，本功能无法使用"
         }
     },
     "LucidscapeTotalAwards": {

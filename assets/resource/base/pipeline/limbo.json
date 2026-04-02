@@ -2,6 +2,7 @@
     "Limbo": {
         "desc": "深眠域",
         "next": [
+            "LucidscapeUnlocked",
             "LimboEntryEnd",
             "LimboEnd",
             "LimboStageFlag",
