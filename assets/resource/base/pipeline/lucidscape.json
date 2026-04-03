@@ -68,7 +68,7 @@
             "ResetReturnMain"
         ],
         "focus": {
-            "Node.Recognition.Succeeded": "warn:未解锁深眠域/醒梦域，本功能无法使用"
+            "Node.Recognition.Succeeded": "<span style=\"color:darkorange;\">未解锁深眠域/醒梦域，本功能无法使用</span>"
         }
     },
     "LucidscapeTotalAwards": {
@@ -325,7 +325,7 @@
             "[JumpBack]HomeButton"
         ],
         "focus": {
-            "Node.Action.Starting": "err:战斗失败，任务结束"
+            "Node.Action.Starting": "<span style=\"color:crimson;\">战斗失败，任务结束</span>"
         }
     },
     "LucidscapeVictory": {
