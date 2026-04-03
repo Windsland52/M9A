@@ -4,7 +4,6 @@ import sys
 
 from . import pienv
 
-
 LEVEL_SHORT_NAMES = {
     "INFO": "info",
     "ERROR": "err",

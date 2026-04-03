@@ -5,7 +5,6 @@ import threading
 from dataclasses import dataclass, field
 from typing import Any
 
-
 _module_logger = logging.getLogger(__name__)
 
 
@@ -320,6 +319,7 @@ def resource_paths() -> list[str]:
     if not current:
         return []
     return list(current.path)
+
 
 __all__ = [
     "ENV_INTERFACE_VERSION",
