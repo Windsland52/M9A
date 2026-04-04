@@ -499,8 +499,7 @@ def agent(is_dev_mode=False):
         socket_id = sys.argv[-1]
         logger.debug(f"socket_id: {socket_id}")
 
-        if is_dev_mode:
-            log_pi_environment()
+        log_pi_environment()
         AgentServer.start_up(socket_id)
         logger.info("AgentServer启动")
         AgentServer.join()
