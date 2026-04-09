@@ -152,29 +152,34 @@ jobs:
           # 转换 PNG 到 ICO
           magick convert assets/logo.png -define icon:auto-resize=256,128,64,48,32,24,16 m9a.ico
 
-      - name: Modify MFAAvalonia exe icon
+      - name: Modify Windows exe icons
         if: matrix.arch == 'x86_64'
         shell: bash
         run: |
           # 下载 rcedit
           curl -L https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe -o rcedit.exe
 
-          # 修改 exe 图标
-          ./rcedit.exe "MFA/MFAAvalonia.exe" --set-icon "m9a.ico"
+          # 修改 MFAAvalonia 图标（如果存在）
+          if [ -f "MFA/MFAAvalonia.exe" ]; then
+            ./rcedit.exe "MFA/MFAAvalonia.exe" --set-icon "m9a.ico"
+            echo "MFAAvalonia icon modified successfully"
+          else
+            echo "MFAAvalonia exe not found, skipping icon update."
+          fi
 
-          echo "MFAAvalonia icon modified successfully"
-
-          # 修改 MXU 图标
+          # 修改 MXU 图标（如果存在）
           if [ -f "MXU/mxu.exe" ]; then
             ./rcedit.exe "MXU/mxu.exe" --set-icon "m9a.ico"
             echo "MXU icon modified successfully"
+          else
+            echo "MXU exe not found, skipping icon update."
           fi
 
       - name: Setup Embed Python on Windows
         shell: bash
         run: |
           python tools/ci/setup_embed_python.py
-          
+
       - name: Download Python dependencies
         shell: bash
         run: |
