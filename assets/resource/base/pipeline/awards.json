@@ -1126,6 +1126,7 @@
     },
     "AwardRoaringRevelry": {
         "desc": "活动奖励·吼吼狂欢夜",
+        "max_hit": 10,
         "recognition": {
             "type": "And",
             "param": {
@@ -1190,7 +1191,8 @@
         "next": [
             "AwardRoaringRevelryEnd",
             "[JumpBack]ObtainedAwards",
-            "[JumpBack]AwardRoaringRevelryClaim"
+            "[JumpBack]AwardRoaringRevelryClaim",
+            "AwardRoaringRevelry"
         ]
     },
     "AwardRoaringRevelryEnd": {
