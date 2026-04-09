@@ -190,6 +190,7 @@
                         }
                     },
                     "option": [
+                        "活动奖励·狂想与解构",
                         "活动奖励·崭新的电波",
                         "活动奖励·吼吼狂欢夜",
                         "活动奖励·播种于月光下"
@@ -199,6 +200,28 @@
                     "name": "No",
                     "pipeline_override": {
                         "AwardBox": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        },
+        "活动奖励·狂想与解构": {
+            "type": "switch",
+            "label": "狂想与解构",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "AwardEuphoriaAndLucidity": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "AwardEuphoriaAndLucidity": {
                             "enabled": false
                         }
                     }

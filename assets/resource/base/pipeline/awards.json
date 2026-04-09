@@ -939,12 +939,90 @@
         },
         "next": [
             "[JumpBack]ObtainedAwards",
+            "[JumpBack]AwardEuphoriaAndLucidity",
             "[JumpBack]AwardBreakingSignals",
             "[JumpBack]AwardRoaringRevelry",
             "[JumpBack]AwardMoonlightGardening",
             "BackButton",
             "AwardBox"
         ]
+    },
+    "AwardEuphoriaAndLucidity": {
+        "desc": "活动·狂想与解构",
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "sub_name": "EventName",
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    36,
+                                    139,
+                                    139,
+                                    413
+                                ],
+                                "expected": "狂想与解构"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "ColorMatch",
+                            "param": {
+                                "roi": "EventName",
+                                "roi_offset": [
+                                    123,
+                                    -29,
+                                    -71,
+                                    10
+                                ],
+                                "lower": [
+                                    179,
+                                    41,
+                                    27
+                                ],
+                                "upper": [
+                                    199,
+                                    61,
+                                    47
+                                ],
+                                "connected": true,
+                                "count": 50
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1500,
+        "next": [
+            "AwardEuphoriaAndLucidityAward"
+        ]
+    },
+    "AwardEuphoriaAndLucidityAward": {
+        "desc": "狂想与解构-领取签到奖励",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1057,
+                    609,
+                    72,
+                    34
+                ],
+                "expected": "领取"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1500
     },
     "AwardBreakingSignals": {
         "desc": "活动·崭新的电波",
