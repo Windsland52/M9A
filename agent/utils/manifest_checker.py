@@ -16,7 +16,7 @@ from . import logger
 # 配置
 MANIFEST_URL = "https://api.1999.fan/api/manifest.json"
 API_BASE_URL = "https://api.1999.fan/api"
-CACHE_FILE = Path("./config/manifest_cache.json")
+CACHE_FILE = Path("./resource/data/manifest_cache.json")
 REQUEST_TIMEOUT = 5
 
 # 不使用系统代理（国内服务器直连更快）

@@ -102,8 +102,8 @@ def install_agent():
 
 def install_manifest_cache():
     """生成初始 manifest 缓存，加速用户首次启动"""
-    config_dir = install_path / "config"
-    success = generate_manifest_cache(config_dir)
+    data_dir = install_path / "resource" / "data"
+    success = generate_manifest_cache(data_dir)
     if success:
         print("Manifest cache generated successfully.")
     else:

@@ -58,7 +58,7 @@ def generate_manifest_cache(output_dir: Path) -> bool:
     从远程递归获取所有 manifest 并生成缓存文件
 
     Args:
-        output_dir: 输出目录（如 install/config）
+        output_dir: 输出目录（如 install/resource/data）
 
     Returns:
         bool: 是否成功
@@ -123,9 +123,9 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         output_dir = Path(sys.argv[1])
     else:
-        # 默认输出到 install/config
+        # 默认输出到 install/resource/data
         script_dir = Path(__file__).parent
-        output_dir = script_dir.parent.parent / "install" / "config"
+        output_dir = script_dir.parent.parent / "install" / "resource" / "data"
 
     success = generate_manifest_cache(output_dir)
     sys.exit(0 if success else 1)
