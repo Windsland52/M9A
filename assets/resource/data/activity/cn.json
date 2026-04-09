@@ -682,17 +682,17 @@
                                     26
                                 ]
                             }
-                        },
-                        "ActivityClickPreStage": {
-                            "action": {
-                                "param": {
-                                    "target": [
-                                        25,
-                                        334,
-                                        32,
-                                        53
-                                    ]
-                                }
+                        }
+                    },
+                    "ActivityClickPreStage": {
+                        "action": {
+                            "param": {
+                                "target": [
+                                    25,
+                                    334,
+                                    32,
+                                    53
+                                ]
                             }
                         }
                     }
@@ -754,6 +754,45 @@
                             }
                         }
                     },
+                    "ActivityCombatStageNum": {
+                        "recognition": {
+                            "param": {
+                                "roi": [
+                                    226,
+                                    29,
+                                    815,
+                                    234
+                                ],
+                                "expected": "[0-1][0-9]|20"
+                            }
+                        }
+                    },
+                    "ActivityCombatStageCost": {
+                        "recognition": {
+                            "param": {
+                                "roi": [
+                                    900,
+                                    629,
+                                    101,
+                                    54
+                                ]
+                            }
+                        }
+                    },
+                    "ActivityTargetLevel": {
+                        "attach": {
+                            "clicks": [
+                                [
+                                    912,
+                                    584
+                                ],
+                                [
+                                    1211,
+                                    585
+                                ]
+                            ]
+                        }
+                    },
                     "ActivityTargetLevelRec": {
                         "recognition": {
                             "param": {
@@ -762,6 +801,18 @@
                                     573,
                                     57,
                                     26
+                                ]
+                            }
+                        }
+                    },
+                    "ActivityClickPreStage": {
+                        "action": {
+                            "param": {
+                                "target": [
+                                    25,
+                                    334,
+                                    32,
+                                    53
                                 ]
                             }
                         }
