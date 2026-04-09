@@ -3,6 +3,7 @@
         "post_wait_freezes": 300,
         "timeout": 60000,
         "next": [
+            "[JumpBack]Confirm",
             "HomeFlagFirst",
             "StartGame",
             "[JumpBack]Start1999",
@@ -18,7 +19,6 @@
             "[JumpBack]Reward",
             "[JumpBack]SignInReward",
             "[JumpBack]ClosePageFirst",
-            "[JumpBack]Confirm",
             "[JumpBack]VictoryReturn",
             "[JumpBack]Downloading",
             "[JumpBack]CandyCancel",
@@ -39,6 +39,7 @@
             }
         },
         "next": [
+            "[JumpBack]Confirm",
             "HomeFlagCloseReturnMain",
             "[JumpBack]HomeButton",
             "[JumpBack]BackButton",
@@ -50,7 +51,6 @@
             "[JumpBack]Reward",
             "[JumpBack]ClosePage",
             "[JumpBack]StartGame",
-            "[JumpBack]Confirm",
             "[JumpBack]VictoryReturn",
             "[JumpBack]Download",
             "[JumpBack]Downloading",
@@ -86,6 +86,7 @@
             }
         },
         "next": [
+            "[JumpBack]Confirm",
             "HomeFlagFirst",
             "StartGame",
             "[JumpBack]HomeLoading_wait",
@@ -95,7 +96,6 @@
             "[JumpBack]Reward",
             "[JumpBack]SignInReward",
             "[JumpBack]ClickTarot",
-            "[JumpBack]Confirm",
             "[JumpBack]ClosePageFirst",
             "[JumpBack]CandyCancel",
             "[JumpBack]BackButton",
@@ -193,6 +193,7 @@
             "type": "Click"
         },
         "next": [
+            "[JumpBack]Confirm",
             "HomeFlagFirst",
             "HomeLoading_wait",
             "[JumpBack]SkipButton",
@@ -204,7 +205,6 @@
             "[JumpBack]Reward",
             "[JumpBack]SignInReward",
             "[JumpBack]ClickTarot",
-            "[JumpBack]Confirm",
             "[JumpBack]ClickBlank",
             "[JumpBack]ClosePageFirst",
             "[JumpBack]CandyCancel",
@@ -437,6 +437,7 @@
         },
         "post_delay": 3000,
         "next": [
+            "[JumpBack]Confirm",
             "HomeFlag",
             "[JumpBack]HomeLoading_wait",
             "[JumpBack]ObtainedAwards",
@@ -445,7 +446,6 @@
             "[JumpBack]Reward",
             "[JumpBack]SignInReward",
             "[JumpBack]ClickTarot",
-            "[JumpBack]Confirm",
             "[JumpBack]ClosePageFirst",
             "[JumpBack]BackButton",
             "[JumpBack]HomeButton",
