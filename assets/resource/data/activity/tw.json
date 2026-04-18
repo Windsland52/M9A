@@ -194,7 +194,7 @@
         "end_time": 1779915599000,
         "activity": {
             "combat": {
-                "event_type": "MainStory",
+                "event_type": "SideStory",
                 "start_time": 1776304800000,
                 "end_time": 1779656399000
             },

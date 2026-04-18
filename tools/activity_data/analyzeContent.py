@@ -7,6 +7,25 @@ import pytz
 from bs4 import BeautifulSoup
 
 
+def _extract_html_text_lines(content: str):
+    soup = BeautifulSoup(content, "html.parser")
+    lines = []
+    for text in soup.stripped_strings:
+        normalized = re.sub(r"\s+", " ", text).strip()
+        if normalized:
+            lines.append(normalized)
+    return lines
+
+
+def _find_following_line_with(lines, start_idx: int, must_contain, window: int = 8):
+    end_idx = min(len(lines), start_idx + window)
+    for i in range(start_idx, end_idx):
+        candidate = lines[i]
+        if all(token in candidate for token in must_contain):
+            return candidate
+    return None
+
+
 def analyzeContent(resource: str, content):
     activity = {}
 
@@ -64,101 +83,195 @@ def analyzeContent(resource: str, content):
                 continue
         return activity
     elif resource == "en":
-
-        soup = BeautifulSoup(content, "html.parser")
-        p_tags = soup.find_all("p")
+        lines = _extract_html_text_lines(content)
 
         main_compelete_flag = False
 
-        for i, p in enumerate(p_tags):
-            html_content = str(p)
-            if "New Main Story" in html_content:
+        for text in lines:
+            if "New Main Story" in text:
                 activity["combat"] = {}
                 activity["combat"]["event_type"] = "MainStory"
                 break
-            elif "Main Event" in html_content:
+            elif "Main Event" in text:
                 activity["combat"] = {}
                 activity["combat"]["event_type"] = "SideStory"
                 break
 
-        for i, p in enumerate(p_tags):
-            html_content = str(p)
-            text = p.get_text().strip()
-            if (
-                not main_compelete_flag
-                and activity["combat"]["event_type"] == "MainStory"
-            ):
+        for i, text in enumerate(lines):
+            combat_event_type = activity.get("combat", {}).get("event_type")
+            if not main_compelete_flag and combat_event_type == "MainStory":
                 if "After the version update on" in text:
                     main_compelete_flag = True
                     combat_duration = process_combat_duration_en(text)
-                    activity["combat"]["start_time"], activity["combat"]["end_time"] = (
-                        convert_to_timestamps(combat_duration)
-                    )
+                    try:
+                        (
+                            activity["combat"]["start_time"],
+                            activity["combat"]["end_time"],
+                        ) = convert_to_timestamps(combat_duration)
+                    except ValueError:
+                        pass
+
             if "Story Mode" in text:
-                if "UTC" not in text:
-                    text = p.find_next("p").get_text().strip()
-                combat_duration = process_combat_duration_en(text)
-                activity["combat"]["start_time"], activity["combat"]["end_time"] = (
-                    convert_to_timestamps(combat_duration)
+                activity.setdefault("combat", {})
+                activity["combat"].setdefault("event_type", "SideStory")
+                duration_text = text
+                if "UTC" not in duration_text:
+                    duration_text = _find_following_line_with(lines, i + 1, ["UTC"], 4)
+                if not duration_text:
+                    continue
+
+                combat_duration = process_combat_duration_en(duration_text)
+                try:
+                    (
+                        activity["combat"]["start_time"],
+                        activity["combat"]["end_time"],
+                    ) = convert_to_timestamps(combat_duration)
+                except ValueError:
+                    continue
+
+            if "Main Event" in text and "start_time" not in activity.get("combat", {}):
+                activity.setdefault("combat", {})
+                activity["combat"].setdefault("event_type", "SideStory")
+                duration_text = _find_following_line_with(
+                    lines,
+                    i + 1,
+                    ["[Duration]", "UTC"],
+                    10,
                 )
+                if not duration_text:
+                    continue
+
+                combat_duration = process_combat_duration_en(duration_text)
+                try:
+                    (
+                        activity["combat"]["start_time"],
+                        activity["combat"]["end_time"],
+                    ) = convert_to_timestamps(combat_duration)
+                except ValueError:
+                    continue
+
             if "[Event Stages]" in text:
                 activity["re-release"] = {}
-                if "UTC" not in text:
-                    text = p.find_next("p").get_text().strip()
-                re_release_duration = process_combat_duration_en(text)
-                (
-                    activity["re-release"]["start_time"],
-                    activity["re-release"]["end_time"],
-                ) = convert_to_timestamps(re_release_duration)
+                duration_text = text
+                if "UTC" not in duration_text:
+                    duration_text = _find_following_line_with(lines, i + 1, ["UTC"], 4)
+                if not duration_text:
+                    continue
+
+                re_release_duration = process_combat_duration_en(duration_text)
+                try:
+                    (
+                        activity["re-release"]["start_time"],
+                        activity["re-release"]["end_time"],
+                    ) = convert_to_timestamps(re_release_duration)
+                except ValueError:
+                    continue
                 continue
 
-    elif resource == "jp":
+        if "combat" in activity and "start_time" not in activity["combat"]:
+            for text in lines:
+                if "[Duration]" in text and "UTC" in text:
+                    combat_duration = process_combat_duration_en(text)
+                    try:
+                        (
+                            activity["combat"]["start_time"],
+                            activity["combat"]["end_time"],
+                        ) = convert_to_timestamps(combat_duration)
+                        break
+                    except ValueError:
+                        continue
 
-        soup = BeautifulSoup(content, "html.parser")
-        p_tags = soup.find_all("p")
+    elif resource == "jp":
+        lines = _extract_html_text_lines(content)
 
         main_compelete_flag = False
 
-        for i, p in enumerate(p_tags):
-            html_content = str(p)
-            if "新メインストーリー" in html_content:
+        for text in lines:
+            if "新メインストーリー" in text or "新しいメインストーリー" in text:
                 activity["combat"] = {}
                 activity["combat"]["event_type"] = "MainStory"
                 break
-            elif "イベント本編" in html_content:
+            elif "イベント本編" in text:
                 activity["combat"] = {}
                 activity["combat"]["event_type"] = "SideStory"
                 break
 
-        for i, p in enumerate(p_tags):
-            html_content = str(p)
-            text = p.get_text().strip()
-            if (
-                not main_compelete_flag
-                and activity["combat"]["event_type"] == "MainStory"
-            ):
+        for i, text in enumerate(lines):
+            combat_event_type = activity.get("combat", {}).get("event_type")
+            if not main_compelete_flag and combat_event_type == "MainStory":
                 if "イベント期間" in text:
                     main_compelete_flag = True
                     combat_duration = process_combat_duration_jp(text)
-                    activity["combat"]["start_time"], activity["combat"]["end_time"] = (
-                        convert_to_timestamps(combat_duration)
-                    )
+                    try:
+                        (
+                            activity["combat"]["start_time"],
+                            activity["combat"]["end_time"],
+                        ) = convert_to_timestamps(combat_duration)
+                    except ValueError:
+                        pass
+
             # Story Mode
             if "ストーリーモード" in text:
+                activity.setdefault("combat", {})
+                activity["combat"].setdefault("event_type", "SideStory")
                 combat_duration = process_combat_duration_jp(text)
-                activity["combat"]["start_time"], activity["combat"]["end_time"] = (
-                    convert_to_timestamps(combat_duration)
-                )
+                try:
+                    (
+                        activity["combat"]["start_time"],
+                        activity["combat"]["end_time"],
+                    ) = convert_to_timestamps(combat_duration)
+                except ValueError:
+                    continue
                 continue
+
+            if "イベント本編" in text and "start_time" not in activity.get(
+                "combat", {}
+            ):
+                activity.setdefault("combat", {})
+                activity["combat"].setdefault("event_type", "SideStory")
+                duration_text = _find_following_line_with(
+                    lines,
+                    i + 1,
+                    ["イベント期間"],
+                    10,
+                )
+                if not duration_text:
+                    continue
+
+                combat_duration = process_combat_duration_jp(duration_text)
+                try:
+                    (
+                        activity["combat"]["start_time"],
+                        activity["combat"]["end_time"],
+                    ) = convert_to_timestamps(combat_duration)
+                except ValueError:
+                    continue
+
             # re-release
             if "【イベントステージ】開放期間：" in text or "ステージ開放期間" in text:
                 activity["re-release"] = {}
                 re_release_duration = process_combat_duration_jp(text)
-                (
-                    activity["re-release"]["start_time"],
-                    activity["re-release"]["end_time"],
-                ) = convert_to_timestamps(re_release_duration)
+                try:
+                    (
+                        activity["re-release"]["start_time"],
+                        activity["re-release"]["end_time"],
+                    ) = convert_to_timestamps(re_release_duration)
+                except ValueError:
+                    continue
                 continue
+
+        if "combat" in activity and "start_time" not in activity["combat"]:
+            for text in lines:
+                if "イベント期間" in text:
+                    combat_duration = process_combat_duration_jp(text)
+                    try:
+                        (
+                            activity["combat"]["start_time"],
+                            activity["combat"]["end_time"],
+                        ) = convert_to_timestamps(combat_duration)
+                        break
+                    except ValueError:
+                        continue
 
     elif resource == "tw":
 
@@ -176,17 +289,22 @@ def analyzeContent(resource: str, content):
                 base_year = int(news_time_match.group(1))
                 base_month = int(news_time_match.group(2))
 
-        p_tags = soup.find_all("p")
+        lines = _extract_html_text_lines(content)
         current_section = None
 
-        for p in p_tags:
-            text = p.get_text().strip()
+        for text in lines:
             if not text:
                 continue
 
-            if "全新主線" in text or "活動正篇" in text:
+            if "全新主線" in text:
                 activity.setdefault("combat", {})
                 activity["combat"]["event_type"] = "MainStory"
+                current_section = "combat"
+                continue
+
+            if "活動正篇" in text or "活動本篇" in text:
+                activity.setdefault("combat", {})
+                activity["combat"]["event_type"] = "SideStory"
                 current_section = "combat"
                 continue
 

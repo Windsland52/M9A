@@ -1,7 +1,8 @@
 import os
+import json
 
-from getContent import *
-from analyzeContent import *
+from getContent import getContent
+from analyzeContent import analyzeContent
 
 
 def save_activity_data(resource, data):
@@ -69,17 +70,60 @@ def save_activity_data(resource, data):
 
 
 if __name__ == "__main__":
+    updated_resources = []
+    skipped_resources = []
+    failed_resources = []
+
     for resource in ["cn", "en", "jp", "tw"]:
-        success, result = getContent(resource)
-        if success:
+        try:
+            success, result = getContent(resource)
+            if not success:
+                print(f"[{resource}] Failed to fetch matching activity notice")
+                failed_resources.append(resource)
+                continue
+
+            if result is None:
+                print(f"[{resource}] Fetch reported success but returned empty result")
+                failed_resources.append(resource)
+                continue
+
             activity = analyzeContent(resource, result[-1])
-            end_time = activity["combat"]["end_time"] + 3 * 24 * 60 * 60 * 1000
+            combat = activity.get("combat", {})
+            start_time = combat.get("start_time")
+            combat_end_time = combat.get("end_time")
+
+            if start_time is None or combat_end_time is None:
+                print(
+                    f"[{resource}] Parsed notice but combat time is incomplete, "
+                    f"skipping version {result[1]}"
+                )
+                failed_resources.append(resource)
+                continue
+
+            end_time = combat_end_time + 3 * 24 * 60 * 60 * 1000
             data = {
                 f"{result[1]}": {
                     "version_name": result[2],
-                    "start_time": activity["combat"]["start_time"],
+                    "start_time": start_time,
                     "end_time": end_time,
                     "activity": activity,
                 }
             }
-            save_activity_data(resource, data)
+
+            saved = save_activity_data(resource, data)
+            if saved:
+                updated_resources.append(resource)
+            else:
+                skipped_resources.append(resource)
+        except Exception as e:
+            print(f"[{resource}] Unexpected error: {e}")
+            failed_resources.append(resource)
+
+    print(
+        "Summary:",
+        {
+            "updated": updated_resources,
+            "skipped": skipped_resources,
+            "failed": failed_resources,
+        },
+    )

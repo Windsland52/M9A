@@ -358,5 +358,33 @@
                 }
             }
         }
+    },
+    "3.3": {
+        "version_name": "The Campaign's Tale",
+        "start_time": 1772722800000,
+        "end_time": 1776329999000,
+        "activity": {
+            "combat": {
+                "event_type": "MainStory",
+                "start_time": 1772722800000,
+                "end_time": 1776070799000
+            }
+        }
+    },
+    "3.4": {
+        "version_name": "Spring Unending",
+        "start_time": 1776348000000,
+        "end_time": 1779958799000,
+        "activity": {
+            "combat": {
+                "event_type": "SideStory",
+                "start_time": 1776348000000,
+                "end_time": 1779699599000
+            },
+            "re-release": {
+                "start_time": 1778835600000,
+                "end_time": 1779699599000
+            }
+        }
     }
 }

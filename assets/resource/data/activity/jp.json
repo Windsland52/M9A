@@ -358,5 +358,33 @@
                 }
             }
         }
+    },
+    "3.3": {
+        "version_name": "遠征譚",
+        "start_time": 1772672400000,
+        "end_time": 1776283199000,
+        "activity": {
+            "combat": {
+                "event_type": "MainStory",
+                "start_time": 1772672400000,
+                "end_time": 1776023999000
+            }
+        }
+    },
+    "3.4": {
+        "version_name": "春不老",
+        "start_time": 1776301200000,
+        "end_time": 1779911999000,
+        "activity": {
+            "combat": {
+                "event_type": "SideStory",
+                "start_time": 1776301200000,
+                "end_time": 1779652799000
+            },
+            "re-release": {
+                "start_time": 1778788800000,
+                "end_time": 1779652799000
+            }
+        }
     }
 }
