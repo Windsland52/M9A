@@ -379,7 +379,22 @@
             "combat": {
                 "event_type": "SideStory",
                 "start_time": 1776301200000,
-                "end_time": 1779652799000
+                "end_time": 1779652799000,
+                "override": {
+                    "ActivityMainChapter": {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    968,
+                                    619,
+                                    121,
+                                    70
+                                ]
+                            }
+                        }
+                    }
+                }
             },
             "re-release": {
                 "start_time": 1778788800000,
