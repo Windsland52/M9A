@@ -796,7 +796,8 @@
             "param": {
                 "custom_action": "SOSNodeProcess"
             }
-        }
+        },
+        "on_error": ["SOSMain"]
     },
     // 主页面各种弹窗处理,
     "SOSArtefactsObtained": {
