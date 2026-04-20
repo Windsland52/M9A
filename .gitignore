@@ -460,3 +460,4 @@ python/
 config/
 tmp/
 agent/libs/*.pyd
+.codex
