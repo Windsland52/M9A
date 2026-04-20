@@ -145,7 +145,7 @@ class SubTask(CustomAction):
                 continue
 
             task_detail = context.run_task(task_name)
-            if task_detail and task_detail.status._status.name == "failed":
+            if task_detail and task_detail.status.failed:
                 logger.error(f"子任务运行失败: index={index}, task={task_name}")
                 has_sub_failure = True
                 if not continue_on_failure:
