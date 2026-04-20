@@ -1059,7 +1059,8 @@
             "ODR_SelectImminent",
             "ODR_Exit",
             "ODR_QueryChessLocation"
-        ]
+        ],
+        "on_error": ["ODRInterrupts"]
     },
     "ODR_Levelup": {
         "recognition": {
@@ -2015,5 +2016,14 @@
                 "template": "OutsideDeduction/SOD_Main.png"
             }
         }
+    },
+    "ODRInterrupts": {
+        "next": [
+            "[JumpBack]ODR_Levelup",
+            "[JumpBack]ODR_ItemSelect_NoNext",
+            "[JumpBack]ODR_ItemLose",
+            "[JumpBack]SOD_Acquire_NoNext",
+            "ODR_MainLoop"
+        ]
     }
 }
