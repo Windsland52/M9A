@@ -139,7 +139,6 @@ The method to call the above recognition process in the pipeline is as follows. 
 **Project Examples**:
 
 - [`MultiRecognition`](https://github.com/MAA1999/M9A/blob/main/agent/custom/reco/general.py) - Multi-algorithm combined recognition, supports AND/OR/custom logic
-- [`Count`](https://github.com/MAA1999/M9A/blob/main/agent/custom/reco/general.py) - Recognition counter, stops after specified number of executions
 - [`CheckStopping`](https://github.com/MAA1999/M9A/blob/main/agent/custom/reco/general.py) - Check if task is about to stop
 
 ### 3. Sink (Event Listener)

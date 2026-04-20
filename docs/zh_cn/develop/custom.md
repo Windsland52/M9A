@@ -139,7 +139,6 @@ class YourRecognition(CustomRecognition):
 **项目实例**：
 
 - [`MultiRecognition`](https://github.com/MAA1999/M9A/blob/main/agent/custom/reco/general.py) - 多算法组合识别，支持 AND/OR/自定义逻辑
-- [`Count`](https://github.com/MAA1999/M9A/blob/main/agent/custom/reco/general.py) - 识别计数器，执行指定次数后停止
 - [`CheckStopping`](https://github.com/MAA1999/M9A/blob/main/agent/custom/reco/general.py) - 检查任务是否即将停止
 
 ### 3. Sink（事件监听器）
