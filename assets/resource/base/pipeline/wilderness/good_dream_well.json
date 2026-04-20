@@ -2,7 +2,8 @@
     "WildernessGoodDreamWellTask": {
         "recognition": "DirectHit",
         "next": [
-            "EnterGoodDreamWell"
+            "EnterGoodDreamWell",
+            "[JumpBack]ExpandProduct"
         ]
     },
     "EnterGoodDreamWell": {

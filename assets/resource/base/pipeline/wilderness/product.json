@@ -2,8 +2,44 @@
     "WildernessProductTask": {
         "recognition": "DirectHit",
         "next": [
-            "EnterProduct"
+            "EnterProduct",
+            "[JumpBack]ExpandProduct"
         ]
+    },
+    "ExpandProduct": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    7,
+                    669,
+                    90,
+                    26
+                ],
+                "expected": ["魔精公司"],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    0,
+                    -30,
+                    0,
+                    0
+                ]
+            }
+        },
+        "post_wait_freezes": {
+            "time": 300,
+            "target": [
+                133,
+                598,
+                407,
+                100
+            ]
+        }
     },
     "EnterProduct": {
         "enabled": true,

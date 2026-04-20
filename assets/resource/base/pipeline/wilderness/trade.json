@@ -2,7 +2,8 @@
     "WildernessTradeTask": {
         "recognition": "DirectHit",
         "next": [
-            "EnterTrade"
+            "EnterTrade",
+            "[JumpBack]ExpandProduct"
         ]
     },
     "EnterTrade": {
