@@ -617,7 +617,8 @@
             "NoJukeboxAwards",
             "[JumpBack]ObtainedAwards",
             "[JumpBack]ExitEdition",
-            "[JumpBack]JukeboxExitPurchase"
+            "[JumpBack]JukeboxExitPurchase",
+            "[JumpBack]ClickBlank"
         ]
     },
     "ExitEdition": {
