@@ -1,9 +1,16 @@
 import type { FullConfig } from '@nekosu/maa-tools'
+import { extractTaskRef, parseTask } from '@nekosu/maa-tools/pm'
 import type { PropSelectorResult } from '@nekosu/maa-tools/pm'
+
+declare global {
+  interface ImportMeta {
+    readonly dirname: string
+  }
+}
 
 const config: FullConfig = {
   cwd: import.meta.dirname,
-  maaVersion: '5.9.2',
+  maaVersion: 'latest',
   interfacePath: 'assets/interface.json',
   parser: {
     customReco: (name, param, utils) => {
@@ -37,17 +44,44 @@ const config: FullConfig = {
       }
       return result
     },
-    customAction: (name, param, utils) => {
+    customAction: function (name, param, utils) {
       const result: PropSelectorResult[] = []
+      const pushTaskRef = (node: PropSelectorResult['node']) => {
+        result.push({
+          node,
+          type: 'taskRef',
+          missingPolicy: 'error',
+        })
+      }
+
       if (name === 'DisableNode') {
         for (const [key, obj] of utils.parseObject(param)) {
           if (key === 'node_name') {
             if (utils.isString(obj)) {
-              result.push({
-                node: obj,
-                type: 'taskRef',
-                missingPolicy: 'error',
-              })
+              pushTaskRef(obj)
+            }
+          }
+        }
+      } else if (name === 'NodeOverride') {
+        for (const [, overrideNode, propNode] of utils.parseObject(param)) {
+          pushTaskRef(propNode)
+
+          if (overrideNode.type === 'object') {
+            const info = parseTask(overrideNode, this)
+            for (const ref of info.refs) {
+              const target = extractTaskRef(ref)
+              if (!target || !utils.isString(ref.location)) {
+                continue
+              }
+
+              if (target === ref.location.value) {
+                pushTaskRef(ref.location)
+              } else {
+                pushTaskRef({
+                  ...ref.location,
+                  value: target,
+                })
+              }
             }
           }
         }
@@ -56,11 +90,7 @@ const config: FullConfig = {
           if (key === 'nodes') {
             for (const task of utils.parseArray(obj)) {
               if (utils.isString(task)) {
-                result.push({
-                  node: task,
-                  type: 'taskRef',
-                  missingPolicy: 'error',
-                })
+                pushTaskRef(task)
               }
             }
           }
@@ -70,11 +100,7 @@ const config: FullConfig = {
           if (key === 'sub') {
             for (const task of utils.parseArray(obj)) {
               if (utils.isString(task)) {
-                result.push({
-                  node: task,
-                  type: 'taskRef',
-                  missingPolicy: 'error',
-                })
+                pushTaskRef(task)
               }
             }
           }
