@@ -512,5 +512,6 @@
     "resource/base/image/StartUp/HomeFlag/HomeFlag": "1de040120c40bffcbf31d2d142ee14e893f144f96d40483c4d4a2bdeebf73a14",
     "resource/base/image/StartUp/HomeFlag/HomeFlag3.4": "fabe5ae48cb0f5b7a4b324a45b62affdb74f1b45185486979efdc3f7081ad923",
     "resource/base/image/UTTU/UTTU_stage_flag": "046bc9cb44d17fa7beb49a2d4975616bb4b2744e8cab08c550a09fb54cda4ac9",
-    "resource/announcement/images/uttu": "498ebc06b5dd51bf3f89965fc16f09414188dbffcd0f0e3a71967f1a4e83aa15"
+    "resource/announcement/images/uttu": "498ebc06b5dd51bf3f89965fc16f09414188dbffcd0f0e3a71967f1a4e83aa15",
+    "resource/base/image/RedeemCode/Error": "4832cb501e1540f4f38cc5065b0e4a5474507492e2b574847d1fcbfd913f174e"
 }
