@@ -17,9 +17,9 @@
             }
         },
         "next": [
+            "[JumpBack]ReturnMain",
             "MainMenuFlag",
-            "[JumpBack]MainMenuEntry",
-            "[JumpBack]ReturnMain"
+            "[JumpBack]MainMenuEntry"
         ]
     },
     "redeem_codeFlagInUserSettings": {

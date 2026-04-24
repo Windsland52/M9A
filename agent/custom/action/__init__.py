@@ -10,6 +10,7 @@ from .syndrome_of_silence import *
 from .critter_crash import *
 from .redeem_code import *
 from .reward import *
+from .record_id import *
 
 __all__ = [
     "DisableNode",
@@ -47,4 +48,5 @@ __all__ = [
     "ResetEatCandyFlag",
     "RedeemCode",
     "RewardHandler",
+    "RecordID",
 ]

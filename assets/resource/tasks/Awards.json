@@ -299,9 +299,6 @@
             "cases": [
                 {
                     "name": "Yes",
-                    "option": [
-                        "单账号(迷思海)"
-                    ],
                     "pipeline_override": {
                         "AwardReveriesInTheRain": {
                             "enabled": true
@@ -313,24 +310,6 @@
                     "pipeline_override": {
                         "AwardReveriesInTheRain": {
                             "enabled": false
-                        }
-                    }
-                }
-            ]
-        },
-        "单账号(迷思海)": {
-            "type": "switch",
-            "label": "单账号",
-            "cases": [
-                {
-                    "name": "Yes",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {
-                        "JudgeDepthsOfMythWeekly": {
-                            "action": "DoNothing"
                         }
                     }
                 }

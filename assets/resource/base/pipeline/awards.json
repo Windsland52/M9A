@@ -1,8 +1,8 @@
 {
     "Awards": {
         "next": [
-            "AwardsMainFlag",
-            "[JumpBack]ReturnMain"
+            "[JumpBack]ReturnMain",
+            "AwardsMainFlag"
         ]
     },
     "AwardsMainFlag": {

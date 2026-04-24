@@ -15,8 +15,8 @@
             }
         },
         "next": [
-            "EnterBank",
-            "[JumpBack]ReturnMain"
+            "[JumpBack]ReturnMain",
+            "EnterBank"
         ]
     },
     "EnterBank": {

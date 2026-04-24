@@ -90,7 +90,6 @@ Automatically complete Awakening Dream battles, including the following options:
 
 Automatically purchase specified items at the bank, including the following options:
 
-- **Single Account Mode**: In single account mode, it will skip tasks already executed in the current cycle
 - **Counter Specials**: Purchase counter special items
 - **Lower Counter**: Purchase lower counter items
 - **Psychube Observation**: Purchase psychube observation
@@ -107,8 +106,6 @@ Claim various rewards, including the following options:
 ## Suspended in the Rain: Mystery Sea
 
 Complete "Think" weekly sweep task.
-
-- **Single Account Mode**: In single account mode, it will skip tasks already executed in the current cycle
 
 ::: note
 This feature only completes "Think" weekly sweep

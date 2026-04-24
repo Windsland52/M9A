@@ -399,7 +399,35 @@
                     64
                 ]
             }
-        }
+        },
+        "next": ["RecordId"]
+    },
+    "RecordId": {
+        "desc": "记录ID",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    1022,
+                    419,
+                    194,
+                    166
+                ],
+                "template": [
+                    "StartUp/HomeFlag/"
+                ]
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "RecordID"
+            }
+        },
+        "next": [
+            "is_default_theme",
+            "not_default_theme"
+        ]
     },
     "HomeFlagFirst": {
         "recognition": {
@@ -471,8 +499,7 @@
             }
         },
         "next": [
-            "is_default_theme",
-            "not_default_theme"
+            "RecordId"
         ]
     },
     "BackButton": {

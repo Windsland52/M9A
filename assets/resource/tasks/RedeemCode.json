@@ -4,10 +4,10 @@
             "name": "使用兑换码",
             "entry": "redeem_code",
             "option": [
-                "自定义兑换码",
-                "单账号(兑换码)"
+                "自定义兑换码"
             ],
-            "group": ["daily"]
+            "group": ["daily"],
+            "description": "<span style=\"color:tomato;font-size:15px\">会根据当前账号自动跳过已使用过的兑换码</span>"
         }
     ],
     "option": {
@@ -28,30 +28,6 @@
                     }
                 }
             }
-        },
-        "单账号(兑换码)": {
-            "type": "switch",
-            "description": "开启后会自动跳过使用过的兑换码",
-            "default_case": "Yes",
-            "cases": [
-                {
-                    "name": "Yes"
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {
-                        "redeem_codeStart": {
-                            "action": {
-                                "param": {
-                                    "custom_action_param": {
-                                        "check": false
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            ]
         }
     }
 }

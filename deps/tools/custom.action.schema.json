@@ -55,7 +55,8 @@
                 "EatCandyStart",
                 "DropRecognition",
                 "RedeemCode",
-                "RewardHandler"
+                "RewardHandler",
+                "RecordID"
             ]
         }
     },
@@ -218,6 +219,9 @@
         },
         {
             "$ref": "#/$defs/RewardHandler"
+        },
+        {
+            "$ref": "#/$defs/RecordID"
         }
     ],
     "$defs": {
@@ -1126,6 +1130,14 @@
             "properties": {
                 "custom_action": {
                     "const": "RewardHandler"
+                }
+            }
+        },       
+        "RecordID": {
+            "properties": {
+                "custom_action": {
+                    "const": "RecordID",
+                    "description": "记录当前用户名、id"
                 }
             }
         }
