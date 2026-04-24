@@ -35,6 +35,7 @@
             "FlagInGoodDreamWell",
             "EnterGoodDreamWell",
             "[JumpBack]Cloud",
+            "[JumpBack]GoodDreamWellObtain",
             "[JumpBack]SkipButton",
             "[JumpBack]ClickBlank"
         ]
@@ -56,6 +57,7 @@
             "FlagInGoodDreamWellCenter",
             "FlagInGoodDreamWellFinish",
             "[JumpBack]PositionGoodDreamWellCenter",
+            "[JumpBack]GoodDreamWellObtain",
             "[JumpBack]SkipButton",
             "[JumpBack]ClickBlank"
         ]
@@ -106,6 +108,7 @@
         "next": [
             "FlagInGoodDreamWellFishing",
             "FlagInGoodDreamWellCenter",
+            "[JumpBack]GoodDreamWellObtain",
             "[JumpBack]SkipButton",
             "[JumpBack]ClickBlank"
         ]
@@ -173,6 +176,25 @@
                 "connected": true,
                 "count": 10000
             }
+        }
+    },
+    "GoodDreamWellObtain": {
+        "desc": "好梦井收获馈赠",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    575,
+                    598,
+                    129,
+                    40
+                ],
+                "expected": ["收获馈赠"],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
         }
     },
     "GoodDreamWellOCR": {
