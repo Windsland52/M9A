@@ -54,7 +54,8 @@
                 "SOSSelectEncounterOption_HSV",
                 "EatCandyStart",
                 "DropRecognition",
-                "RedeemCode"
+                "RedeemCode",
+                "RewardHandler"
             ]
         }
     },
@@ -214,6 +215,9 @@
         },
         {
             "$ref": "#/$defs/RedeemCode"
+        },
+        {
+            "$ref": "#/$defs/RewardHandler"
         }
     ],
     "$defs": {
@@ -1115,6 +1119,13 @@
                         }
                     },
                     "unevaluatedProperties": false
+                }
+            }
+        },
+        "RewardHandler": {
+            "properties": {
+                "custom_action": {
+                    "const": "RewardHandler"
                 }
             }
         }

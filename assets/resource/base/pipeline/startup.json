@@ -576,14 +576,9 @@
             }
         },
         "action": {
-            "type": "Click",
+            "type": "Custom",
             "param": {
-                "target": [
-                    0,
-                    0,
-                    526,
-                    590
-                ]
+                "custom_action": "RewardHandler"
             }
         },
         "post_wait_freezes": {
