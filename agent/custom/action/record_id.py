@@ -47,10 +47,7 @@ class RecordID(CustomAction):
         else:
             logger.info("未识别到ID文本")
 
-        if (
-            user_name != RecordID.global_user_name
-            or account_id != RecordID.global_id
-        ):
+        if user_name != RecordID.global_user_name or account_id != RecordID.global_id:
             RecordID.global_user_name = user_name
             RecordID.global_id = account_id
             logger.info(f"欢迎: {user_name} - {account_id}")

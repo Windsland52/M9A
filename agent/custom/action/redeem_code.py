@@ -32,6 +32,8 @@ RESOURCE_TIMEZONES = {
 class RedeemCodeItem:
     code: str
     source: str
+
+
 def _get_timezone(resource: str):
     return pytz.timezone(RESOURCE_TIMEZONES.get(resource, "Asia/Shanghai"))
 
