@@ -56,7 +56,8 @@
                 "DropRecognition",
                 "RedeemCode",
                 "RewardHandler",
-                "RecordID"
+                "RecordID",
+                "SwitchAccountSelect"
             ]
         }
     },
@@ -222,6 +223,9 @@
         },
         {
             "$ref": "#/$defs/RecordID"
+        },
+        {
+            "$ref": "#/$defs/SwitchAccountSelect"
         }
     ],
     "$defs": {
@@ -1138,6 +1142,14 @@
                 "custom_action": {
                     "const": "RecordID",
                     "description": "记录当前用户名、id"
+                }
+            }
+        },
+        "SwitchAccountSelect": {
+            "properties": {
+                "custom_action": {
+                    "const": "SwitchAccountSelect",
+                    "description": "切换账号界面，选择账号登录"
                 }
             }
         }

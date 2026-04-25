@@ -113,7 +113,7 @@ This feature only completes "Think" weekly sweep
 
 ## Switch Account
 
-Switch to the last account (accounts beyond the third one will be ignored).
+Leave the field empty to scroll to the bottom of the account list and switch to the final account. If a target account is provided, the task will keep scrolling through the account list until it finds and switches to that account.
 
 ::: note
 

@@ -114,7 +114,7 @@
         },
         "next": [
             "SwitchLastAccountComplete",
-            "[JumpBack]SwitchLastAccount"
+            "[JumpBack]SwitchAccountSelect"
         ]
     },
     "SwitchAccountMainExpandFlag_1440p": {
@@ -132,8 +132,51 @@
         },
         "next": [
             "SwitchLastAccountComplete",
-            "[JumpBack]SwitchLastAccount_1440p"
+            "[JumpBack]SwitchAccountSelect"
         ]
+    },
+    "SwitchAccountSelect": {
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "SwitchAccountSelect",
+                "custom_action_param": {
+                    "account": ""
+                }
+            }
+        }
+    },
+    "SwitchAccountRowAnchor": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    682,
+                    353,
+                    184,
+                    278
+                ],
+                "template": [
+                    "SwitchAccount/AccountDel.png"
+                ],
+                "order_by": "Vertical"
+            }
+        }
+    },
+    "SwitchAccountRowAnchor_1440p": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    673,
+                    362,
+                    47,
+                    278
+                ],
+                "expected": "[×xX✕✖]",
+                "order_by": "Vertical"
+            }
+        }
     },
     "SwitchLastAccountComplete": {
         "recognition": {

@@ -11,6 +11,7 @@ from .critter_crash import *
 from .redeem_code import *
 from .reward import *
 from .record_id import *
+from .switch_account import *
 
 __all__ = [
     "DisableNode",
@@ -49,4 +50,5 @@ __all__ = [
     "RedeemCode",
     "RewardHandler",
     "RecordID",
+    "SwitchAccountSelect",
 ]
