@@ -113,13 +113,13 @@ This feature only completes "Think" weekly sweep
 
 ## Switch Account
 
-Leave the field empty to scroll to the bottom of the account list and switch to the final account. If a target account is provided, the task will keep scrolling through the account list until it finds and switches to that account.
+Leave the field empty to scroll to the bottom of the account list and switch to the final account. If a target account is provided, the task will keep scrolling through the account list until it finds and switches to that account. The task fails if the target account cannot be found.
 
 ::: note
 
 - After switching, you can continue adding tasks for multi-account multi-configuration task execution
 - Currently only supports Official server
-- Recommended to set emulator resolution to 1280×720
+- Only supports emulator environments with an actual unscaled resolution of 1280×720
 :::
 
 ## Close Game

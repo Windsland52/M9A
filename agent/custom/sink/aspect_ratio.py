@@ -14,6 +14,7 @@ from utils.logger import logger
 TARGET_RATIO = 16.0 / 9.0
 # 容差范围（±2%）
 TOLERANCE = 0.02
+SWITCH_ACCOUNT_REQUIRED_RESOLUTION = (1280, 720)
 
 
 def is_aspect_ratio_16x9(width: int, height: int) -> bool:
@@ -42,6 +43,31 @@ def calculate_aspect_ratio(width: int, height: int) -> float:
     if w > h:
         return w / h
     return h / w
+
+
+def get_controller_resolution(controller, ensure_screencap: bool = True) -> tuple[int, int]:
+    if controller is None:
+        return (0, 0)
+
+    if ensure_screencap:
+        try:
+            img = controller.cached_image
+            if img is None:
+                controller.post_screencap().wait().get()
+        except Exception as exc:
+            logger.warning(f"初始化分辨率失败: {exc}")
+
+    try:
+        width, height = controller.resolution
+    except Exception as exc:
+        logger.warning(f"获取控制器分辨率失败: {exc}")
+        return (0, 0)
+
+    return (int(width), int(height))
+
+
+def format_resolution(width: int, height: int) -> str:
+    return f"{width}x{height}"
 
 
 @AgentServer.tasker_sink()
@@ -80,35 +106,36 @@ class AspectRatioChecker(TaskerEventSink):
             logger.error("无法获取控制器")
             return
 
-        # 获取缓存的图像
-        try:
-            img = controller.cached_image
-            if img is None:
-                # 如果没有缓存图像，尝试截图
-                img = controller.post_screencap().wait().get()
-        except Exception as e:
-            logger.error(f"无法获取截图: {e}")
+        width, height = get_controller_resolution(controller, ensure_screencap=True)
+        if width <= 0 or height <= 0:
+            logger.error("无法获取控制器实际未缩放分辨率")
+            tasker.post_stop()
             return
 
-        if img is None:
-            logger.error("无法获取截图")
+        logger.debug(f"实际未缩放分辨率: {format_resolution(width, height)}")
+
+        if detail.entry == "SwitchAccount":
+            if (width, height) != SWITCH_ACCOUNT_REQUIRED_RESOLUTION:
+                logger.error(
+                    f"切换账号仅支持 1280x720 实际未缩放分辨率，当前: {format_resolution(width, height)}"
+                )
+                tasker.post_stop()
+            else:
+                logger.debug(
+                    f"切换账号分辨率检查通过: {format_resolution(width, height)}"
+                )
             return
-
-        # 获取图像尺寸
-        height, width = img.shape[:2]
-
-        logger.debug(f"截图尺寸: {width} x {height}")
 
         # 检查宽高比
         if not is_aspect_ratio_16x9(width, height):
             actual_ratio = calculate_aspect_ratio(width, height)
             logger.error(
                 f"🚨 分辨率比例不匹配！任务已停止。"
-                f"当前: {width}x{height} (比例: {actual_ratio:.4f})，"
+                f"当前: {format_resolution(width, height)} (比例: {actual_ratio:.4f})，"
                 f"M9A 仅支持 16:9 比例，请调整为: 2560x1440, 1920x1080, 1600x900, 1280x720(推荐)"
             )
 
             # 停止任务
             tasker.post_stop()
         else:
-            logger.debug(f"分辨率检查通过: {width}x{height} (16:9)")
+            logger.debug(f"分辨率检查通过: {format_resolution(width, height)} (16:9)")
