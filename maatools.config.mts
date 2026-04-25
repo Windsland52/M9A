@@ -113,6 +113,7 @@ const config: FullConfig = {
   check: {
     override: {
       'dynamic-image': 'ignore',
+      "unknown-task": 'warning'
     },
   },
 }

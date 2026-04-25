@@ -969,32 +969,7 @@
                             }
                         }
                     },
-                    {
-                        "recognition": {
-                            "type": "ColorMatch",
-                            "param": {
-                                "roi": "EventName",
-                                "roi_offset": [
-                                    123,
-                                    -29,
-                                    -71,
-                                    10
-                                ],
-                                "lower": [
-                                    179,
-                                    41,
-                                    27
-                                ],
-                                "upper": [
-                                    199,
-                                    61,
-                                    47
-                                ],
-                                "connected": true,
-                                "count": 50
-                            }
-                        }
-                    }
+                    "AwardRedPoint"
                 ]
             }
         },
@@ -1046,32 +1021,7 @@
                             }
                         }
                     },
-                    {
-                        "recognition": {
-                            "type": "ColorMatch",
-                            "param": {
-                                "roi": "EventName",
-                                "roi_offset": [
-                                    123,
-                                    -29,
-                                    -71,
-                                    10
-                                ],
-                                "lower": [
-                                    179,
-                                    41,
-                                    27
-                                ],
-                                "upper": [
-                                    199,
-                                    61,
-                                    47
-                                ],
-                                "connected": true,
-                                "count": 50
-                            }
-                        }
-                    }
+                    "AwardRedPoint"
                 ]
             }
         },
@@ -1147,32 +1097,7 @@
                             }
                         }
                     },
-                    {
-                        "recognition": {
-                            "type": "ColorMatch",
-                            "param": {
-                                "roi": "EventName",
-                                "roi_offset": [
-                                    123,
-                                    -29,
-                                    -71,
-                                    10
-                                ],
-                                "lower": [
-                                    179,
-                                    41,
-                                    27
-                                ],
-                                "upper": [
-                                    199,
-                                    61,
-                                    47
-                                ],
-                                "connected": true,
-                                "count": 50
-                            }
-                        }
-                    }
+                    "AwardRedPoint"
                 ]
             }
         },
@@ -1278,32 +1203,7 @@
                             }
                         }
                     },
-                    {
-                        "recognition": {
-                            "type": "ColorMatch",
-                            "param": {
-                                "roi": "EventName",
-                                "roi_offset": [
-                                    123,
-                                    -29,
-                                    -71,
-                                    10
-                                ],
-                                "lower": [
-                                    179,
-                                    41,
-                                    27
-                                ],
-                                "upper": [
-                                    199,
-                                    61,
-                                    47
-                                ],
-                                "connected": true,
-                                "count": 50
-                            }
-                        }
-                    }
+                    "AwardRedPoint"
                 ]
             }
         },
@@ -1400,6 +1300,68 @@
                 ],
                 "expected": "0",
                 "only_rec": true
+            }
+        }
+    },
+    "AwardRedPoint": {
+        "desc": "奖励界面红点，只在EventName判断后使用",
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "ColorMatch",
+                            "param": {
+                                "roi": "EventName",
+                                "roi_offset": [
+                                    123,
+                                    -29,
+                                    -61,
+                                    10
+                                ],
+                                "lower": [
+                                    179,
+                                    41,
+                                    27
+                                ],
+                                "upper": [
+                                    199,
+                                    61,
+                                    47
+                                ],
+                                "connected": true,
+                                "count": 50
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "ColorMatch",
+                            "param": {
+                                "roi": "EventName",
+                                "roi_offset": [
+                                    123,
+                                    -29,
+                                    -61,
+                                    10
+                                ],
+                                "lower": [
+                                    215,
+                                    77,
+                                    62
+                                ],
+                                "upper": [
+                                    235,
+                                    97,
+                                    82
+                                ],
+                                "connected": true,
+                                "count": 50
+                            }
+                        }
+                    }
+                ]
             }
         }
     }
