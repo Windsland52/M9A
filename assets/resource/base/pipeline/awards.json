@@ -1158,6 +1158,25 @@
                                 "only_rec": true
                             }
                         }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    873,
+                                    382,
+                                    176,
+                                    26
+                                ],
+                                "expected": [
+                                    "已达",
+                                    "分贝等级",
+                                    "上限"
+                                ],
+                                "only_rec": true
+                            }
+                        }
                     }
                 ]
             }
