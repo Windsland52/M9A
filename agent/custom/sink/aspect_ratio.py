@@ -45,7 +45,9 @@ def calculate_aspect_ratio(width: int, height: int) -> float:
     return h / w
 
 
-def get_controller_resolution(controller, ensure_screencap: bool = True) -> tuple[int, int]:
+def get_controller_resolution(
+    controller, ensure_screencap: bool = True
+) -> tuple[int, int]:
     if controller is None:
         return (0, 0)
 
