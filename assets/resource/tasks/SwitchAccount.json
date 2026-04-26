@@ -21,6 +21,7 @@
                     "label": "账号",
                     "pipeline_type": "string",
                     "default": "",
+                    "verify": ".*",
                     "description": "留空则下滑到账号列表底部后切换最后一个账号；填写后会逐页下滑查找该账号，找不到则失败"
                 }
             ],
