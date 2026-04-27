@@ -93,8 +93,53 @@
             "[JumpBack]BackButton",
             "[JumpBack]HomeButton",
             "[JumpBack]SkipButton",
+            "[JumpBack]MoverSignIn",
             "[JumpBack]ClickHomeCount"
         ]
+    },
+    "MoverSignIn": {
+        "desc": "台服Mover账号登录",
+        "enabled": false,
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    615,
+                                    487,
+                                    45,
+                                    29
+                                ],
+                                "expected": "登入",
+                                "only_rec": true
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [
+                                    581,
+                                    306,
+                                    158,
+                                    33
+                                ],
+                                "expected": ["Mover帐號登入"],
+                                "only_rec": true
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     },
     "HomeLoading": {
         "recognition": {
