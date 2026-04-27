@@ -514,5 +514,7 @@
     "resource/base/image/UTTU/UTTU_stage_flag": "046bc9cb44d17fa7beb49a2d4975616bb4b2744e8cab08c550a09fb54cda4ac9",
     "resource/announcement/images/uttu": "498ebc06b5dd51bf3f89965fc16f09414188dbffcd0f0e3a71967f1a4e83aa15",
     "resource/base/image/RedeemCode/Error": "4832cb501e1540f4f38cc5065b0e4a5474507492e2b574847d1fcbfd913f174e",
-    "resource/base/image/StartUp/Rewards/Reward6": "5216d7bab23bd97f680d1dd1b840b84c28fe69689ec8b3a47dbf663c6cf72ab1"
+    "resource/base/image/StartUp/Rewards/Reward6": "5216d7bab23bd97f680d1dd1b840b84c28fe69689ec8b3a47dbf663c6cf72ab1",
+    "resource/base/image/CompleteInduction/AddResearcher": "e288eec8598cf0fe0e452e9f9878f61dd30bd0ea628ff1ee28864ac131e2de45",
+    "resource/base/image/CompleteInduction/Revert": "140d7a6e2135b8c914c4788e1b1b2b0beb80e7dbc0542306b3e0b337bf834348"
 }
