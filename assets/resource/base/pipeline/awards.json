@@ -35,7 +35,7 @@
             "[JumpBack]Sub_MailBadge",
             "[JumpBack]Sub_DailyBadge",
             "[JumpBack]Sub_JukeboxBadge",
-            "[JumpBack]Sub_JukeboxBadge_3.2",
+            "[JumpBack]Sub_JukeboxBadge_3.7",
             "[JumpBack]AwardBox",
             "[JumpBack]AwardWarRoom",
             "[JumpBack]AwardReveriesInTheRain",
@@ -668,51 +668,6 @@
                 "template": "Awards/NoJukeboxAwards.png",
                 "threshold": 0.97
             }
-        }
-    },
-    "Sub_JukeboxBadge_3.2": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "roi": [
-                    372,
-                    28,
-                    46,
-                    41
-                ],
-                "template": "Awards/JukeboxBadge_3.2.png",
-                "threshold": 0.9
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "post_delay": 1500,
-        "next": [
-            "HomeFlag",
-            "[JumpBack]JukeboxBadge_3.2_OneClick",
-            "[JumpBack]ObtainedAwards",
-            "[JumpBack]HomeButton",
-            "[JumpBack]BackButton",
-            "[JumpBack]ClickBlank"
-        ]
-    },
-    "JukeboxBadge_3.2_OneClick": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    1042,
-                    654,
-                    131,
-                    34
-                ],
-                "expected": "一键领取",
-                "only_rec": true
-            }
-        },
-        "action": {
-            "type": "Click"
         }
     },
     "AwardWarRoom": {
@@ -1426,6 +1381,112 @@
                     }
                 ]
             }
+        }
+    },
+    "Sub_JukeboxBadge_3.7": {
+        "max_hit": 3,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    366,
+                    27,
+                    217,
+                    42
+                ],
+                "template": "Awards/3.7/Entry.png",
+                "threshold": 0.9
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "Sub_JukeboxBadge_3.7",
+            "Sub_JukeboxBadge_3.7FlagInActMain"
+        ]
+    },
+    "Sub_JukeboxBadge_3.7FlagInActMain": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    462,
+                    347,
+                    357,
+                    186
+                ],
+                "template": "Awards/3.7/ActMain.png"
+            }
+        },
+        "next": [
+            "Sub_JukeboxBadge_3.7Song",
+            "HomeFlag",
+            "[JumpBack]BackButton"
+        ]
+    },
+    "Sub_JukeboxBadge_3.7Song": {
+        "desc": "为自我的歌儿",
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    405,
+                    492,
+                    52,
+                    43
+                ],
+                "template": "Awards/3.7/AwardBox.png",
+                "threshold": 0.9
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "[JumpBack]Sub_JukeboxBadge_3.7SongAward",
+            "[JumpBack]Sub_JukeboxBadge_3.7Switch",
+            "[JumpBack]ObtainedAwards",
+            "[JumpBack]ClosePage",
+            "BackButton"
+        ]
+    },
+    "Sub_JukeboxBadge_3.7SongAward": {
+        "desc": "为自我的歌儿-领取奖励",
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    764,
+                    645,
+                    111,
+                    36
+                ],
+                "expected": "领取",
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    "Sub_JukeboxBadge_3.7Switch": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    166,
+                    231,
+                    33,
+                    121
+                ],
+                "template": "Awards/3.7/RedPoint.png",
+                "order_by": "Vertical",
+                "index": -1
+            }
+        },
+        "action": {
+            "type": "Click"
         }
     }
 }
