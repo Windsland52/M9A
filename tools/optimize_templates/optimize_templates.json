@@ -517,5 +517,10 @@
     "resource/base/image/StartUp/Rewards/Reward6": "5216d7bab23bd97f680d1dd1b840b84c28fe69689ec8b3a47dbf663c6cf72ab1",
     "resource/base/image/CompleteInduction/AddResearcher": "e288eec8598cf0fe0e452e9f9878f61dd30bd0ea628ff1ee28864ac131e2de45",
     "resource/base/image/CompleteInduction/Revert": "140d7a6e2135b8c914c4788e1b1b2b0beb80e7dbc0542306b3e0b337bf834348",
-    "resource/base/image/StartUp/Rewards/Reward3.7": "10f878f62edbdadbeb3abaaa432fa417267476b25e685b853db33d46f762634c"
+    "resource/base/image/StartUp/Rewards/Reward3.7": "10f878f62edbdadbeb3abaaa432fa417267476b25e685b853db33d46f762634c",
+    "resource/base/image/Awards/3.7/AwardBox": "aef3a3a7146fc9b9ae60a52c2cc537aa3e1c30050da21985c3396fcea86b4927",
+    "resource/base/image/Awards/3.7/RedPoint": "a57d37eec4d23cbb8a25c3d81798d20f5be244ba15c22528c7be362dedfa5f46",
+    "resource/base/image/Awards/3.7/ActMain": "28025bb29e9f4960b028a24a4540d0179a6d1feea77c645c3a0939c9520bf72a",
+    "resource/base/image/Awards/3.7/Entry": "dc1f6332ab5e3baea037275d0c1681aaeb7ea67598b8c99bb4bcc617eaecb4ad",
+    "resource/base/image/Awards/JukeboxBadges/JukeboxBadge3.7": "3ed83a9841a7de3ab8d95c41694ea789e4c2d1944336b0716afbc1f4fc503d8b"
 }
