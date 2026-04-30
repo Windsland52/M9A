@@ -910,7 +910,7 @@
                 "roi": [
                     298,
                     30,
-                    123,
+                    132,
                     30
                 ],
                 "template": [
@@ -1049,7 +1049,8 @@
                                     294,
                                     78
                                 ],
-                                "expected": "领取"
+                                "expected": "领取",
+                                "color_filter": "AwardBreakingSignalsAward_color_filter"
                             }
                         }
                     },
@@ -1074,6 +1075,23 @@
             "type": "Click"
         },
         "post_delay": 1500
+    },
+    "AwardBreakingSignalsAward_color_filter": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "lower": [
+                    215,
+                    171,
+                    117
+                ],
+                "upper": [
+                    255,
+                    255,
+                    249
+                ]
+            }
+        }
     },
     "AwardRoaringRevelry": {
         "desc": "活动奖励·吼吼狂欢夜",
@@ -1374,6 +1392,32 @@
                                     235,
                                     97,
                                     82
+                                ],
+                                "connected": true,
+                                "count": 50
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "ColorMatch",
+                            "param": {
+                                "roi": "EventName",
+                                "roi_offset": [
+                                    123,
+                                    -29,
+                                    -61,
+                                    10
+                                ],
+                                "lower": [
+                                    191,
+                                    48,
+                                    29
+                                ],
+                                "upper": [
+                                    211,
+                                    68,
+                                    49
                                 ],
                                 "connected": true,
                                 "count": 50
