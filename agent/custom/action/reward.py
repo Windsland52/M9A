@@ -17,7 +17,7 @@ class RewardHandler(CustomAction):
 
     _global_count: int = 0
     _ocr_roi: tuple[int, int, int, int] = (445, 205, 338, 99)
-    _click_target: tuple[int, int, int, int] = (346, 202, 79, 82)
+    _click_target: tuple[int, int, int, int] = (362, 279, 37, 39)
 
     @classmethod
     def _ocr_once(cls, context: Context) -> None:
