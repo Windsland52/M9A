@@ -42,7 +42,9 @@
             "[JumpBack]EventLaplace",
             "HomeFlag",
             "[JumpBack]HomeButton",
-            "[JumpBack]BackButton"
+            "[JumpBack]BackButton",
+            "[JumpBack]ObtainedAwards",
+            "[JumpBack]ClosePage"
         ]
     },
     "Sub_MailBadge": {
