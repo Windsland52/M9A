@@ -49,9 +49,10 @@ icon: ri:game-fill
             "SOSHarmonicObtained",
             "SOSSelectHarmonic"
         ],
-        "resonator": [                                    // 共鸣者相关中断组
+        "resonator": [                                    // 共鸣器相关中断组
             "SOSResonatorObtained",
-            "SOSSelectResonator"
+            "SOSSelectResonator",
+            "SOSFormBreakthrough"
         ],
         "others": [                                       // 其他常用中断
             "SOSDice",
@@ -130,7 +131,6 @@ icon: ri:game-fill
 
 常用节点：
 
-- `SOSTeamSelect` - 队伍选择
 - `SOSCombat` - 战斗流程
 - `SOSContinue` - 继续/确认按钮
 - `SOSEventEnd` - 事件结束
@@ -198,8 +198,9 @@ icon: ri:game-fill
 - `SOSArtefactsObtained` - 获得造物
 - `SOSLoseArtefact` - 失去造物
 - `SOSStrengthenArtefact` - 强化造物
-- `SOSSelectResonator` - 选择共鸣者
-- `SOSResonatorObtained` - 获得共鸣者
+- `SOSSelectResonator` - 选择共鸣器
+- `SOSResonatorObtained` - 获得共鸣器
+- `SOSFormBreakthrough` - 共鸣器形态突破
 - `SOSStatBreakthrough` - 属性突破
 - `SOSStatsUpButton` - 属性提升按钮
 - `SOSStatsUp` - 属性提升
@@ -262,7 +263,7 @@ icon: ri:game-fill
 
 // 使用预定义的组合
 "interrupts": "@TheOnlyWay"
-// 展开为: ["SOSNextMessage", "SOSWarning", "SOSStatsUpButton", "SOSStatsUp", "SOSArtefactsObtained", "SOSSelectArtefact", "SOSLoseArtefact", "SOSStrengthenArtefact", "SOSHarmonicObtained", "SOSSelectHarmonic", "SOSResonatorObtained", "SOSSelectResonator", "SOSDice", "SOSContinue", "SOSEventEnd", "CloseTip"]
+// 展开为: ["SOSNextMessage", "SOSWarning", "SOSStatsUpButton", "SOSStatsUp", "SOSArtefactsObtained", "SOSSelectArtefact", "SOSLoseArtefact", "SOSStrengthenArtefact", "SOSHarmonicObtained", "SOSSelectHarmonic", "SOSResonatorObtained", "SOSSelectResonator","SOSFormBreakthrough", "SOSDice", "SOSContinue", "SOSEventEnd", "CloseTip"]
 ```
 
 ### 事件配置示例
@@ -273,10 +274,6 @@ icon: ri:game-fill
 "冲突": {
     "event_name_roi": null,  // 不需要识别事件名
     "actions": [
-        {
-            "type": "RunNode",
-            "name": "SOSTeamSelect"  // 1. 选择队伍
-        },
         {
             "type": "RunNode",
             "name": "SOSCombat"  // 2. 进入战斗

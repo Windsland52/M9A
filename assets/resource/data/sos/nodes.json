@@ -41,10 +41,13 @@
         ],
         "resonator": [
             "SOSResonatorObtained",
-            "SOSSelectResonator"
+            "SOSSelectResonator",
+            "SOSFormBreakthrough"
         ],
         "others": [
             "SOSDice",
+            "SOSDiceSuccess",
+            "SOSDiceGiveUp",
             "SOSContinue",
             "SOSEventEnd",
             "CloseTip"
@@ -55,10 +58,6 @@
     "冲突": {
         "event_name_roi": null,
         "actions": [
-            {
-                "type": "RunNode",
-                "name": "SOSTeamSelect"
-            },
             {
                 "type": "RunNode",
                 "name": "SOSCombat"
@@ -82,10 +81,6 @@
                         "expected": [
                             "战斗"
                         ]
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSTeamSelect"
                     },
                     {
                         "type": "RunNode",
@@ -127,10 +122,6 @@
                     },
                     {
                         "type": "RunNode",
-                        "name": "SOSTeamSelect"
-                    },
-                    {
-                        "type": "RunNode",
                         "name": "SOSCombat"
                     },
                     {
@@ -156,17 +147,13 @@
                         "name": "SOSCombat"
                     }
                 ],
-                "interrupts": "@stats+@artefact+@harmonic+@resonator+CloseTip"
+                "interrupts": "@stats+@artefact+@harmonic+@resonator+@message+CloseTip"
             }
         }
     },
     "遭遇": {
         "event_name_roi": null,
         "actions": [
-            {
-                "type": "RunNode",
-                "name": "SOSTeamSelect"
-            },
             {
                 "type": "RunNode",
                 "name": "SOSCombat"
@@ -593,10 +580,6 @@
                     },
                     {
                         "type": "RunNode",
-                        "name": "SOSTeamSelect"
-                    },
-                    {
-                        "type": "RunNode",
                         "name": "SOSCombat"
                     }
                 ],
@@ -623,10 +606,6 @@
                         "type": "SelectEncounterOption",
                         "method": "OCR",
                         "expected": "进入战斗"
-                    },
-                    {
-                        "type": "RunNode",
-                        "name": "SOSTeamSelect"
                     },
                     {
                         "type": "RunNode",
@@ -672,10 +651,6 @@
         "actions": [
             {
                 "type": "RunNode",
-                "name": "SOSTeamSelect"
-            },
-            {
-                "type": "RunNode",
                 "name": "SOSCombat"
             }
         ],
@@ -684,10 +659,6 @@
     "恶战": {
         "event_name_roi": null,
         "actions": [
-            {
-                "type": "RunNode",
-                "name": "SOSTeamSelect"
-            },
             {
                 "type": "RunNode",
                 "name": "SOSCombat"
@@ -999,10 +970,6 @@
                     },
                     {
                         "type": "RunNode",
-                        "name": "SOSTeamSelect"
-                    },
-                    {
-                        "type": "RunNode",
                         "name": "SOSCombat"
                     }
                 ],
@@ -1177,6 +1144,79 @@
                         "index": -1
                     }
                 ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "清理工作": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "研究课题": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": -1
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "局外的野兽": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": -1
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "集体决议": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": -1
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "连贯性": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": -1
+                    },
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                 ],
                 "interrupts": "@TheOnlyWay"
             }
         }

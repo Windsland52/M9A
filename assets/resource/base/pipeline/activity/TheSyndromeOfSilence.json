@@ -1,6 +1,6 @@
 {
     "TheSyndromeOfSilence": {
-        // 3.2&3.3 版本局外演绎,
+        // 3.7 版本无声综合征
         "next": [
             "SOSMainMenu",
             "[JumpBack]SOSStop",
@@ -460,12 +460,12 @@
         },
         "next": [
             "FlagInSOSMainMenu",
-            "[JumpBack]SOSSummary",
             "[JumpBack]SOSGiveup",
             "[JumpBack]SOSStart",
             "[JumpBack]SOS_Skip",
             "[JumpBack]SOSConfirm",
-            "[JumpBack]SOSInformation"
+            "[JumpBack]SOSInformation",
+            "[JumpBack]SOSAbortConfirm"
         ]
     },
     "SOSInformation": {
@@ -588,6 +588,26 @@
             }
         },
         "inverse": true
+    },
+    "SOSAbortConfirm": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1060,
+                    642,
+                    80,
+                    40
+                ],
+                "expected": [
+                    "确认"
+                ],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     },
     "SOSStart": {
         "recognition": {
@@ -739,7 +759,10 @@
                     "斗争之路",
                     "乔治的杂志社",
                     "仪式之路",
-                    "凯旋门前"
+                    "凯旋门前",
+                    "拉斯帕伊大道",
+                    "地下墓穴",
+                    "巴黎子午线"
                 ],
                 "only_rec": true
             }
@@ -756,6 +779,7 @@
             "[JumpBack]SOSStatsUp",
             "[JumpBack]SOSStatBreakthrough",
             "[JumpBack]SOSSelectResonator",
+            "[JumpBack]SOSFormBreakthrough",
             "[JumpBack]SOSResonatorObtained",
             "[JumpBack]SOSLoseArtefact",
             "[JumpBack]SOSStrengthenArtefact",
@@ -797,7 +821,21 @@
                 "custom_action": "SOSNodeProcess"
             }
         },
-        "on_error": ["SOSMain"]
+        "on_error": ["SOSNodeProcessErrorLoop"]
+    },
+    "SOSNodeProcessErrorLoop": {
+        "max_hit": 20,
+        "next": [
+            "SOSMain",
+            "SOSSelectNoise",
+            "[JumpBack]SOSGiveup",
+            "[JumpBack]SOSStart",
+            "[JumpBack]SOS_Skip",
+            "[JumpBack]SOSConfirm",
+            "[JumpBack]SOSInformation",
+            "[JumpBack]SOSAbortConfirm",
+            "SOSNodeProcessErrorLoop"
+        ]
     },
     // 主页面各种弹窗处理,
     "SOSArtefactsObtained": {
@@ -989,6 +1027,7 @@
         },
         "next": [
             "SOSSelectResonatorConfirm",
+            "SOSFormBreakthrough",
             "SOSSelectResonator"
         ]
     },
@@ -997,13 +1036,37 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    609,
-                    586,
-                    65,
-                    36
+                    254,
+                    543,
+                    130,
+                    60
                 ],
                 "expected": [
-                    "确认"
+                    "选择"
+                ],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "SOSConfirm"
+        ]
+    },
+    "SOSFormBreakthrough": {
+        // 共鸣器形态突破
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    564,
+                    48,
+                    164,
+                    56
+                ],
+                "expected": [
+                    "形态突破"
                 ],
                 "only_rec": true
             }
@@ -1240,32 +1303,6 @@
         },
         "post_wait_freezes": 500
     },
-    "SOSTeamSelect": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "roi": [
-                    1052,
-                    637,
-                    126,
-                    33
-                ],
-                "expected": [
-                    "开始行动"
-                ],
-                "only_rec": true
-            }
-        },
-        "action": {
-            "type": "Custom",
-            "param": {
-                "custom_action": "TeamSelect",
-                "custom_action_param": {
-                    "team": 1
-                }
-            }
-        }
-    },
     "SOSCombat": {
         "recognition": {
             "type": "OCR",
@@ -1396,7 +1433,10 @@
         },
         "action": {
             "type": "Click"
-        }
+        },
+        "next": [
+            "[JumpBack]SOSStop"
+        ]
     },
     "SOSSelectHarmonic": {
         "recognition": {
@@ -1783,7 +1823,8 @@
             "[JumpBack]SOSHarmonicObtained",
             "[JumpBack]SOSSelectHarmonic",
             "[JumpBack]SOSResonatorObtained",
-            "[JumpBack]SOSSelectResonator"
+            "[JumpBack]SOSSelectResonator",
+            "[JumpBack]SOSFormBreakthrough"
         ]
     },
     "SOSDice": {
@@ -1807,7 +1848,9 @@
         },
         "next": [
             "SOSFlagInDice",
-            "SOSDice"
+            "SOSDice",
+            "SOSDiceSuccess",
+            "SOSDiceGiveUp"
         ]
     },
     "SOSFlagInDice": {
@@ -1827,6 +1870,47 @@
             }
         },
         "inverse": true
+    },
+    "SOSDiceSuccess": {
+        "pre_delay": 1000,
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    585,
+                    472,
+                    130,
+                    89
+                ],
+                "expected": [
+                    "成功"
+                ],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    },
+    "SOSDiceGiveUp": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    1075,
+                    609,
+                    83,
+                    35
+                ],
+                "expected": [
+                    "放弃"
+                ],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
     },
     "SOSShopping": {
         "recognition": {
@@ -2057,7 +2141,7 @@
             "type": "OCR",
             "param": {
                 "roi": [
-                    575,
+                    570,
                     40,
                     195,
                     31
@@ -2070,7 +2154,14 @@
                     "斗争之路",
                     "乔治的杂志社",
                     "仪式之路",
-                    "凯旋门前"
+                    "凯旋门前",
+                    "拉斯帕伊大道",
+                    "地下墓穴",
+                    "巴黎子午线"
+                ],
+                "replace": [
+                    "立",
+                    "拉"
                 ],
                 "only_rec": true
             }
