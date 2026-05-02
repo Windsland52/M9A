@@ -1872,7 +1872,6 @@
         "inverse": true
     },
     "SOSDiceSuccess": {
-        "pre_delay": 1000,
         "recognition": {
             "type": "OCR",
             "param": {
@@ -1888,6 +1887,7 @@
                 "only_rec": true
             }
         },
+        "pre_delay": 1000,
         "action": {
             "type": "Click"
         }
