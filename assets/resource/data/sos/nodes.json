@@ -1217,6 +1217,34 @@
                     }
                 ],
                 "interrupts": "@TheOnlyWay"
+            },
+            "职业选择": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV",
+                        "index": -1
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "场外和声": {
+                "actions": [
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
+            },
+            "混合物": {
+                "actions":[
+                    {
+                        "type": "SelectOption",
+                        "method": "HSV"
+                    }
+                ],
+                "interrupts": "@TheOnlyWay"
             }
         }
     },
