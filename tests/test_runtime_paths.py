@@ -14,8 +14,12 @@ class RuntimePathsTest(unittest.TestCase):
         self.assertEqual(paths.project_root, Path("/tmp/m9a-project").resolve())
         self.assertEqual(paths.work_root, Path("/tmp/m9a-project/assets").resolve())
         self.assertEqual(paths.deps_dir, Path("/tmp/m9a-project/deps").resolve())
-        self.assertEqual(paths.config_dir, Path("/tmp/m9a-project/assets/config").resolve())
-        self.assertEqual(paths.resource_dir, Path("/tmp/m9a-project/assets/resource").resolve())
+        self.assertEqual(
+            paths.config_dir, Path("/tmp/m9a-project/assets/config").resolve()
+        )
+        self.assertEqual(
+            paths.resource_dir, Path("/tmp/m9a-project/assets/resource").resolve()
+        )
         self.assertEqual(
             paths.manifest_cache_file,
             Path("/tmp/m9a-project/assets/resource/data/manifest_cache.json").resolve(),

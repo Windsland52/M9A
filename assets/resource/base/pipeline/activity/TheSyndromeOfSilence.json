@@ -1308,50 +1308,50 @@
         },
         "post_wait_freezes": 500
     },
-"SOSEventEndMessage": {
-    "recognition": {
-        "type": "OCR",
-        "param": {
-            "roi": [
-                791,
-                132,
-                175,
-                27
+    "SOSEventEndMessage": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    791,
+                    132,
+                    175,
+                    27
                 ],
-            "expected": [
-                "结束事件",
-                "离开"
-            ],
-            "only_rec": true
-        }
+                "expected": [
+                    "结束事件",
+                    "离开"
+                ],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500,
+        "on_error": "SOSEventEndMessage2"
     },
-    "action": {
-        "type": "Click"
+    "SOSEventEndMessage2": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    862,
+                    197,
+                    135,
+                    33
+                ],
+                "expected": [
+                    "结束事件"
+                ],
+                "only_rec": true
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_wait_freezes": 500
     },
-    "post_wait_freezes": 500,
-    "on_error": "SOSEventEndMessage2"
-},
-"SOSEventEndMessage2": {
-    "recognition": {
-        "type": "OCR",
-        "param": {
-            "roi": [
-                862,
-                197,
-                135,
-                33
-            ],
-            "expected": [
-                "结束事件"
-            ],
-            "only_rec": true
-        }
-    },
-    "action": {
-        "type": "Click"
-    },
-    "post_wait_freezes": 500
-},
     "SOSCombat": {
         "recognition": {
             "type": "OCR",
