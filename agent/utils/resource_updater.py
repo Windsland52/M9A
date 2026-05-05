@@ -1,19 +1,18 @@
-# -*- coding: utf-8 -*-
-
 """
 资源热更新模块
 
 支持基于 manifest 的增量更新，可按目录选择性更新资源。
 """
 
-import json
 import hashlib
-import requests
-from pathlib import Path
-from typing import Dict, List, Optional, Set
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+
+import requests
+
 from . import logger
 from .http_session import create_no_proxy_session
+from .runtime_paths import get_runtime_paths
 
 # 默认配置
 DEFAULT_API_BASE_URL = "https://api.1999.fan/api"
@@ -41,7 +40,7 @@ def calculate_file_hash(file_path: Path) -> str:
     return sha256.hexdigest()
 
 
-def get_all_manifests(api_base_url: str, manifest_path: str, timeout: int) -> List[str]:
+def get_all_manifests(api_base_url: str, manifest_path: str, timeout: int) -> list[str]:
     """
     递归获取所有包含文件的 manifest 路径（并行）
 
@@ -96,7 +95,7 @@ def get_all_manifests(api_base_url: str, manifest_path: str, timeout: int) -> Li
 
 def check_and_update_resources(
     api_base_url: str = DEFAULT_API_BASE_URL,
-    resource_manifests: Optional[List[str]] = None,
+    resource_manifests: list[str] | None = None,
     timeout: int = DEFAULT_TIMEOUT,
 ) -> dict:
     """
@@ -123,7 +122,7 @@ def check_and_update_resources(
     }
 
     try:
-        project_root = Path.cwd()
+        project_root = get_runtime_paths().work_root
 
         # 如果未指定 manifest 列表，则从 API 递归获取所有
         if resource_manifests is None:
@@ -161,7 +160,6 @@ def check_and_update_resources(
 
                 # 检查并更新每个文件
                 for file_info in manifest.get("files", []):
-                    file_name = file_info["name"]
                     file_path_str = file_info["path"]
                     remote_hash = file_info["hash"]
                     # 使用 manifest 中的完整路径

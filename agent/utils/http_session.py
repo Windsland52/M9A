@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 HTTP session helpers for update checks and resource downloads.
 """
