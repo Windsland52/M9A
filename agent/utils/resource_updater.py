@@ -13,13 +13,14 @@ from pathlib import Path
 from typing import Dict, List, Optional, Set
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from . import logger
+from .http_session import create_no_proxy_session
 
 # 默认配置
 DEFAULT_API_BASE_URL = "https://api.1999.fan/api"
 DEFAULT_TIMEOUT = 5  # 缩短超时时间
 
 # 不使用系统代理（国内服务器直连更快）
-NO_PROXY = {"http": "", "https": ""}
+session = create_no_proxy_session()
 
 
 def calculate_file_hash(file_path: Path) -> str:
@@ -55,7 +56,7 @@ def get_all_manifests(api_base_url: str, manifest_path: str, timeout: int) -> Li
     manifest_url = f"{api_base_url}/{manifest_path}"
 
     try:
-        response = requests.get(manifest_url, timeout=timeout, proxies=NO_PROXY)
+        response = session.get(manifest_url, timeout=timeout)
         response.raise_for_status()
         manifest = response.json()
 
@@ -154,7 +155,7 @@ def check_and_update_resources(
                 manifest_url = f"{api_base_url}/{manifest_path}"
                 logger.debug(f"获取资源清单: {manifest_url}")
 
-                response = requests.get(manifest_url, timeout=timeout, proxies=NO_PROXY)
+                response = session.get(manifest_url, timeout=timeout)
                 response.raise_for_status()
                 manifest = response.json()
 
@@ -187,9 +188,7 @@ def check_and_update_resources(
                         file_url = f"{api_base_url}/{file_path_str}"
                         logger.debug(f"下载文件: {file_url}")
 
-                        file_response = requests.get(
-                            file_url, timeout=timeout, proxies=NO_PROXY
-                        )
+                        file_response = session.get(file_url, timeout=timeout)
                         file_response.raise_for_status()
 
                         # 验证下载的文件哈希

@@ -12,6 +12,7 @@ import requests
 from pathlib import Path
 from typing import Dict, List, Optional, Set
 from . import logger
+from .http_session import create_no_proxy_session
 
 # 配置
 MANIFEST_URL = "https://api.1999.fan/api/manifest.json"
@@ -20,7 +21,7 @@ CACHE_FILE = Path("./resource/data/manifest_cache.json")
 REQUEST_TIMEOUT = 5
 
 # 不使用系统代理（国内服务器直连更快）
-NO_PROXY = {"http": "", "https": ""}
+session = create_no_proxy_session()
 
 # 忽略的目录（不需要热更新）
 IGNORED_DIRS = {"images"}
@@ -100,7 +101,7 @@ def _collect_updated_manifests(
 
     try:
         url = f"{API_BASE_URL}/{manifest_path}"
-        response = requests.get(url, timeout=REQUEST_TIMEOUT, proxies=NO_PROXY)
+        response = session.get(url, timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
         manifest = response.json()
 
@@ -176,7 +177,7 @@ def check_manifest_updates() -> Dict:
 
     try:
         # 请求远程根 manifest
-        response = requests.get(MANIFEST_URL, timeout=REQUEST_TIMEOUT, proxies=NO_PROXY)
+        response = session.get(MANIFEST_URL, timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
         root_manifest = response.json()
 
