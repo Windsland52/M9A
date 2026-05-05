@@ -2,10 +2,9 @@ import random
 import time
 
 from maa.agent.agent_server import AgentServer
-from maa.custom_action import CustomAction
 from maa.context import Context
-from maa.pipeline import JRecognitionType, JTemplateMatch, JOCR
-
+from maa.custom_action import CustomAction
+from maa.pipeline import JOCR, JRecognitionType, JTemplateMatch
 from utils import logger
 
 KEYCODE_DPAD_UP = 19
