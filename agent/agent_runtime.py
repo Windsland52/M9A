@@ -151,7 +151,7 @@ def run_agent(project_root_dir: str, is_dev_mode=False):
 
         custom.register_all()
 
-        Tasker.set_log_dir(str(get_runtime_paths().debug_dir))
+        Tasker.set_log_dir("./debug")
 
         if len(sys.argv) < 2:
             logger.error("缺少必要的 socket_id 参数")
