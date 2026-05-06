@@ -13,7 +13,9 @@ class AgentRuntimeTest(unittest.TestCase):
         fake_logger_module = types.ModuleType("utils.logger")
         fake_logger_module.change_console_level = Mock()
 
-        fake_paths = types.SimpleNamespace(debug_dir=Path("C:/Users/example/新建文件夹/debug"))
+        fake_paths = types.SimpleNamespace(
+            debug_dir=Path("C:/Users/example/新建文件夹/debug")
+        )
         fake_get_runtime_paths = Mock(return_value=fake_paths)
 
         fake_agent_server = types.ModuleType("maa.agent.agent_server")
@@ -40,11 +42,15 @@ class AgentRuntimeTest(unittest.TestCase):
         }
 
         with patch.object(
-            agent_runtime, "_reload_utils", return_value=(fake_utils, fake_get_runtime_paths)
+            agent_runtime,
+            "_reload_utils",
+            return_value=(fake_utils, fake_get_runtime_paths),
         ):
             with patch.dict(sys.modules, fake_modules):
                 with patch.object(sys, "argv", ["agent/main.py", "socket-id"]):
-                    agent_runtime.run_agent("C:/Users/example/新建文件夹", is_dev_mode=True)
+                    agent_runtime.run_agent(
+                        "C:/Users/example/新建文件夹", is_dev_mode=True
+                    )
 
         fake_tasker.Tasker.set_log_dir.assert_called_once_with("./debug")
 
