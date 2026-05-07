@@ -10,7 +10,7 @@
         "install:py": "pip install -r requirements.txt -r requirements-dev.txt"
     },
     "devDependencies": {
-        "@nekosu/maa-tools": "1.0.22",
+        "@nekosu/maa-tools": "1.0.24",
         "@nekosu/prettier-plugin-maafw-sort": "^1.0.5",
         "prettier": "3.5.3",
         "prettier-plugin-multiline-arrays": "4.1.4",
