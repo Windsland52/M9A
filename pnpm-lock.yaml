@@ -80,11 +80,14 @@ packages:
   '@nekosu/maa-pipeline-manager@1.0.10':
     resolution: {integrity: sha512-uGTEtO9nKgQfm1sJxYv6kFO8tl62TXxWqhFh42TrSTICy+tLqmBzmJrhHR584kEeRuFw5AfAGXUsammZZbcVDw==}
 
+  '@nekosu/maa-pipeline-manager@1.0.11':
+    resolution: {integrity: sha512-5OzCMO5w7ohaLBlgpcuKeidUN+tU49e2EFpY5MveKXDPpyVkwKkqtrcug52nfJgJP57v+8Eta1ZU9/8aGyL9tA==}
+
   '@nekosu/maa-tasker@1.0.0':
     resolution: {integrity: sha512-p5SaBJGvAMr5J2uk6imoiK7eIF7yA67HndWyfxddAHHdoyliai2dkHqBhTmDDuRmmAJ/ly4INg5Hnx8CI7Po3A==}
 
   '@nekosu/maa-tools@1.0.24':
-    resolution: {integrity: sha512-+aa6IgRCDzPF2RtwWXzHH4TpjMfmMuGwZ0VydMJLdXQ4w/0A2ej0jaVjRUsnS67EFi205Mnddvo0za4BbPvL0Q==}
+    resolution: {integrity: sha512-bahWm52Qfzex25mO1DhOTYtiec4qIHe6YIJnvj7VNZTMrwFpL8J3bSN6zJypUc6ai5SV1v54EyN4Wm7XTfCLZg==}
     hasBin: true
 
   '@nekosu/maa-version-manager@1.0.2':
@@ -631,6 +634,13 @@ snapshots:
       chokidar: 5.0.0
       jsonc-parser: 3.3.1
 
+  '@nekosu/maa-pipeline-manager@1.0.11':
+    dependencies:
+      '@nekosu/maa-locale': 1.0.2
+      '@nekosu/maa-tasker': 1.0.0
+      chokidar: 5.0.0
+      jsonc-parser: 3.3.1
+
   '@nekosu/maa-tasker@1.0.0':
     dependencies:
       '@nekosu/simple-parser': 1.0.0
@@ -639,7 +649,7 @@ snapshots:
     dependencies:
       '@actions/core': 3.0.0
       '@nekosu/maa-locale': 1.0.2
-      '@nekosu/maa-pipeline-manager': 1.0.10
+      '@nekosu/maa-pipeline-manager': 1.0.11
       '@nekosu/maa-version-manager': 1.0.2
       chalk: 5.6.2
       jiti: 2.6.1
