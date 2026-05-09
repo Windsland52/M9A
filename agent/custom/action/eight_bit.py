@@ -6,6 +6,7 @@ from maa.context import Context
 from maa.custom_action import CustomAction
 from maa.pipeline import JOCR, JRecognitionType, JTemplateMatch
 from utils import logger
+from utils.params import parse_params
 
 KEYCODE_DPAD_UP = 19
 KEYCODE_DPAD_DOWN = 20
@@ -17,6 +18,9 @@ KEYCODE_DPAD_RIGHT = 22
 class EightBitCombatInit(CustomAction):
     """
     8-bit 战斗初始化，检测是否需要开启碰壁检测
+
+    参数：
+      mode: "stable" 时为稳定模式，直接按 10 次下键后退出
     """
 
     _bottom_roi: tuple[int, int, int, int] = (352, 579, 613, 97)
@@ -30,6 +34,21 @@ class EightBitCombatInit(CustomAction):
         context: Context,
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
+
+        try:
+            params = parse_params(argv.custom_action_param)
+            mode = params.get("mode", "normal")
+        except Exception:
+            pass
+
+        EightBitCombatMove._reset_wall_state()
+
+        if mode == "stable":
+            EightBitCombatInit.start_time = float("inf")
+            for _ in range(10):
+                context.tasker.controller.post_click_key(KEYCODE_DPAD_DOWN).wait()
+            EightBitCombatInit.wall_detection_enabled = False
+            return CustomAction.RunResult(success=True)
 
         context.wait_freezes(time=1000, box=(37, 34, 302, 632))
         time.sleep(3)  # 等待战斗界面稳定
@@ -77,7 +96,6 @@ class EightBitCombatInit(CustomAction):
         if EightBitCombatInit.wall_detection_enabled:
             logger.debug("[8bit] 开启碰壁检测")
 
-        EightBitCombatMove._reset_wall_state()
         return CustomAction.RunResult(success=True)
 
 

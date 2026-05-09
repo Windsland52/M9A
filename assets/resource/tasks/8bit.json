@@ -65,13 +65,14 @@
                     "pipeline_override": {
                         "8bitFlagInCombat": {
                             "action": {
-                                "type": "ClickKey",
+                                "type": "Custom",
                                 "param": {
-                                    "key": 20
+                                    "custom_action": "EightBitCombatInit",
+                                    "custom_action_param": {
+                                        "mode": "stable"
+                                    }
                                 }
-                            },
-                            "repeat": 10,
-                            "repeat_delay": 0
+                            }
                         }
                     }
                 },
