@@ -50,7 +50,7 @@
             "SOSDiceGiveUp",
             "SOSContinue",
             "SOSEventEnd",
-            "SOSEventEndMessage",
+            "SOSSelectOption",
             "CloseTip"
         ],
         "EncounterAlongTheWay": "@stats+@artefact+@harmonic+@resonator+@others+@message_left+SOSClickEventRec",
