@@ -2117,6 +2117,12 @@
         "recognition": {
             "type": "OCR",
             "param": {
+                // "roi": [
+                //     45,
+                //     74,
+                //     207,
+                //     29
+                // ],
                 "roi": [
                     858,
                     72,
@@ -2182,16 +2188,47 @@
                     [
                         "[\"”]滂",
                         "“滂"
+                    ],
+                    [
+                        "^恩德与回报$",
+                        "恩德与回报Ⅰ"
                     ]
                 ],
-                // "roi": [
-                //     45,
-                //     74,
-                //     207,
-                //     29
-                // ],
                 "only_rec": true,
+                "color_filter": "SOSEventRec_color_filter",
                 "threshold": 0.6
+            }
+        }
+    },
+    "SOSEventRec_color_filter": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "method": 40,
+                "lower": [
+                    [
+                        150,
+                        2,
+                        106
+                    ],
+                    [
+                        0,
+                        2,
+                        106
+                    ]
+                ],
+                "upper": [
+                    [
+                        179,
+                        45,
+                        241
+                    ],
+                    [
+                        30,
+                        45,
+                        241
+                    ]
+                ]
             }
         }
     },
