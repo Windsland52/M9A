@@ -330,7 +330,7 @@ class SOSNodeProcess(CustomAction):
 
     def exec_main(self, context: Context, action: dict | list, interrupts: list):
         retry_times = 0
-        while retry_times < 20:
+        while retry_times < 5:
             if context.tasker.stopping:
                 logger.debug("任务即将停止，跳过节点处理")
                 return False
