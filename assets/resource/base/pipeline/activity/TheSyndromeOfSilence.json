@@ -793,7 +793,8 @@
             "[JumpBack]SOSConfirm",
             "[JumpBack]SOSInformation",
             "[JumpBack]SOSCollectBack",
-            "[JumpBack]CloseTip"
+            "[JumpBack]CloseTip",
+            "[JumpBack]SOSStop"
         ]
     },
     // 演绎主体逻辑
@@ -2112,6 +2113,12 @@
         "action": {
             "type": "Click"
         }
+    },
+    "SOSBack2Start": {
+        "next": [
+            "FlagInSOSMainMenu",
+            "[JumpBack]BackButton"
+        ]
     },
     // 工具节点
     "SOSEventRec": {

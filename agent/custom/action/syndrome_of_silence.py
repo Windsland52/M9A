@@ -42,6 +42,13 @@ class SOSSelectNode(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
 
+        restart_on_ezhan = False
+        try:
+            params = parse_params(argv.custom_action_param)
+            restart_on_ezhan = params.get("restart_on_ezhan", False)
+        except Exception:
+            pass
+
         reco_detail = argv.reco_detail.raw_detail["best"]["detail"]
 
         try:
@@ -134,6 +141,10 @@ class SOSSelectNode(CustomAction):
         if not node_type:
             logger.error(f"空的 node_type for cls_index: {cls_index}")
             return CustomAction.RunResult(success=False)
+        if node_type == "恶战" and restart_on_ezhan:
+            logger.info("检测到恶战节点，返回主界面重新开始")
+            context.run_task("SOSBack2Start")
+            return CustomAction.RunResult(success=True)
         SOSSelectNode.node_type = node_type
         logger.info(f"当前进入节点类型: {node_type}")
 
@@ -255,6 +266,16 @@ class SOSNodeProcess(CustomAction):
         if not node_type:
             logger.error("node_type 为空")
             return CustomAction.RunResult(success=False)
+
+        restart_on_ezhan = False
+        try:
+            params = parse_params(argv.custom_action_param)
+            restart_on_ezhan = params.get("restart_on_ezhan", False)
+        except Exception:
+            pass
+
+        if node_type == "恶战" and restart_on_ezhan:
+            return CustomAction.RunResult(success=True)
 
         # 无 event 的处理
         if node_type in ["购物契机", "遭遇", "途中余兴", "冲突", "恶战", "巧匠之手"]:
