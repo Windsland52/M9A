@@ -1572,8 +1572,10 @@
                 ]
             }
         },
+        "post_delay": 1000,
         "next": [
-            "SOSSelectOptionConfirm"
+            "SOSSelectOptionConfirm",
+            "SOSSelectOption"
         ]
     },
     "SOSSelectOptionConfirm": {
