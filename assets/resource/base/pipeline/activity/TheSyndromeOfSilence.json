@@ -1576,7 +1576,7 @@
         "post_delay": 1000,
         "next": [
             "SOSSelectOptionConfirm",
-            "SOSSelectOption"
+            "[JumpBack]SOSSelectOption_HSV"
         ]
     },
     "SOSSelectOptionConfirm": {

@@ -353,7 +353,6 @@ class SOSNodeProcess(CustomAction):
         retry_times = 0
         while retry_times < 5:
             if context.tasker.stopping:
-                logger.debug("任务即将停止，跳过节点处理")
                 return False
             # 先尝试执行主动作
             if self.exec_action(context.clone(), action):
@@ -362,7 +361,6 @@ class SOSNodeProcess(CustomAction):
             # 尝试所有 interrupts
             for interrupt in interrupts:
                 if context.tasker.stopping:
-                    logger.debug("任务即将停止，跳过节点处理")
                     return False
                 if self.exec_action(context.clone(), interrupt):
                     retry_times = 0
@@ -409,107 +407,76 @@ class SOSNodeProcess(CustomAction):
                     context.run_task(entry=name)
                     return True
             elif action_type == "SelectOption":
-                method = action.get("method")
+                if context.tasker.stopping:
+                    return False
+
+                img = context.tasker.controller.post_screencap().wait().get()
+                check_reco = context.run_recognition("SOSSelectOption", img)
+                if not check_reco or not check_reco.hit:
+                    return False
+
+                method = action.get("method", "HSV")
                 if method == "OCR":
                     expected_all: list[str] | str = action.get("expected", "")
                     order_by: str = action.get("order_by", "Vertical")
                     index: int = action.get("index", 0)
-                    origin_node = context.get_node_data("SOSSelectOption_OCR")
 
-                    if not origin_node:
-                        logger.error("未找到原始节点 SOSSelectOption_OCR")
-                        return False
-
-                    # 将 expected 统一转为列表
                     expected_list = (
                         expected_all
                         if isinstance(expected_all, list)
                         else [expected_all]
                     )
+                    logger.debug(
+                        f"执行选项选择: SelectOption (OCR), expected={expected_list}"
+                    )
 
-                    # 先识别一下是否有选项界面
-                    img = context.tasker.controller.post_screencap().wait().get()
-                    check_reco = context.run_recognition("SOSSelectOption", img)
-                    if not check_reco or not check_reco.hit:
+                    origin_node = context.get_node_data("SOSSelectOption_OCR")
+                    if not origin_node:
+                        logger.error("未找到原始节点 SOSSelectOption_OCR")
                         return False
 
-                    origin_node1 = context.get_node_data("SOSSelectOption")
-
                     pp_override = {
-                        "SOSSelectOption": {
-                            "next": origin_node1.get("next", []) if origin_node1 else []
-                        }
+                        "SOSSelectOption": {"next": ["SOSSelectOptionConfirm"]}
                     }
-
-                    # 为每个 expected 创建独立节点
                     for i, expected in enumerate(expected_list):
                         node_name = f"SOSSelectOption_OCR_{i}"
-                        # 基于 origin_node 创建新节点（使用深拷贝）
                         new_node = copy.deepcopy(origin_node)
                         if "recognition" not in new_node:
                             new_node["recognition"] = {}
                         if "param" not in new_node["recognition"]:
                             new_node["recognition"]["param"] = {}
-
-                        # 更新参数
                         new_node["recognition"]["param"]["expected"] = expected
                         new_node["recognition"]["param"]["order_by"] = order_by
                         new_node["recognition"]["param"]["index"] = index
-
-                        # 添加到 pipeline_override
                         pp_override[node_name] = new_node
                         pp_override["SOSSelectOption"]["next"].append(
                             "[JumpBack]" + node_name
                         )
 
-                    logger.debug(
-                        f"执行选项选择: SelectOption (OCR), expected={expected_list}"
-                    )
                     if context.tasker.stopping:
-                        logger.debug("任务即将停止，跳过节点处理")
                         return False
                     context.run_task("SOSSelectOption", pipeline_override=pp_override)
-                elif method == "HSV":
+                else:
                     order_by = action.get("order_by", "Vertical")
                     index = action.get("index", 0)
-
-                    # 先识别一下是否有选项界面
-                    if context.tasker.stopping:
-                        logger.debug("任务即将停止，跳过节点处理")
-                        return False
-                    img = context.tasker.controller.post_screencap().wait().get()
-                    check_reco = context.run_recognition("SOSSelectOption", img)
-                    if not check_reco or not check_reco.hit:
-                        return False
-
-                    origin_node = context.get_node_data("SOSSelectOption")
-
-                    override_next = (
-                        origin_node.get("next", []) if origin_node else []
-                    ).copy()
-                    override_next.append("[JumpBack]SOSSelectOption_HSV")
-
-                    pp_override = {
-                        "SOSSelectOption": {"next": override_next},
-                        "SOSSelectOption_HSV": {
-                            "recognition": {
-                                "param": {
-                                    "order_by": order_by,
-                                    "index": index,
-                                }
-                            }
-                        },
-                    }
                     logger.debug(
                         f"执行选项选择: SelectOption (HSV), order_by={order_by}, index={index}"
                     )
                     if context.tasker.stopping:
-                        logger.debug("任务即将停止，跳过节点处理")
                         return False
-                    context.run_task("SOSSelectOption", pipeline_override=pp_override)
-                else:
-                    logger.error(f"未知的选项选择方法: {method}")
-                    return False
+                    context.run_task(
+                        "SOSSelectOption",
+                        pipeline_override={
+                            "SOSSelectOption_HSV": {
+                                "recognition": {
+                                    "param": {
+                                        "order_by": order_by,
+                                        "index": index,
+                                    }
+                                }
+                            }
+                        },
+                    )
                 return True
             elif action_type == "SelectEncounterOption":
                 method = action.get("method")
