@@ -2203,7 +2203,7 @@
                     ]
                 ],
                 "only_rec": true,
-                "color_filter": "SOSEventRec_color_filter",
+                // "color_filter": "SOSEventRec_color_filter",
                 "threshold": 0.6
             }
         }
