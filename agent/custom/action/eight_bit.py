@@ -35,6 +35,7 @@ class EightBitCombatInit(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
 
+        mode = "normal"
         try:
             params = parse_params(argv.custom_action_param)
             mode = params.get("mode", "normal")
