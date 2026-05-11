@@ -364,8 +364,7 @@ class SOSNodeProcess(CustomAction):
                 if context.tasker.stopping:
                     logger.debug("任务即将停止，跳过节点处理")
                     return False
-                img = context.tasker.controller.post_screencap().wait().get()
-                if self.exec_action(context.clone(), interrupt, img):
+                if self.exec_action(context.clone(), interrupt):
                     retry_times = 0
                     break
 
@@ -373,16 +372,10 @@ class SOSNodeProcess(CustomAction):
             retry_times += 1
         return False
 
-    def exec_action(
-        self, context: Context, action: dict | list | str, img=None
-    ) -> bool:
-        # 如果是字符串,说明是 interrupt 节点，识别后执行
+    def exec_action(self, context: Context, action: dict | list | str) -> bool:
         if isinstance(action, str):
-            # 如果没有传入 img，使用 cached_image
-            check_img = (
-                img if img is not None else context.tasker.controller.cached_image
-            )
-            rec = context.run_recognition(action, check_img)
+            img = context.tasker.controller.post_screencap().wait().get()
+            rec = context.run_recognition(action, img)
             if rec and rec.hit:
                 logger.debug(f"执行中断节点: {action}")
                 context.run_task(action)
