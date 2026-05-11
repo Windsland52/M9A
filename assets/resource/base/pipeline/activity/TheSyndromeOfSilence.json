@@ -1058,7 +1058,8 @@
             "type": "Click"
         },
         "next": [
-            "SOSConfirm"
+            "SOSConfirm",
+            "SOSSelectResonatorConfirm"
         ]
     },
     "SOSFormBreakthrough": {
