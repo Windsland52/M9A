@@ -1,5 +1,6 @@
 import ast
 import copy
+import difflib
 import json
 import os
 import re
@@ -288,9 +289,16 @@ class SOSNodeProcess(CustomAction):
         else:
             # 有 event 的处理
             if event_name not in nodes[node_type]["events"]:
-                logger.error(f"未适配该事件: {event_name}")
-                context.tasker.post_stop()
-                return CustomAction.RunResult(success=False)
+                matches = difflib.get_close_matches(
+                    event_name, nodes[node_type]["events"].keys(), n=1, cutoff=0.6
+                )
+                if matches:
+                    logger.debug(f"近似匹配事件: {event_name} -> {matches[0]}")
+                    event_name = matches[0]
+                else:
+                    logger.error(f"未适配该事件: {event_name}")
+                    context.tasker.post_stop()
+                    return CustomAction.RunResult(success=False)
 
             info: dict = nodes[node_type]["events"][event_name]
             # 如果是最终难题，不添加 FlagInSOSMain
@@ -803,46 +811,17 @@ class SOSShoppingList(CustomAction):
     def _correct_item_name(self, name: str, valid_names: set) -> str:
         """
         纠正识别错误的物品名
-        使用编辑距离找到最相似的有效名称
+        使用 difflib 找到最相似的有效名称
         """
         if name in valid_names:
             return name
 
-        # 计算与所有有效名称的相似度
-        def edit_distance(s1: str, s2: str) -> int:
-            """计算编辑距离"""
-            if len(s1) < len(s2):
-                return edit_distance(s2, s1)
-            if len(s2) == 0:
-                return len(s1)
-
-            previous_row = range(len(s2) + 1)
-            for i, c1 in enumerate(s1):
-                current_row = [i + 1]
-                for j, c2 in enumerate(s2):
-                    insertions = previous_row[j + 1] + 1
-                    deletions = current_row[j] + 1
-                    substitutions = previous_row[j] + (c1 != c2)
-                    current_row.append(min(insertions, deletions, substitutions))
-                previous_row = current_row
-
-            return previous_row[-1]
-
-        # 找最相似的名称
-        min_distance = float("inf")
-        best_match = None
-
-        for valid_name in valid_names:
-            distance = edit_distance(name, valid_name)
-            # 只接受距离小于名称长度一半的匹配
-            if distance < min_distance and distance <= len(name) // 2:
-                min_distance = distance
-                best_match = valid_name
-
-        if best_match:
-            if best_match != name:
-                logger.debug(f"纠正物品名: {name} -> {best_match}")
-            return best_match
+        matches = difflib.get_close_matches(name, valid_names, n=1, cutoff=0.6)
+        if matches:
+            corrected = matches[0]
+            if corrected != name:
+                logger.debug(f"纠正物品名: {name} -> {corrected}")
+            return corrected
 
         logger.warning(f"未找到匹配的物品名: {name}")
         return name  # 返回原名称
