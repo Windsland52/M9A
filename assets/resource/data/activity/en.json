@@ -447,5 +447,21 @@
                 }
             }
         }
+    },
+    "3.5": {
+        "version_name": "The Turquoise Serpent Club",
+        "start_time": 1779976800000,
+        "end_time": 1782982799000,
+        "activity": {
+            "combat": {
+                "event_type": "SideStory",
+                "start_time": 1779976800000,
+                "end_time": 1782723599000
+            },
+            "re-release": {
+                "start_time": 1781859600000,
+                "end_time": 1782723599000
+            }
+        }
     }
 }

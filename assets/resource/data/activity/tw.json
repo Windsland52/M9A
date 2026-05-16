@@ -264,5 +264,21 @@
                 }
             }
         }
+    },
+    "3.5": {
+        "version_name": "《綠松石蛇俱樂部》",
+        "start_time": 1779933600000,
+        "end_time": 1782939599000,
+        "activity": {
+            "combat": {
+                "event_type": "SideStory",
+                "start_time": 1779933600000,
+                "end_time": 1782680399000
+            },
+            "re-release": {
+                "start_time": 1781816400000,
+                "end_time": 1782680399000
+            }
+        }
     }
 }
